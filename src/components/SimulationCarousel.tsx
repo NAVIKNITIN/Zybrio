@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { simulationCarouselData } from "@/Data/simulationCarouselData";
+import { simulationCarouselData } from "@/data/simulationCarouselData";
 import { AppButton } from "./common/app-button";
 
 const SimulationCarousel = () => {
