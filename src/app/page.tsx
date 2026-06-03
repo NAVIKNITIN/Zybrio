@@ -16,6 +16,9 @@ import ReflexStudioSection from "@/components/home/ReflexStudioSection";
 import FeatureRadarSection from "@/components/home/RolePlay";
 import RoleplaySection from "@/components/home/RolePlay";
 import SecurityComplianceCard from "@/components/home/SecurityComplianceCard";
+import PerformanceSectionMobile from "@/components/home/PerOutComes-mobile";
+import PerformanceDashboardMobile from "@/components/home/PerformanceDashboardMobile";
+import SimulationCarouselMobile from "@/components/home/SimulationCarouselMobile";
 
 const HeroMotion = dynamic(() => import("@/components/home/hero-motion"), {
   loading: () => <div className="h-40" />,
@@ -34,15 +37,38 @@ const HomePage = () => {
       </section> */}
       <HeroMotion />
       <section className="container-app">
-        <PerformanceDashboard />
+        {/* Desktop */}
+        <div className="hidden lg:block">
+          <PerformanceDashboard />
+        </div>
+
+        {/* Mobile + Tablet */}
+        <div className="lg:hidden">
+          <PerformanceDashboardMobile />
+        </div>
       </section>
+
       {/* Companies */}
       <CompaniesTrustedIcon />
       <RoleplaySection />
-      <PerformanceOutcomesDashboard />
+      <div className="hidden lg:block">
+        <PerformanceOutcomesDashboard />
+      </div>
+
+      <div className="lg:hidden">
+        <PerformanceSectionMobile />
+      </div>
 
       {/* Simulation Carousel */}
-      <SimulationCarousel />
+      {/* Desktop Only */}
+      <div className="hidden lg:block">
+        <SimulationCarousel />
+      </div>
+
+      {/* Mobile + Tablet Only */}
+      <div className="lg:hidden">
+        <SimulationCarouselMobile />
+      </div>
       <AssureSection />
       <ReflexStudioSection />
 

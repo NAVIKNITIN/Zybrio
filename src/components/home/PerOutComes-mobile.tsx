@@ -79,7 +79,7 @@ const StatsCard = ({ value, label, className = "", delay = 0 }: StatsCardProps) 
 
 export default function PerformanceSection() {
   return (
-    <section className="relative bg-[#001F00] min-h-screen lg:h-[200vh] text-white">
+    <section className="lg:hidden relative bg-[#001F00] min-h-screen text-white">
       {/* Radial ambient glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,_rgba(0,200,80,0.07),_transparent_70%)]" />
 
@@ -97,27 +97,27 @@ export default function PerformanceSection() {
             <span className="text-[42px] md:text-[52px] lg:text-[70px] font-semibold leading-none">
               Performance
             </span>
-            <div className=" flex items-center justify-center gap-2 text-[38px] md:text-[50px] lg:text-[70px] font-bold">
-              <span className="scale-105 md:scale-90 lg:scale-100 ">
+            <div className=" flex items-center justify-center gap- text-[38px] md:text-[50px] lg:text-[70px] font-bold">
+              <span className="scale-75 md:scale-90 lg:scale-100 flex-shrink-0">
                 <svg
-                  width="77"
-                  height="72"
+                  width="80"
+                  height="80"
                   viewBox="0 0 77 72"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="inline-block"
+                  className="block"
                 >
-                  <g clipPath="url(#clip0_perf)">
+                  <g clipPath="url(#clip0_perf_mobile)">
                     <path
                       opacity="0.6"
                       d="M18.6729 41.6514L5.36572 49.1829C4.11136 49.8928 3.33594 51.2227 3.33594 52.664V63.3357C3.33594 65.5449 5.1268 67.3357 7.33594 67.3357H69.999C72.2082 67.3357 73.999 65.5449 73.999 63.3357V13.276C73.999 9.87263 70.0192 8.02409 67.4186 10.2196L60.4305 16.1193L35.6746 38.4773C35.0674 39.0257 34.3066 39.3747 33.4949 39.4772L20.1418 41.1641C19.6251 41.2294 19.1261 41.3949 18.6729 41.6514Z"
-                      fill="url(#paint0_perf)"
+                      fill="url(#paint0_perf_mobile)"
                     />
                   </g>
 
                   <defs>
                     <linearGradient
-                      id="paint0_perf"
+                      id="paint0_perf_mobile"
                       x1="38.6675"
                       y1="4.66406"
                       x2="38.6675"
@@ -128,7 +128,7 @@ export default function PerformanceSection() {
                       <stop offset="1" stopColor="#09CF58" stopOpacity="0" />
                     </linearGradient>
 
-                    <clipPath id="clip0_perf">
+                    <clipPath id="clip0_perf_mobile">
                       <rect
                         width="71"
                         height="64"
@@ -140,7 +140,7 @@ export default function PerformanceSection() {
                 </svg>
               </span>
 
-              <span className="mt-4">you can</span>
+            <span className="relative top-3">you can</span>
             </div>
 
             {/* Text below */}
@@ -239,7 +239,8 @@ export default function PerformanceSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.3 }}
           whileHover={{ scale: 1.02, y: -6 }}
-className="scale-[0.62] md:scale-[0.70] lg:scale-100 origin-top z-10 w-[320px] mx-auto translate-x-6 md:translate-x-0 lg:translate-x-0 mt-60 lg:mt-0 lg:absolute lg:right-[8%] lg:top-[65%] rounded-lg border border-[#103810] bg-[#031803]/90 p-5 backdrop-blur-xl">
+          className="scale-[0.62] md:scale-[0.70] lg:scale-100 origin-top z-10 w-[320px] mx-auto translate-x-6 md:translate-x-0 lg:translate-x-0 mt-60 lg:mt-0 lg:absolute lg:right-[8%] lg:top-[65%] rounded-lg border border-[#103810] bg-[#031803]/90 p-5 backdrop-blur-xl"
+        >
           <h3 className="text-sm font-medium text-white">Interactions by Length</h3>
 
           <div className="mt-6 space-y-4">

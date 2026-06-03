@@ -79,50 +79,94 @@ export default function ReflexStudioSection() {
               </g>
             </svg>
           </div>
+          <div className="flex w-full justify-center py-8">
+            {/* ================= MOBILE + TABLET ================= */}
+            <div className="lg:hidden w-[220px] overflow-hidden rounded-[10px] bg-[#012900] text-white shadow-lg">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-[#1a3d0f] px-2 py-2">
+                <div className="flex min-w-0 items-center gap-2">
+                  <img
+                    src="https://i.pravatar.cc/40?img=5"
+                    alt="Olivia"
+                    className="h-6 w-6 shrink-0 rounded-full"
+                  />
 
-          <div className="overflow-hidden rounded-[18px] bg-[#012900] text-white shadow-xl h-auto lg:h-auto lg:max-h-none">
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-[#1a3d0f] px-3 py-3 sm:px-4 sm:py-4">
-              <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-                <img
-                  src="https://i.pravatar.cc/40?img=5"
-                  alt="Olivia"
-                  className="h-8 w-8 shrink-0 rounded-full sm:h-10 sm:w-10"
-                />
-
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold sm:text-base">Olivia</p>
-                  <p className="text-xs text-gray-400 sm:text-sm">Agent</p>
+                  <div className="min-w-0">
+                    <p className="truncate text-[10px] font-semibold">Olivia</p>
+                    <p className="text-[8px] text-gray-400">Agent</p>
+                  </div>
                 </div>
+
+                <button className="text-[8px] text-gray-300">End Chat</button>
               </div>
 
-              <button className="shrink-0 text-xs text-gray-300 hover:text-white sm:text-sm">
-                End Chat
-              </button>
+              {/* Chat Content */}
+              <div className="space-y-1 p-2 text-[8px]">
+                <div className="rounded-lg bg-[#123f0c] p-1.5 leading-tight text-gray-100">
+                  I just got an alert about a huge charge on my credit card.
+                </div>
+
+                <div className="text-[8px] text-gray-300">Maria</div>
+
+                <div className="rounded-lg bg-[#c8e2dd] p-1.5 leading-tight text-[#0b2a0a]">
+                  I’m sorry this happened. Can you tell me about the transaction?
+                </div>
+
+                <div className="text-right text-[8px] text-gray-300">Olivia</div>
+
+                <div className="rounded-lg bg-[#123f0c] p-1.5 leading-tight text-gray-100">
+                  It showed up early this morning and I don’t recognize it.
+                </div>
+
+                <div className="text-[8px] text-gray-300">Maria</div>
+              </div>
             </div>
 
-            {/* Chat Content */}
-            <div className="space-y-0.5 p-1 text-[9px] sm:space-y-1 sm:p-1.5 sm:text-[10px] md:text-[11px]">
-              <div className="rounded-xl bg-[#123f0c] p-1 leading-snug text-gray-100">
-                I just got an alert about a huge charge on my credit card, and I didn’t
-                make it. I’m really scared something’s wrong.
+            {/* ================= DESKTOP ================= */}
+            <div className="hidden lg:block w-full max-w-[700px] overflow-hidden rounded-[18px] bg-[#012900] text-white shadow-xl">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-[#1a3d0f] px-4 py-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <img
+                    src="https://i.pravatar.cc/40?img=5"
+                    alt="Olivia"
+                    className="h-10 w-10 shrink-0 rounded-full"
+                  />
+
+                  <div className="min-w-0">
+                    <p className="truncate text-base font-semibold">Olivia</p>
+                    <p className="text-sm text-gray-400">Agent</p>
+                  </div>
+                </div>
+
+                <button className="text-sm text-gray-300 hover:text-white">
+                  End Chat
+                </button>
               </div>
 
-              <div className="text-xs text-gray-300 sm:text-sm">Maria</div>
+              {/* Chat Content */}
+              <div className="space-y-2 p-4 text-[11px]">
+                <div className="rounded-xl bg-[#123f0c] p-3 leading-snug text-gray-100">
+                  I just got an alert about a huge charge on my credit card, and I didn’t
+                  make it.
+                </div>
 
-              <div className="rounded-xl bg-[#c8e2dd] p-1 leading-snug text-[#0b2a0a]">
-                I’m really sorry this happened, Maria. I know that can be unsettling. Can
-                you tell me about the transaction?
+                <div className="text-sm text-gray-300">Maria</div>
+
+                <div className="rounded-xl bg-[#c8e2dd] p-3 leading-snug text-[#0b2a0a]">
+                  I’m really sorry this happened, Maria. Can you tell me about the
+                  transaction?
+                </div>
+
+                <div className="text-right text-sm text-gray-300">Olivia</div>
+
+                <div className="rounded-xl bg-[#123f0c] p-4 leading-relaxed text-gray-100">
+                  It showed up early this morning for an amount I would never spend. I
+                  don’t recognize the store at all.
+                </div>
+
+                <div className="text-sm text-gray-300">Maria</div>
               </div>
-
-              <div className="text-right text-xs text-gray-300 sm:text-sm">Olivia</div>
-
-              <div className="rounded-xl bg-[#123f0c] p-3 sm:p-4 leading-relaxed text-gray-100">
-                It showed up early this morning for an amount I would never spend. I don’t
-                recognize the store at all, and I’m worried someone has my information.
-              </div>
-
-              <div className="text-xs text-gray-300 sm:text-sm">Maria</div>
             </div>
           </div>
         </motion.div>
