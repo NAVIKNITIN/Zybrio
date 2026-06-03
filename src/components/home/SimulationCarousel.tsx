@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { simulationCarouselData } from "@/data/simulationCarouselData";
-import { AppButton } from "./common/app-button";
+import { AppButton } from "../common/app-button";
 
 const SimulationCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);

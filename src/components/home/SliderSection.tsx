@@ -59,7 +59,6 @@ export default function SliderSection() {
   const [current, setCurrent] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
 
-  // observe width
   useEffect(() => {
     if (!viewportRef.current) return;
 
@@ -79,31 +78,24 @@ export default function SliderSection() {
   const maxTranslate = Math.max(0, trackWidth - viewportWidth);
   const maxIndex = Math.max(0, Math.ceil(maxTranslate / STEP));
 
-  // clamp helper (SAFE)
   const clamp = (v: number) => Math.max(0, Math.min(maxIndex, v));
 
   const safeIndex = Math.min(clamp(current), maxIndex);
   const translateX = Math.min(safeIndex * STEP, maxTranslate);
-  const progressWidth = maxIndex === 0 ? 100 : 100 / (maxIndex + 1);
 
+  const progressWidth = maxIndex === 0 ? 100 : 100 / (maxIndex + 1);
   const progressLeft =
     maxIndex === 0 ? 0 : (clamp(current) / maxIndex) * (100 - progressWidth);
 
-  // buttons
   const moveSlider = (dir: "left" | "right") => {
-    setCurrent((v) => {
-      const next = dir === "left" ? v - 1 : v + 1;
-      return clamp(next);
-    });
+    setCurrent((v) => clamp(dir === "left" ? v - 1 : v + 1));
   };
 
-  // keyboard
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.shiftKey && e.key === "ArrowRight") {
         setCurrent((v) => clamp(v + 1));
       }
-
       if (e.shiftKey && e.key === "ArrowLeft") {
         setCurrent((v) => clamp(v - 1));
       }
@@ -113,7 +105,6 @@ export default function SliderSection() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [maxIndex]);
 
-  // progress click
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressRef.current || maxIndex === 0) return;
 
@@ -124,17 +115,18 @@ export default function SliderSection() {
   };
 
   return (
-    <section className="overflow-hidden bg-[#041b0b] py-20 text-white">
-      <div className="mx-auto w-full max-w-[1280px] px-6 lg:px-0">
+    <section className="overflow-hidden bg-[#041b0b] py-14 sm:py-20 text-white">
+      <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-0">
         {/* HEADER */}
-        <div className="mb-20 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-          <h2 className="max-w-[530px] text-[42px] font-semibold leading-[1.08] sm:text-[48px]">
+        <div className="mb-12 sm:mb-20 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+          <h2 className="max-w-[530px] text-[28px] sm:text-[42px] lg:text-[48px] font-semibold leading-[1.08]">
             Proven in crisis,
             <br />
             powerful everywhere
           </h2>
 
-          <div className="flex gap-3">
+          {/* HIDE ARROWS ON MOBILE + TAB */}
+          <div className="hidden lg:flex gap-3">
             <button
               onClick={() => moveSlider("left")}
               disabled={current === 0}
@@ -161,6 +153,13 @@ export default function SliderSection() {
             dragConstraints={{ left: -maxTranslate, right: 0 }}
             animate={{ x: -translateX }}
             transition={{ type: "spring", stiffness: 180, damping: 25 }}
+            className="flex cursor-grab gap-4 sm:gap-6 active:cursor-grabbing select-none touch-pan-y"
+            style={{
+              WebkitTapHighlightColor: "transparent",
+              WebkitUserSelect: "none",
+              userSelect: "none",
+              touchAction: "pan-y",
+            }}
             onDragEnd={(_, info) => {
               const threshold = STEP * 0.2;
 
@@ -170,27 +169,31 @@ export default function SliderSection() {
                 setCurrent((v) => clamp(v - 1));
               }
             }}
-            className="flex cursor-grab gap-6 active:cursor-grabbing"
           >
             {cards.map((card) => (
               <article
                 key={card.title}
-                className="relative h-[460px] w-[315px] shrink-0 overflow-hidden rounded-[18px]"
+                draggable={false}
+                className="relative h-[360px] sm:h-[460px] w-[260px] sm:w-[315px] shrink-0 overflow-hidden rounded-[18px] select-none"
               >
                 <Image
-                  src={`${card.image}?auto=format&fit=crop&w=900&q=85`}
-                  alt={card.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 315px"
-                  className="object-cover"
-                  draggable={false}
-                />
+  src={`${card.image}?auto=format&fit=crop&w=900&q=85`}
+  alt={card.title}
+  fill
+  sizes="(max-width: 768px) 100vw, 315px"
+  className="object-cover pointer-events-none"
+  draggable={false}
+/>
 
                 <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/80" />
 
-                <div className="absolute inset-x-6 bottom-6">
-                  <p className="text-[15px] text-white/90 mb-4">{card.text}</p>
-                  <h3 className="text-[30px] font-semibold">{card.title}</h3>
+                <div className="absolute inset-x-4 sm:inset-x-6 bottom-5 sm:bottom-6">
+                  <p className="text-[13px] sm:text-[15px] text-white/90 mb-3 sm:mb-4">
+                    {card.text}
+                  </p>
+                  <h3 className="text-[22px] sm:text-[30px] font-semibold">
+                    {card.title}
+                  </h3>
                 </div>
               </article>
             ))}
@@ -201,7 +204,7 @@ export default function SliderSection() {
         <div
           ref={progressRef}
           onClick={handleSeek}
-          className="relative mt-10 h-[3px] w-full rounded-full bg-[#26442a] cursor-pointer"
+          className="hidden lg:block relative mt-8 sm:mt-10 h-[3px] w-full rounded-full bg-[#26442a] cursor-pointer"
         >
           <div
             className="absolute top-0 h-full rounded-full bg-[#c7ff45] transition-all duration-500"
