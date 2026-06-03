@@ -126,7 +126,7 @@ export default function PricingPage() {
   return (
     
     <main className="min-h-screen bg-[#F8F8F5]">
-        <Navbar />
+        <Navbar/>
       <section className="px-6  pb-20">
         <div className="max-w-7xl mx-auto text-center">
           {/* Header */}

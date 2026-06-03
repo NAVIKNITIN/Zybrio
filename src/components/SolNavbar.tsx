@@ -71,128 +71,148 @@ const logos = [
 
 export default function SolNavbar() {
   return (
-    <section className="w-full max-w-[1280px] mx-auto bg-white rounded-[28px] px-10 py-10">
-      <div className="grid grid-cols-[48%_52%] gap-14">
-        {/* LEFT SIDE */}
-        <div>
-          <h2 className="text-[16px] text-[#5E6553] mb-8 font-medium">by Industry</h2>
+  <section className="w-full max-w-[1280px] mx-auto bg-white rounded-[28px] px-4 sm:px-6 lg:px-10 py-8 lg:py-10  max-h-[90vh] overflow-y-auto lg:overflow-y-hidden overflow-x-hidden">
+  <div className="grid grid-cols-1 lg:grid-cols-[48%_52%] gap-10 lg:gap-14">
+    
+    {/* LEFT SIDE */}
+    <div>
+      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+        by Industry
+      </h2>
 
-          <div className="grid grid-cols-2 gap-y-8 gap-x-12">
-            {industries.map((item) => {
-              const Icon = item.icon;
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-y-8 lg:gap-x-12">
+        {industries.map((item) => {
+          const Icon = item.icon;
 
-              return (
-                <div key={item.title} className="flex items-center gap-3 cursor-pointer">
-                  <Icon size={18} strokeWidth={2.2} className="text-[#0B2408]" />
+          return (
+            <div
+              key={item.title}
+              className="flex items-center gap-3 cursor-pointer"
+            >
+              <Icon
+                size={18}
+                strokeWidth={2.2}
+                className="text-[#0B2408] shrink-0"
+              />
 
-                  <h3 className="text-[16px] font-semibold text-[#0B2408] leading-none">
-                    {item.title}
-                  </h3>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* USE CASE */}
-          <div className="mt-14">
-            <h2 className="text-[16px] text-[#5E6553] mb-8 font-medium">by Use Case</h2>
-
-            <div className="grid grid-cols-2 gap-y-8 gap-x-12">
-              {useCases.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="flex items-center gap-3 cursor-pointer"
-                  >
-                    <Icon size={18} strokeWidth={2.2} className="text-[#0B2408]" />
-
-                    <h3 className="text-[16px] font-semibold text-[#0B2408] leading-none">
-                      {item.title}
-                    </h3>
-                  </div>
-                );
-              })}
+              <h3 className="text-sm md:text-base font-semibold text-[#0B2408]">
+                {item.title}
+              </h3>
             </div>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div>
-          <h2 className="text-[16px] text-[#5E6553] mb-8 font-medium">by Organization</h2>
-
-          <div className="space-y-4">
-            {organizations.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="border border-[#E3E5DB] rounded-[16px] px-6 py-5 bg-[#F8F8F4] w-[420px]"
-                >
-                  <div className="flex gap-4">
-                    <Icon size={18} className="text-[#7A9D31] mt-1 shrink-0" />
-
-                    <div>
-                      <h3 className="text-[16px] font-semibold text-[#11270D] mb-2">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-[13px] leading-[22px] text-[#4F5B45] max-w-[320px]">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* AUTO SCROLL LOGOS */}
-          <div className="overflow-hidden mt-8">
-            <div className="flex gap-16 whitespace-nowrap animate-scroll items-center">
-              {(() => {
-                // create deterministic repeated list without using index for keys
-                const repeated = [...logos, ...logos.map((l) => `${l}::dup`)];
-
-                return repeated.map((entry) => {
-                  const src = entry.endsWith("::dup")
-                    ? entry.replace("::dup", "")
-                    : entry;
-
-                  return (
-                    <Image
-                      key={entry}
-                      src={src}
-                      alt={`${src} logo`}
-                      width={120}
-                      height={56}
-                      className="h-14 w-auto object-contain opacity-90 mix-blend-multiply"
-                    />
-                  );
-                });
-              })()}
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-      <style jsx>{`
-        .animate-scroll {
-          width: max-content;
-          animation: scroll 18s linear infinite;
-        }
+      {/* USE CASE */}
+      <div className="mt-10 lg:mt-14">
+        <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+          by Use Case
+        </h2>
 
-        @keyframes scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
-    </section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-y-8 lg:gap-x-12">
+          {useCases.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="flex items-center gap-3 cursor-pointer"
+              >
+                <Icon
+                  size={18}
+                  strokeWidth={2.2}
+                  className="text-[#0B2408] shrink-0"
+                />
+
+                <h3 className="text-sm md:text-base font-semibold text-[#0B2408]">
+                  {item.title}
+                </h3>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+    {/* RIGHT SIDE */}
+    <div className="sm:pr-10">
+      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+        by Organization
+      </h2>
+
+      <div className="space-y-4">
+        {organizations.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <div
+              key={item.title}
+              className="border border-[#E3E5DB] rounded-[16px] px-4 sm:px-6 py-4 sm:py-5 bg-[#F8F8F4] w-full"
+            >
+              <div className="flex gap-4">
+                <Icon
+                  size={18}
+                  className="text-[#7A9D31] mt-1 shrink-0"
+                />
+
+                <div>
+                  <h3 className="text-sm md:text-base font-semibold text-[#11270D] mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs md:text-sm leading-6 text-[#4F5B45]">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* AUTO SCROLL LOGOS */}
+      <div className="overflow-hidden mt-8">
+        <div className="flex gap-8 md:gap-12 lg:gap-16 whitespace-nowrap animate-scroll items-center">
+          {(() => {
+            const repeated = [...logos, ...logos.map((l) => `${l}::dup`)];
+
+            return repeated.map((entry) => {
+              const src = entry.endsWith("::dup")
+                ? entry.replace("::dup", "")
+                : entry;
+
+              return (
+                <Image
+                  key={entry}
+                  src={src}
+                  alt={`${src} logo`}
+                  width={120}
+                  height={56}
+                  className="h-10 md:h-12 lg:h-14 w-auto object-contain opacity-90 mix-blend-multiply"
+                />
+              );
+            });
+          })()}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .animate-scroll {
+      width: max-content;
+      animation: scroll 18s linear infinite;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+  `}</style>
+</section>
   );
 }

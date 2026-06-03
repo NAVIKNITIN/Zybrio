@@ -84,7 +84,7 @@ export default function PerformanceSection() {
             {/* Radial ambient glow */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,_rgba(0,200,80,0.07),_transparent_70%)]" />
 
-            <div className="relative mx-auto max-w-[1600px]" style={{ minHeight: "100vh" }}>
+            <div className="relative mx-auto lg:max-w-[1600px]" style={{ minHeight: "100vh" }}>
 
                 {/* ── HEADLINE — true vertical + horizontal center ── */}
                 <motion.h2
