@@ -91,7 +91,7 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
 
 
   // setList name
-  const [title, setTitle] = useState("Zabrio");
+  const [title, setTitle] = useState("ZYBRIO");
 
   return (
     <motion.header
@@ -111,7 +111,7 @@ z-50
 w-full
 bg-[#F8F8F5]/95
 sm:bg-white/95
-backdrop-blur-md
+backdrop-blur-lg
 will-change-transform
 transform-gpu
 "

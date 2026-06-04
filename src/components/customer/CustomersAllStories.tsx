@@ -56,7 +56,7 @@ const StoryLogo = ({ logo }: { readonly logo: StoryLogo }) => {
 
 const StoryImage = ({ story }: { readonly story: Story }) => {
   return (
-    <div className="relative h-[558px] overflow-hidden rounded-[16px] bg-[#061F00]">
+    <div className="relative h-[300px] lg:h-[558px] overflow-hidden rounded-[16px] bg-[#061F00]">
       <Image
         src={story.image}
         alt={story.imageAlt}
@@ -82,13 +82,13 @@ const CustomersAllStories = () => {
   const { title, items } = customersPageData.allStories;
 
   return (
-    <section className="bg-white mx-5 px-21 py-20 text-[#061F00]">
+    <section className="bg-white mx-5  px:2 lg:px-21 py-20 text-[#061F00]">
       <div className="mx-auto max-w-[1558px]">
         <h2 className="mb-[145px] text-[clamp(42px,4.5vw,48px)] font-normal leading-none tracking-[-0.07em] text-[#061F00] mb-10">
           {title}
         </h2>
 
-        <div className="grid gap-x-12 gap-y-20 lg:grid-cols-2">
+        <div className="grid gap-9 gap-y-20 sm:grid-cols-2">
           {items.map((story) => (
             <article key={story.id} className="group">
               <StoryImage story={story} />

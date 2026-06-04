@@ -19,7 +19,7 @@ export default function CustomerStoriesSlider() {
 
   return (
     <section className="bg-[#061F00] px-5 pb-16 pt-8 text-white">
-      <div className="mx-auto grid max-w-[1240px] gap-5 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1240px] gap-5 sm:grid-cols-2">
         <article className="flex min-h-[470px] flex-col justify-between rounded-[16px] border border-[#0E4A16] bg-[#061F00] px-9 py-10">
           <div>
             <p className="text-[23px] font-semibold leading-none tracking-[-0.04em] text-white">

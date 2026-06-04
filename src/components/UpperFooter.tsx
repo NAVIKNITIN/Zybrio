@@ -195,16 +195,16 @@ export default function UpperFooter() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#ECEBE4] pl-0 pr-28">
-      <div className="z-10 ml-20 max-w-[680px]">
-        <h1 className="px-4 text-center text-[clamp(2rem,6vw,4.125rem)] font-semibold leading-[0.95] tracking-tight text-black lg:ml-10 lg:px-0 lg:text-left">
+    <section className="relative flex pt-20 pb-8 lg:min-h-[560px] w-max md:w-full items-center overflow-hidden bg-[#ECEBE4] pl-0 pr-28">
+      <div className="z-10 lg:ml-20 max-w-[680px]">
+        <h1 className="px-4 lg:text-center text-[35px] lg:text-[clamp(2rem,6vw,4.125rem)] font-semibold leading-[0.95] tracking-tight text-black lg:ml-10 lg:px-0 lg:text-left">
           Ready to elevate
           <br />
           every conversation?
         </h1>
 
         <div className="mt-6 flex items-center gap-6">
-          <AppButton className="ml-10 cursor-pointer rounded-[10px] bg-black px-6 py-5 text-base font-medium text-lime-400 transition hover:opacity-90">
+          <AppButton className="ml-5 md:ml-10 cursor-pointer rounded-[10px] bg-black px-6 py-5 text-base font-medium text-lime-400 transition hover:opacity-90">
             Get a demo
           </AppButton>
 

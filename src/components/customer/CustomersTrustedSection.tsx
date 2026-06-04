@@ -127,7 +127,7 @@ export default function CustomersTrustedSection() {
         </h2>
 
         <div className="relative mt-24">
-          <div className="grid gap-7 lg:grid-cols-2">
+          <div className="grid gap-7 sm:grid-cols-2">
             <TrustedColumn cards={leftCards} />
             <TrustedColumn cards={rightCards} reverse />
           </div>
