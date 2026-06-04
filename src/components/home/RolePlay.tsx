@@ -23,7 +23,7 @@ const UNIT: [number, number][] = [
 ].map(([x, y]) => [x - CX, y - CY] as [number, number]);
 
 // Ring scales (outer → inner dashed, then filled)
-const RING_SCALES = [1.0, 0.76, 0.54];
+const RING_SCALES = [1, 0.76, 0.54];
 const FILL_SCALE = 0.47;
 
 // Rotation speed: full rotation every ~60 seconds (matches video)
@@ -33,10 +33,10 @@ const TRAVELER_SPEED = 1 / 25; // laps/sec
 
 // Each ring gets 2 orbiting dots (clipped to inner filled shape)
 const RING_DOTS = [
-  { ringIdx: 0, t: 0.0, speed: 0.055, size: 5.5 },
+  { ringIdx: 0, t: 0, speed: 0.055, size: 5.5 },
   { ringIdx: 0, t: 0.5, speed: 0.055, size: 5.5 },
-  { ringIdx: 1, t: 0.25, speed: 0.07, size: 5.0 },
-  { ringIdx: 1, t: 0.75, speed: 0.07, size: 5.0 },
+  { ringIdx: 1, t: 0.25, speed: 0.07, size: 5 },
+  { ringIdx: 1, t: 0.75, speed: 0.07, size: 5 },
   { ringIdx: 2, t: 0.1, speed: 0.09, size: 4.5 },
   { ringIdx: 2, t: 0.6, speed: 0.09, size: 4.5 },
 ];
@@ -198,6 +198,17 @@ function drawRing(
   ctx.stroke();
   ctx.restore();
 }
+type DotDrawArgs = {
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  alpha: number;
+  W: number;
+  H: number;
+};
+
 function drawFilled(
   ctx: CanvasRenderingContext2D,
   pts: [number, number][],
@@ -214,16 +225,8 @@ function drawFilled(
   ctx.fill();
   ctx.restore();
 }
-function drawSquareDot(
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number,
-  color: string,
-  alpha: number,
-  W: number,
-  H: number,
-) {
+function drawSquareDot(args: DotDrawArgs) {
+  const { ctx, x, y, size, color, alpha, W, H } = args;
   const [px, py] = canvasPt(x, y, W, H);
   const s = size * (W / 760);
 
@@ -263,7 +266,7 @@ export default function RoleplaySection() {
     const canvas = canvasRef.current;
     const scene = sceneRef.current;
     if (!canvas || !scene) return;
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = globalThis.devicePixelRatio || 1;
     const W = scene.offsetWidth;
     const H = W * (VH / VW);
     canvas.width = W * dpr;
@@ -276,8 +279,8 @@ export default function RoleplaySection() {
 
   useEffect(() => {
     resize();
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
+    globalThis.addEventListener("resize", resize);
+    return () => globalThis.removeEventListener("resize", resize);
   }, [resize]);
 
   useEffect(() => {
@@ -297,7 +300,7 @@ export default function RoleplaySection() {
         return;
       }
 
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = globalThis.devicePixelRatio || 1;
       const W = canvas.width / dpr;
       const H = canvas.height / dpr;
       const ctx = canvas.getContext("2d")!;
@@ -324,7 +327,16 @@ export default function RoleplaySection() {
 
       // Draw traveler dot on filled shape border
       const [tx, ty] = ptAtT(fillPts, s.travelerT);
-      drawSquareDot(ctx, tx, ty, 6.5, "#1a1a12", 0.85, W, H);
+      drawSquareDot({
+        ctx,
+        x: tx,
+        y: ty,
+        size: 6.5,
+        color: "#1a1a12",
+        alpha: 0.85,
+        W,
+        H,
+      });
 
       // Draw ring dots — clipped inside filled polygon
       ctx.save();
@@ -332,7 +344,16 @@ export default function RoleplaySection() {
       ctx.clip();
       s.ringDots.forEach((d) => {
         const [rx, ry] = ptAtT(rings[d.ringIdx], d.t);
-        drawSquareDot(ctx, rx, ry, d.size, "#787868", 0.58, W, H);
+        drawSquareDot({
+          ctx,
+          x: rx,
+          y: ry,
+          size: d.size,
+          color: "#787868",
+          alpha: 0.58,
+          W,
+          H,
+        });
       });
       ctx.restore();
 
@@ -348,7 +369,7 @@ export default function RoleplaySection() {
       tipEl.style.top = ly + "px";
 
       // Show/hide logic
-      const inWin = s.travelerT >= 0.0 && s.travelerT <= 0.55;
+      const inWin = s.travelerT >= 0 && s.travelerT <= 0.55;
       if (inWin && !s.wasInWindow && !s.inTransition) {
         s.wasInWindow = true;
         tipEl.style.transition =
@@ -448,15 +469,15 @@ export default function RoleplaySection() {
                 </span>
 
                 <span style={{ display: "flex", gap: 3 }}>
-                  {[1, 2, 3, 4, 5].map((i) => (
+                  {[1, 2, 3, 4, 5].map((ratingValue) => (
                     <span
-                      key={i}
+                      key={`roleplay-rating-${ratingValue}`}
                       style={{
                         display: "inline-block",
                         width: 8,
                         height: 8,
                         borderRadius: "50%",
-                        background: i <= 4 ? "#4ade80" : "#2d5a1a",
+                        background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
                       }}
                     />
                   ))}
@@ -527,15 +548,15 @@ export default function RoleplaySection() {
                 </span>
 
                 <span style={{ display: "flex", gap: 3 }}>
-                  {[1, 2, 3, 4, 5].map((i) => (
+                  {[1, 2, 3, 4, 5].map((ratingValue) => (
                     <span
-                      key={i}
+                      key={`roleplay-rating-${ratingValue}`}
                       style={{
                         display: "inline-block",
                         width: 7,
                         height: 7,
                         borderRadius: "50%",
-                        background: i <= 4 ? "#4ade80" : "#2d5a1a",
+                        background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
                       }}
                     />
                   ))}

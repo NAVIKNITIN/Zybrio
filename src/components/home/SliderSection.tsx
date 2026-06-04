@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -54,7 +54,7 @@ const STEP = CARD_WIDTH + CARD_GAP;
 
 export default function SliderSection() {
   const viewportRef = useRef<HTMLDivElement | null>(null);
-  const progressRef = useRef<HTMLDivElement | null>(null);
+  const progressRef = useRef<HTMLButtonElement | null>(null);
 
   const [current, setCurrent] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
@@ -78,7 +78,10 @@ export default function SliderSection() {
   const maxTranslate = Math.max(0, trackWidth - viewportWidth);
   const maxIndex = Math.max(0, Math.ceil(maxTranslate / STEP));
 
-  const clamp = (v: number) => Math.max(0, Math.min(maxIndex, v));
+  const clamp = useCallback(
+    (v: number) => Math.max(0, Math.min(maxIndex, v)),
+    [maxIndex],
+  );
 
   const safeIndex = Math.min(clamp(current), maxIndex);
   const translateX = Math.min(safeIndex * STEP, maxTranslate);
@@ -101,11 +104,11 @@ export default function SliderSection() {
       }
     };
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [maxIndex]);
+    globalThis.addEventListener("keydown", handleKey);
+    return () => globalThis.removeEventListener("keydown", handleKey);
+  }, [clamp]);
 
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleSeek = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!progressRef.current || maxIndex === 0) return;
 
     const rect = progressRef.current.getBoundingClientRect();
@@ -177,13 +180,13 @@ export default function SliderSection() {
                 className="relative h-[360px] sm:h-[460px] w-[260px] sm:w-[315px] shrink-0 overflow-hidden rounded-[18px] select-none"
               >
                 <Image
-  src={`${card.image}?auto=format&fit=crop&w=900&q=85`}
-  alt={card.title}
-  fill
-  sizes="(max-width: 768px) 100vw, 315px"
-  className="object-cover pointer-events-none"
-  draggable={false}
-/>
+                  src={`${card.image}?auto=format&fit=crop&w=900&q=85`}
+                  alt={card.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 315px"
+                  className="object-cover pointer-events-none"
+                  draggable={false}
+                />
 
                 <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/80" />
 
@@ -201,9 +204,11 @@ export default function SliderSection() {
         </div>
 
         {/* PROGRESS BAR */}
-        <div
+        <button
           ref={progressRef}
+          type="button"
           onClick={handleSeek}
+          aria-label="Seek slider"
           className="hidden lg:block relative mt-8 sm:mt-10 h-[3px] w-full rounded-full bg-[#26442a] cursor-pointer"
         >
           <div
@@ -213,7 +218,7 @@ export default function SliderSection() {
               width: `${progressWidth}%`,
             }}
           />
-        </div>
+        </button>
       </div>
     </section>
   );

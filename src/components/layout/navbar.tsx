@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { env } from "@/lib/env";
 import { ROUTES } from "@/constants/routes";
-import ProductsSection from "../ProductCard";
+import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
 
 type NavbarProps = {
-  className?: string;
-  showMenuButton?: boolean;
-  onMenuClick?: () => void;
+  readonly className?: string;
+  readonly showMenuButton?: boolean;
+  readonly onMenuClick?: () => void;
 };
 
 export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) {
@@ -26,12 +26,12 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
+      const currentY = globalThis.scrollY;
       setHidden(currentY > scrollY && currentY > 80);
       setScrollY(currentY);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    globalThis.addEventListener("scroll", handleScroll);
+    return () => globalThis.removeEventListener("scroll", handleScroll);
   }, [scrollY]);
 
   const menuItems = [
@@ -85,27 +85,13 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
             )}
           </Button>
 
-       <Link
-  href={ROUTES.home}
-  className="text-lg font-bold text-[#0B3D0B]"
->
-  {env.NEXT_PUBLIC_APP_NAME ?? "ReflexAI"}
-</Link>
+          <Link href={ROUTES.home} className="text-lg font-bold text-[#0B3D0B]">
+            {env.NEXT_PUBLIC_APP_NAME ?? "ReflexAI"}
+          </Link>
 
           <nav className="relative hidden items-center gap-9 text-sm text-[#0B3D0B] md:flex">
             {menuItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative flex flex-col items-center"
-                onMouseEnter={() => {
-                  setHoveredItem(item.label);
-                  setActiveDropdown(item.label.toLowerCase());
-                }}
-                onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setActiveDropdown(null);
-                }}
-              >
+              <div key={item.label} className="relative flex flex-col items-center">
                 <Link
                   href={item.route}
                   className={cn(
@@ -114,6 +100,22 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                       ? "font-semibold text-black"
                       : "text-gray-400",
                   )}
+                  onMouseEnter={() => {
+                    setHoveredItem(item.label);
+                    setActiveDropdown(item.label.toLowerCase());
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredItem(null);
+                    setActiveDropdown(null);
+                  }}
+                  onFocus={() => {
+                    setHoveredItem(item.label);
+                    setActiveDropdown(item.label.toLowerCase());
+                  }}
+                  onBlur={() => {
+                    setHoveredItem(null);
+                    setActiveDropdown(null);
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -141,21 +143,19 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                   )}
                 </AnimatePresence>
                 <AnimatePresence>
-                  {activeDropdown === "solutions" &&
-                    item.label === "Solutions" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25 }}
-                        className="absolute top-full left-1/2 z-[999] pt-4 -translate-x-[25%]"
-                      >
-                        <div 
-                        className="w-5xl rounded-[28px] mt-8 absolute top-full left-70 -translate-x-1/2 shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-[#ECECE5] overflow-hidden">
-                          <SolNavbar />
-                        </div>
-                      </motion.div>
-                    )}
+                  {activeDropdown === "solutions" && item.label === "Solutions" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.25 }}
+                      className="absolute top-full left-1/2 z-[999] pt-4 -translate-x-[25%]"
+                    >
+                      <div className="w-5xl rounded-[28px] mt-8 absolute top-full left-70 -translate-x-1/2 shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-[#ECECE5] overflow-hidden">
+                        <SolNavbar />
+                      </div>
+                    </motion.div>
+                  )}
                 </AnimatePresence>
               </div>
             ))}

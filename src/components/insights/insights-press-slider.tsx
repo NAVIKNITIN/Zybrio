@@ -54,9 +54,7 @@ const PressCard = ({ item, index, layout = "slider" }: PressCardProps) => {
     <article
       className={cn(
         "min-w-0",
-        layout === "slider"
-          ? "w-full shrink-0 sm:w-[calc((100%-2rem)/2)]"
-          : "w-full",
+        layout === "slider" ? "w-full shrink-0 sm:w-[calc((100%-2rem)/2)]" : "w-full",
       )}
     >
       <PressArtwork item={item} index={index} />
@@ -83,11 +81,16 @@ export const InsightsPressSlider = () => {
   const [dragRatio, setDragRatio] = useState<number | null>(null);
   const [showAllPress, setShowAllPress] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (globalThis.window === undefined) {
+      return false;
+    }
+
+    return globalThis.matchMedia("(min-width: 640px)").matches;
+  });
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    setIsDesktop(mq.matches);
+    const mq = globalThis.matchMedia("(min-width: 640px)");
 
     const handler = (event: MediaQueryListEvent) => {
       setIsDesktop(event.matches);
@@ -107,11 +110,11 @@ export const InsightsPressSlider = () => {
       return;
     }
 
-    const timer = window.setInterval(() => {
+    const timer = globalThis.setInterval(() => {
       setActiveIndex((current) => (current + 1) % totalSteps);
     }, 4200);
 
-    return () => window.clearInterval(timer);
+    return () => globalThis.clearInterval(timer);
   }, [dragRatio, showAllPress, totalSteps]);
 
   const committedRatio = useMemo(() => {

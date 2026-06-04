@@ -9,33 +9,41 @@ import MeasurableResults from "./MeasurableResults";
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const statsData = [
-  { title: "Protocol Compliance", value: "96%" },
-  { title: "Situation Assessment", value: "92%" },
+  { id: "protocol-compliance", title: "Protocol Compliance", value: "96%" },
+  { id: "situation-assessment", title: "Situation Assessment", value: "92%" },
+];
+
+const interactionData = [
+  { id: "interaction-0-10", label: "0 - 10 min", width: "55%", color: "#B7FF00" },
+  { id: "interaction-10-20", label: "10 - 20 min", width: "34%", color: "#2DFF84" },
+  { id: "interaction-20-plus", label: "20+ min", width: "11%", color: "#FF00FF" },
 ];
 
 // ─── Status Pill Badges ───────────────────────────────────────────────────────
 
 const RenderStatusCards = () => (
   <div className="flex flex-col gap-3 mt-12">
-    {statsData.map((item, i) => (
+    {statsData.map((item, index) => (
       <motion.div
-        key={i}
+        key={item.id}
         initial={{ opacity: 0, x: 80 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: i * 0.2, duration: 1 }}
+        transition={{ delay: index * 0.2, duration: 1 }}
         whileHover={{ scale: 1.03, x: -5 }}
         className={`flex items-center justify-between rounded-full border border-[#154015] bg-[#041C04]/90 px-5 py-1.5 w-[340px] ${
-          i === 1 ? "ml-14" : ""
+          index === 1 ? "ml-14" : ""
         }`}
       >
         <span className="text-[12px] font-semibold text-white">{item.title}</span>
         <span className="text-[15px] font-bold text-white">{item.value}</span>
         <div className="flex items-center gap-1.5">
-          {[...Array(5)].map((_, index) => (
+          {Array.from({ length: 5 }, (_, idx) => idx + 1).map((dotNumber) => (
             <span
-              key={index}
+              key={`status-dot-${dotNumber}`}
               className={`h-[9px] w-[9px] rounded-full ${
-                index === 4 ? "border border-[#B7FF00] bg-transparent" : "bg-[#B7FF00]"
+                dotNumber === 5
+                  ? "border border-[#B7FF00] bg-transparent"
+                  : "bg-[#B7FF00]"
               }`}
             />
           ))}
@@ -140,7 +148,7 @@ export default function PerformanceSection() {
                 </svg>
               </span>
 
-            <span className="relative top-3">you can</span>
+              <span className="relative top-3">you can</span>
             </div>
 
             {/* Text below */}
@@ -188,15 +196,17 @@ export default function PerformanceSection() {
                   <p className="text-[10px] text-[#AFC1AF]">Overall Score</p>
 
                   <div className="mt-1.5 flex gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.08 }}
-                        className="h-2 w-2 rounded-full bg-[#B7FF00]"
-                      />
-                    ))}
+                    {Array.from({ length: 5 }, (_, dotNumber) => dotNumber + 1).map(
+                      (dotNumber) => (
+                        <motion.span
+                          key={`score-dot-${dotNumber}`}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: dotNumber * 0.08 }}
+                          className="h-2 w-2 rounded-full bg-[#B7FF00]"
+                        />
+                      ),
+                    )}
                   </div>
                 </div>
 
@@ -244,12 +254,8 @@ export default function PerformanceSection() {
           <h3 className="text-sm font-medium text-white">Interactions by Length</h3>
 
           <div className="mt-6 space-y-4">
-            {[
-              { label: "0 - 10 min", width: "55%", color: "#B7FF00" },
-              { label: "10 - 20 min", width: "34%", color: "#2DFF84" },
-              { label: "20+ min", width: "11%", color: "#FF00FF" },
-            ].map((item, i) => (
-              <div key={i}>
+            {interactionData.map((item, index) => (
+              <div key={item.id}>
                 <div className="mb-1.5 flex justify-between text-[10px] text-[#C9D8C9]">
                   <span>{item.label}</span>
                   <span>{item.width}</span>
@@ -258,7 +264,7 @@ export default function PerformanceSection() {
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: item.width }}
-                    transition={{ duration: 1.3, delay: i * 0.3 }}
+                    transition={{ duration: 1.3, delay: index * 0.3 }}
                     style={{ background: item.color }}
                     className="h-[4px] rounded-full"
                   />

@@ -4,16 +4,19 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
+    id: "communication-skills",
     value: "93%",
     label: "communication skills improvement",
     accentColor: "#2ECC71",
   },
   {
+    id: "team-confidence",
     value: "84%",
     label: "increase in team confidence",
     accentColor: "#A855F7",
   },
   {
+    id: "faster-onboarding",
     value: "59%",
     label: "faster onboarding",
     accentColor: "#F97316",
@@ -22,7 +25,7 @@ const stats = [
 
 export default function MeasurableResults() {
   return (
-  <section className="bg-transparent py-12 mt-10 lg:mt-70 px-6 md:px-12 lg:px-30 md:py-16">
+    <section className="bg-transparent py-12 mt-10 lg:mt-70 px-6 md:px-12 lg:px-30 md:py-16">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,12 +36,12 @@ export default function MeasurableResults() {
       </motion.h2>
 
       <div className="flex flex-col gap-14 md:flex-row md:items-stretch md:gap-0">
-        {stats.map((stat, i) => (
+        {stats.map((stat, index) => (
           <motion.div
-            key={i}
+            key={stat.id}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: i * 0.15 }}
+            transition={{ duration: 0.7, delay: index * 0.15 }}
             className="flex items-stretch gap-5 md:flex-1"
           >
             <div className="relative flex flex-col items-center">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import React from "react";
 
@@ -14,10 +15,12 @@ const FeaturedInsights = () => {
         {/* Left Card: Blog */}
         <div className="group cursor-pointer rounded-xl w-full">
           <div className="relative rounded-xl overflow-hidden mb-4">
-            <img
+            <Image
               src="/HomePage-image/svg/FeaturedInsightsImg.svg"
-              alt="Sales team"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              alt="Sales team illustration"
+              fill
+              sizes="(max-width: 768px) 100vw, 600px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
 
             {/* DARK OVERLAY */}
@@ -41,11 +44,13 @@ const FeaturedInsights = () => {
 
         {/* Right Card: Press */}
         <div className="group cursor-pointer w-full md:w-auto">
-          <div className="h-52 sm:h-60 md:h-64 rounded-xl bg-green-900 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden">
-            <img
+          <div className="relative h-52 sm:h-60 md:h-64 rounded-xl bg-green-900 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden">
+            <Image
               src="/HomePage-image/svg/FeaturedInsightsImg2.svg"
-              alt="Sales team"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              alt="Sales team image"
+              fill
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 

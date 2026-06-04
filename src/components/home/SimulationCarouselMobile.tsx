@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { simulationCarouselData } from "@/data/simulationCarouselData";
 import { AppButton } from "../common/app-button";
-import SimulationCarousel from "./SimulationCarousel";
 
 const SimulationCarouselMobile = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -18,8 +17,8 @@ const SimulationCarouselMobile = () => {
         <div className="relative">
           <div className="pt-[90px]">
             <p className="mb-6 flex items-center gap-3 pl-16 text-[18px] text-[#1f2a1f]">
-              <span className="h-2 w-2 rounded-full bg-[#0f240f]" />
-              Prepare: AI Training Simulations
+              <span className="h-2 w-2 rounded-full bg-[#0f240f]" aria-hidden="true" />
+              <span>Prepare: AI Training Simulations</span>
             </p>
 
             <h3 className="mt-4 max-w-[550px] pl-16 text-4xl font-semibold leading-[1.2] tracking-[-0.08em] text-[#102110] md:text-5xl">
@@ -114,8 +113,8 @@ const SimulationCarouselMobile = () => {
       {/* ================= MOBILE + TABLET ================= */}
       <div className="px-5 py-16 lg:hidden">
         <p className="mb-4 flex items-center justify-center gap-3 text-[15px] text-[#1f2a1f] sm:text-[16px]">
-          <span className="h-2 w-2 rounded-full bg-[#0f240f]" />
-          Prepare: AI Training Simulations
+          <span className="h-2 w-2 rounded-full bg-[#0f240f]" aria-hidden="true" />
+          <span>Prepare: AI Training Simulations</span>
         </p>
 
         <h2 className="mx-auto max-w-[700px] text-center text-[32px] font-semibold leading-[1.15] tracking-[-0.04em] text-[#102110] sm:text-[42px]">

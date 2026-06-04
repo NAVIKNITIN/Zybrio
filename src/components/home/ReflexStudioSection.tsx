@@ -1,12 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import Image from "next/image";
 import ToggleTabs from "./ToggleBtbText";
 
 export default function ReflexStudioSection() {
-  const [activeTab, setActiveTab] = useState<"prepare" | "assure">("prepare");
-
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:gap-12 md:px-10 lg:grid-cols-2 lg:px-20 xl:px-30 xl:py-20">
@@ -85,9 +83,11 @@ export default function ReflexStudioSection() {
               {/* Header */}
               <div className="flex items-center justify-between border-b border-[#1a3d0f] px-2 py-2">
                 <div className="flex min-w-0 items-center gap-2">
-                  <img
+                  <Image
                     src="https://i.pravatar.cc/40?img=5"
                     alt="Olivia"
+                    width={40}
+                    height={40}
                     className="h-6 w-6 shrink-0 rounded-full"
                   />
 
@@ -127,9 +127,11 @@ export default function ReflexStudioSection() {
               {/* Header */}
               <div className="flex items-center justify-between border-b border-[#1a3d0f] px-4 py-4">
                 <div className="flex min-w-0 items-center gap-3">
-                  <img
+                  <Image
                     src="https://i.pravatar.cc/40?img=5"
                     alt="Olivia"
+                    width={40}
+                    height={40}
                     className="h-10 w-10 shrink-0 rounded-full"
                   />
 

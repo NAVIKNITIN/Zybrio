@@ -4,17 +4,19 @@ import { motion } from "framer-motion";
 
 /* ---------------- DIGIT ---------------- */
 /* ---------------- DIGIT ---------------- */
+type RollingDigitProps = Readonly<{
+  digit: number;
+  delay?: number;
+  color?: string;
+  size?: number;
+}>;
+
 function RollingDigit({
   digit,
   delay = 0,
   color = "text-white",
   size = 100,
-}: {
-  digit: number;
-  delay?: number;
-  color?: string;
-  size?: number;
-}) {
+}: RollingDigitProps) {
   const numbers = Array.from({ length: 10 }, (_, i) => i);
 
   return (
@@ -44,26 +46,35 @@ function RollingDigit({
 }
 
 /* ---------------- NUMBER ---------------- */
+type RollingNumberProps = Readonly<{
+  value: number;
+  suffix?: string;
+  color?: string;
+  size?: number;
+}>;
+
 function RollingNumber({
   value,
   suffix = "",
   color = "text-white",
   size = 100,
-}: {
-  value: number;
-  suffix?: string;
-  color?: string;
-  size?: number;
-}) {
-  const digits = value.toString().split("");
+}: RollingNumberProps) {
+  const digits = value
+    .toString()
+    .split("")
+    .map((digit, idx) => ({
+      digit: Number.parseInt(digit, 10),
+      key: `${value}-${digit}-${idx}`,
+      delay: idx * 0.08,
+    }));
 
   return (
     <div className="flex items-center">
-      {digits.map((digit, index) => (
+      {digits.map((digitItem) => (
         <RollingDigit
-          key={index}
-          digit={parseInt(digit)}
-          delay={index * 0.08}
+          key={digitItem.key}
+          digit={digitItem.digit}
+          delay={digitItem.delay}
           color={color}
           size={size}
         />

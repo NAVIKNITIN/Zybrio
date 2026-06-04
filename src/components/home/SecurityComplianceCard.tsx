@@ -1,21 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
 import FeaturedInsights from "./FeaturedInsights";
-import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
-const words = ["conversations", "interactions", "discussions"];
-
 export default function SecurityComplianceCard() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="py-16 px-4 md:px-28 justify-center">
       <div className="flex items-center justify-center min-h-screen p-3 md:p-6">

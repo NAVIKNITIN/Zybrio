@@ -83,6 +83,15 @@
     transform: translateY(0);
   }
 }
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 .animate-fade {
   animation: fade 0.35s ease;
@@ -125,11 +134,11 @@
   .insights-filter-search {
     height: 3.2rem;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.24);
     padding-left: 2.75rem;
     padding-right: 1rem;
-    color: rgba(255, 255, 255, 0.96);
+    color: #ffffff;
     font-size: 0.95rem;
     line-height: 1.4;
     outline: none;
@@ -194,40 +203,20 @@
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
-  .insights-page :where(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    span,
-    a,
-    button,
-    input,
-    textarea,
-    label,
-    li,
-    div
-  ) {
+  .insights-page
+    :where(h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label, li, div) {
     font-family: inherit !important;
   }
-    .text-20px-heading {
+  .text-20px-heading {
     font-size: 20px;
     line-height: 1.25;
     font-weight: 600;
   }
 
-  .text-18px-body {
-    font-size: 18px;
-    line-height: 1.45;
-  }
-
   .border-moss {
     border-color: #143f17;
   }
-    .text-40px {
+  .text-40px {
     font-size: 40px;
     line-height: 1.1;
     font-weight: 600;
@@ -240,6 +229,4 @@
   .border-beige-25\/20 {
     border-color: rgba(236, 235, 228, 0.2);
   }
-  
-  
 }
