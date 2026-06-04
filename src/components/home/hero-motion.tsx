@@ -14,7 +14,7 @@ export default function HeroMotion({ bgColor }: { bgColor?: boolean }) {
 
   return (
     <div className={bgColorState ? "bg-[#F8F8F5]" : "bg-white"}>
-      <section className="container-app mt-22 flex flex-col items-start justify-center">
+      <section className="mx-auto max-w-7xl px-6 mt-[14rem] flex flex-col items-start justify-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

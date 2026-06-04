@@ -197,7 +197,7 @@ export default function UpperFooter() {
   return (
     <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#ECEBE4] pl-0 pr-28">
       <div className="z-10 ml-20 max-w-[680px]">
-        <h1 className="ml-10 text-[66px] leading-[0.95] font-semibold tracking-tight text-black">
+        <h1 className="px-4 text-center text-[clamp(2rem,6vw,4.125rem)] font-semibold leading-[0.95] tracking-tight text-black lg:ml-10 lg:px-0 lg:text-left">
           Ready to elevate
           <br />
           every conversation?
