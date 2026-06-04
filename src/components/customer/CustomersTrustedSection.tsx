@@ -158,8 +158,8 @@ export default function CustomersTrustedSection() {
             </div>
         
 
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white via-white/90 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/95 to-transparent" />
+          <div className="hidden md:block pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white via-white/90 to-transparent" />
+          <div className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/95 to-transparent" />
         </div>
       </div>
     </section>
