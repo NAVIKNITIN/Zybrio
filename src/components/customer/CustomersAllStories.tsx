@@ -82,9 +82,9 @@ const CustomersAllStories = () => {
   const { title, items } = customersPageData.allStories;
 
   return (
-    <section className="bg-white mx-5  px:2 lg:px-21 py-20 text-[#061F00]">
-      <div className="mx-auto max-w-[1558px]">
-        <h2 className="mb-[145px] text-[clamp(42px,4.5vw,48px)] font-normal leading-none tracking-[-0.07em] text-[#061F00] mb-10">
+    <section className="bg-white mx-5 mx-auto max-w-7xl  px:6 lg:py-20 py-12 text-[#061F00]">
+      <div className="mx-auto max-w-[1558px] px-5 md:px-0">
+        <h2 className="mb-3 lg:mb-[145px] text-[clamp(42px,4.5vw,48px)] font-normal leading-none tracking-[-0.07em] text-[#061F00] mb-10">
           {title}
         </h2>
 

@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { customersPageData } from "@/data/customersPageData";
+import { useEffect, useState } from "react";
 
 type TrustedCard = (typeof customersPageData.trustedSection.cards)[number];
 
@@ -90,14 +91,32 @@ function TrustedColumn({
 }) {
   const loopCards = [...cards, ...cards];
 
+
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   return (
-    <div className="relative h-[610px] overflow-hidden">
+    <div className="relative lg:h-[610px] overflow-hidden">
       <motion.div
-        className="flex flex-col gap-7"
+        className={`flex ${isMobile ? "flex-row w-max gap-7" : "flex-col gap-4"
+          }`}
         animate={
-          reverse
-            ? { y: ["-50%", "0%"] }
-            : { y: ["0%", "-50%"] }
+          isMobile
+            ? { x: ["0%", "-50%"] } // Right → Left
+            : reverse
+              ? { y: ["-50%", "0%"] }
+              : { y: ["0%", "-50%"] }
         }
         transition={{
           duration: 18,
@@ -105,7 +124,7 @@ function TrustedColumn({
           repeat: Infinity,
         }}
       >
-        {loopCards.map((card, index) => (
+        {loopCards.map((card: any, index: number) => (
           <TrustedCardItem key={`${card.id}-${index}`} card={card} />
         ))}
       </motion.div>
@@ -120,17 +139,24 @@ export default function CustomersTrustedSection() {
   const rightCards = cards.filter((_, index) => index % 2 === 1);
 
   return (
-    <section className="relative overflow-hidden bg-white px-5 py-20 text-[#061F00]">
+    <section className="relative mx-auto max-w-7xl overflow-hidden bg-white md:px-2 text-[#061F00]">
       <div className="mx-auto max-w-[1558px]">
-        <h2 className="text-center text-[22 px] font-medium leading-none tracking-[-0.04em] text-[#061F00]">
+        <h2 className="text-center text-[22px] font-medium leading-none tracking-[-0.04em] text-[#061F00]">
           {title}
         </h2>
 
         <div className="relative mt-24">
-          <div className="grid gap-7 sm:grid-cols-2">
-            <TrustedColumn cards={leftCards} />
-            <TrustedColumn cards={rightCards} reverse />
-          </div>
+            <div className="hidden md:flex gap-6 grid gap-7 sm:grid-cols-2">
+              <TrustedColumn cards={leftCards} />
+              <TrustedColumn cards={rightCards} reverse />
+            </div>
+
+            <div className="md:hidden">
+              <TrustedColumn
+                cards={[...leftCards, ...rightCards]}
+              />
+            </div>
+        
 
           <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white via-white/90 to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white via-white/95 to-transparent" />
