@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import PricingCard from "./PricingCard";
-import Footer from "./Footer";
-import { Navbar } from "./layout/navbar";
-import UpperFooter from "./UpperFooter";
-
+import Footer from "../Footer";
+import { Navbar } from "../layout/navbar";
+import UpperFooter from "../UpperFooter";
 
 type Plan = {
   title: string;
@@ -110,39 +109,31 @@ const assurePlans: Plan[] = [
 ];
 
 export default function PricingPage() {
-
   const [activeTab, setActiveTab] = useState<"prepare" | "assure">("prepare");
 
   const plans = activeTab === "prepare" ? preparePlans : assurePlans;
-  //  <button
-  //               onClick={() => setActiveTab("prepare")}
-  //               className={`px-6 py-2 rounded-full transition ${
-  //                 activeTab === "prepare" ? "bg-[#0B2A0A] text-white" : "text-[#0B2A0A]"
-  //               }`}
-  //             >
-  //               Prepare
-  //             </button>
 
   return (
-    
     <main className="min-h-screen bg-[#F8F8F5]">
-        <Navbar/>
-      <section className="px-6  pb-20">
+      <Navbar />
+      <section className="px-4 sm:px-6 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto text-center">
           {/* Header */}
-          <p className="text-[#5B6553] text-lg mb-4 mt-[100px]">Pricing</p>
-          <h1 className="text-[#0D2B0B] text-4xl md:text-[55px] font-bold leading-[1.05]">
-            Pricing that scales with <br />
+          <p className="text-[#5B6553] text-xl sm:text-2xl md:text-lg mb-3 sm:mb-4 mt-[80px] sm:mt-[100px]">
+            Pricing
+          </p>
+          <h1 className="text-[#0D2B0B] text-[2rem] leading-tight sm:text-[3.25rem] md:text-[55px] font-bold md:leading-[1.05]">
+            Pricing that scales with <br className="hidden sm:block" />
             your team, and your ROI
           </h1>
-          <p className="text-[#4D5A45] text-xl mt-8 max-w-[620px] mx-auto">
+          <p className="text-[#4D5A45] text-lg sm:text-xl md:text-xl mt-6 sm:mt-8 max-w-[620px] mx-auto px-2 sm:px-0">
             Flexible plans designed to reduce training costs, save time, and deliver value
             fast.
           </p>
+
           {/* Toggle */}
-          <div className="flex justify-center mt-20 mb-20">
-            <div className="relative flex rounded-full border border-[#D6D5CD] bg-[#ECEBE4] p-[px]">
-              {/* Animated Background */}
+          <div className="flex justify-center mt-12 sm:mt-20 mb-12 sm:mb-20">
+            <div className="relative flex rounded-full border border-[#D6D5CD] bg-[#ECEBE4] p-[2px]">
               <div
                 className={`absolute top-[2px] h-[calc(100%-4px)] w-[calc(50%-2px)] rounded-full bg-[#0B2A0A] transition-all duration-300 ease-in-out ${
                   activeTab === "prepare" ? "left-[2px]" : "left-[calc(50%)]"
@@ -151,7 +142,7 @@ export default function PricingPage() {
 
               <button
                 onClick={() => setActiveTab("prepare")}
-                className={`relative z-10 px-6 py-2 rounded-full transition-colors duration-300 ${
+                className={`relative z-10 px-7 py-2 sm:px-8 sm:py-2.5 md:px-5 md:py-2 rounded-full transition-colors duration-300 text-sm sm:text-lg md:text-base ${
                   activeTab === "prepare" ? "text-white" : "text-[#0B2A0A]"
                 }`}
               >
@@ -160,7 +151,7 @@ export default function PricingPage() {
 
               <button
                 onClick={() => setActiveTab("assure")}
-                className={`relative z-10 px-6 py-2 rounded-full transition-colors duration-300 ${
+                className={`relative z-10 px-5 py-2 sm:px-8 sm:py-2.5 md:px-6 md:py-2 rounded-full transition-colors duration-300 text-sm sm:text-lg md:text-base ${
                   activeTab === "assure" ? "text-white" : "text-[#0B2A0A]"
                 }`}
               >
@@ -168,18 +159,10 @@ export default function PricingPage() {
               </button>
             </div>
           </div>
-          {/* <CommonButton
-                title="Schedule a demo"
-                textColor="white"
-                bgColor="black"
-                px="px-6"
-                py="py-2"
-                radius="rounded-full"
-                onClick={() => setActiveTab("prepare")}
-              /> */}
+
           {/* Cards */}
-          <div className="mt-16 rounded-[28px] border border-[#D7D7CF] p-3">
-            <div className="flex gap-6 overflow-x-auto lg:grid lg:grid-cols-4 md:grid-cols-2">
+          <div className="mt-8 sm:mt-16 rounded-[20px] sm:rounded-[28px] border border-[#D7D7CF] p-2 sm:p-3">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible lg:grid lg:grid-cols-4">
               {plans.map((plan) => (
                 <PricingCard key={plan.title} plan={plan} />
               ))}

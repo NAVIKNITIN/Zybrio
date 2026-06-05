@@ -30,16 +30,20 @@ const RenderStatusCards = () => (
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: index * 0.2, duration: 1 }}
         whileHover={{ scale: 1.03, x: -5 }}
-        className={`flex items-center justify-between rounded-full border border-[#154015] bg-[#041C04]/90 px-5 py-1.5 w-[340px] ${index === 1 ? "ml-14" : ""}`}
+        className={`flex items-center justify-between rounded-full border border-[#154015] bg-[#041C04]/90 px-5 py-1.5 w-[340px] ${
+          index === 1 ? "ml-14" : ""
+        }`}
       >
         <span className="text-[12px] font-semibold text-white">{item.title}</span>
         <span className="text-[15px] font-bold text-white">{item.value}</span>
         <div className="flex items-center gap-1.5">
-          {Array.from({ length: 5 }).map((_, dotIdx) => (
+          {Array.from({ length: 5 }, (_, idx) => idx + 1).map((dotNumber) => (
             <span
-              key={`status-dot-${dotIdx}`}
+              key={`status-dot-${dotNumber}`}
               className={`h-[9px] w-[9px] rounded-full ${
-                dotIdx === 4 ? "border border-[#B7FF00] bg-transparent" : "bg-[#B7FF00]"
+                dotNumber === 5
+                  ? "border border-[#B7FF00] bg-transparent"
+                  : "bg-[#B7FF00]"
               }`}
             />
           ))}
@@ -83,9 +87,7 @@ const StatsCard = ({ value, label, className = "", delay = 0 }: StatsCardProps) 
 
 export default function PerformanceSection() {
   return (
-    <section
-      className="relative bg-[#001F00] text-white"
-    >
+    <section className="lg:hidden relative bg-[#001F00] min-h-screen text-white">
       {/* Radial ambient glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,_rgba(0,200,80,0.07),_transparent_70%)]" />
 
@@ -97,60 +99,81 @@ export default function PerformanceSection() {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 z-20 flex top-30 items-center justify-center pointer-events-none"
         >
-          <span className="w-full max-w-[860px] text-center text-[70px] font-semibold leading-[1] tracking-[-3px] px-4">
-            Performance
-            {/* SVG accent shape */}
-            <span className="inline-block translate-y-2 px-2">
-              <svg
-                width="77"
-                height="72"
-                viewBox="0 0 77 72"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="inline-block"
-              >
-                <g clipPath="url(#clip0_perf)">
-                  <path
-                    opacity="0.6"
-                    d="M18.6729 41.6514L5.36572 49.1829C4.11136 49.8928 3.33594 51.2227 3.33594 52.664V63.3357C3.33594 65.5449 5.1268 67.3357 7.33594 67.3357H69.999C72.2082 67.3357 73.999 65.5449 73.999 63.3357V13.276C73.999 9.87263 70.0192 8.02409 67.4186 10.2196L60.4305 16.1193L35.6746 38.4773C35.0674 39.0257 34.3066 39.3747 33.4949 39.4772L20.1418 41.1641C19.6251 41.2294 19.1261 41.3949 18.6729 41.6514Z"
-                    fill="url(#paint0_perf)"
-                  />
-                </g>
-                <defs>
-                  <linearGradient
-                    id="paint0_perf"
-                    x1="38.6675"
-                    y1="4.66406"
-                    x2="38.6675"
-                    y2="67.3357"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#09CF58" />
-                    <stop offset="1" stopColor="#09CF58" stopOpacity="0" />
-                  </linearGradient>
-                  <clipPath id="clip0_perf">
-                    <rect
-                      width="71"
-                      height="64"
-                      fill="white"
-                      transform="translate(3 2.91406)"
+          <span className="absolute inset-x-0 top-[110px] md:top-0 lg:top-30 z-20 flex flex-col items-center pointer-events-none">
+            {/* First line */}
+
+            <span className="text-[42px] md:text-[52px] lg:text-[70px] font-semibold leading-none">
+              Performance
+            </span>
+            <div className=" flex items-center justify-center gap- text-[38px] md:text-[50px] lg:text-[70px] font-bold">
+              <span className="scale-75 md:scale-90 lg:scale-100 flex-shrink-0">
+                <svg
+                  width="80"
+                  height="80"
+                  viewBox="0 0 77 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="block"
+                >
+                  <g clipPath="url(#clip0_perf_mobile)">
+                    <path
+                      opacity="0.6"
+                      d="M18.6729 41.6514L5.36572 49.1829C4.11136 49.8928 3.33594 51.2227 3.33594 52.664V63.3357C3.33594 65.5449 5.1268 67.3357 7.33594 67.3357H69.999C72.2082 67.3357 73.999 65.5449 73.999 63.3357V13.276C73.999 9.87263 70.0192 8.02409 67.4186 10.2196L60.4305 16.1193L35.6746 38.4773C35.0674 39.0257 34.3066 39.3747 33.4949 39.4772L20.1418 41.1641C19.6251 41.2294 19.1261 41.3949 18.6729 41.6514Z"
+                      fill="url(#paint0_perf_mobile)"
                     />
-                  </clipPath>
-                </defs>
-              </svg>
-            </span>{" "}
-            you can{"\n"}measure, outcomes that{"\n"}matter to you.
+                  </g>
+
+                  <defs>
+                    <linearGradient
+                      id="paint0_perf_mobile"
+                      x1="38.6675"
+                      y1="4.66406"
+                      x2="38.6675"
+                      y2="67.3357"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#09CF58" />
+                      <stop offset="1" stopColor="#09CF58" stopOpacity="0" />
+                    </linearGradient>
+
+                    <clipPath id="clip0_perf_mobile">
+                      <rect
+                        width="71"
+                        height="64"
+                        fill="white"
+                        transform="translate(3 2.91406)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+
+              <span className="relative top-3">you can</span>
+            </div>
+
+            {/* Text below */}
+            <div className="text-center font-bold leading-[0.95] tracking-[-1px]">
+              <div className="text-[36px] md:text-[52px] lg:text-[70px]">measure,</div>
+
+              <div className="text-[36px] md:text-[52px] lg:text-[70px]">
+                outcomes that
+              </div>
+
+              <div className="text-[36px] md:text-[52px] lg:text-[70px]">
+                matter to you.
+              </div>
+            </div>
           </span>
         </motion.h2>
 
         {/* ── TOP-LEFT: User score card ── */}
-        <div className="flex pt-18 justify-center gap-45">
+        <div className="flex flex-col items-center pt-10 md:pt-18 lg:flex-row lg:justify-center lg:gap-45">
           <motion.div
             initial={{ opacity: 0, y: -80, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.4 }}
             whileHover={{ scale: 1.02, rotateX: 3, rotateY: -3 }}
-            className="w-[310px] rounded-xl border border-[#123512] bg-[#041904]/95 p-4 backdrop-blur-xl shadow-[0_0_60px_rgba(0,255,120,0.06)]"
+            className="-translate-x-12 md:-translate-x-6 lg:translate-x-0 scale-[0.55] md:scale-[0.65] lg:scale-100 origin-top w-[310px] rounded-xl border border-[#123512] bg-[#041904]/95 p-4 backdrop-blur-xl shadow-[0_0_60px_rgba(0,255,120,0.06)]"
           >
             {/* User row */}
             <div className="mb-3 flex items-center justify-between">
@@ -158,8 +181,8 @@ export default function PerformanceSection() {
                 <Image
                   src="/HomePage-image/profile.jpg"
                   alt="Alisha Wade"
-                  width={38}
-                  height={38}
+                  width={30}
+                  height={30}
                   className="rounded-[20%]"
                 />
                 <div>
@@ -173,15 +196,17 @@ export default function PerformanceSection() {
                   <p className="text-[10px] text-[#AFC1AF]">Overall Score</p>
 
                   <div className="mt-1.5 flex gap-1">
-                    {Array.from({ length: 5 }, (_, idx) => idx + 1).map((dotNumber) => (
-                      <motion.span
-                        key={`score-dot-${dotNumber}`}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: dotNumber * 0.08 }}
-                        className="h-2 w-2 rounded-full bg-[#B7FF00]"
-                      />
-                    ))}
+                    {Array.from({ length: 5 }, (_, dotNumber) => dotNumber + 1).map(
+                      (dotNumber) => (
+                        <motion.span
+                          key={`score-dot-${dotNumber}`}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: dotNumber * 0.08 }}
+                          className="h-2 w-2 rounded-full bg-[#B7FF00]"
+                        />
+                      ),
+                    )}
                   </div>
                 </div>
 
@@ -192,7 +217,9 @@ export default function PerformanceSection() {
             <CustomGraph />
           </motion.div>
 
-          <RenderStatusCards />
+          <div className="hidden lg:block">
+            <RenderStatusCards />
+          </div>
         </div>
 
         {/* ── TOP-RIGHT: Status pill badges ── */}
@@ -201,7 +228,7 @@ export default function PerformanceSection() {
         </div> */}
 
         {/* ── MID-LEFT: Stats cards ── */}
-        <div className="absolute left-[10%] top-[62%] z-10 flex flex-col gap-3">
+        <div className="hidden lg:flex absolute left-[10%] top-[62%] z-10 flex-col gap-3">
           <StatsCard
             value="38,564"
             label="Messages Exchanged"
@@ -222,7 +249,7 @@ export default function PerformanceSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.3 }}
           whileHover={{ scale: 1.02, y: -6 }}
-          className="absolute right-[11%] top-[65%] z-10 w-[300px] rounded-lg border border-[#103810] bg-[#031803]/90 p-4 backdrop-blur-xl"
+          className="scale-[0.62] md:scale-[0.70] lg:scale-100 origin-top z-10 w-[320px] mx-auto translate-x-6 md:translate-x-0 lg:translate-x-0 mt-60 lg:mt-0 lg:absolute lg:right-[8%] lg:top-[65%] rounded-lg border border-[#103810] bg-[#031803]/90 p-5 backdrop-blur-xl"
         >
           <h3 className="text-sm font-medium text-white">Interactions by Length</h3>
 
@@ -248,7 +275,7 @@ export default function PerformanceSection() {
         </motion.div>
 
         {/* ── BOTTOM-CENTER: Stacked workspace card ── */}
-        <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2">
+        <div className="hidden lg:block absolute bottom-[-15%] left-1/2 -translate-x-1/2">
           {/* Stack Layer 3 */}
           <div className="absolute left-1/2 top-[40px] h-[124px] w-[300px] -translate-x-1/2 rounded-xl border border-[#0A4B18]/60 bg-[#021802]" />
 

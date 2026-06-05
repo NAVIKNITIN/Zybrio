@@ -1,21 +1,21 @@
 import dynamic from "next/dynamic";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
 import { createPageMetadata } from "@/lib/metadata";
-import CompaniesTrustedIcon from "@/components/CompaniesTrustedIcon";
-import SimulationCarousel from "@/components/SimulationCarousel";
+import CompaniesTrustedIcon from "@/components/home/CompaniesTrustedIcon";
+import SimulationCarousel from "@/components/home/SimulationCarousel";
 import Footer from "@/components/Footer";
-import VersityTutor from "@/components/VersityTutor";
-import SliderSection from "@/components/SliderSection";
+import VersityTutor from "@/components/home/VersityTutor";
+import SliderSection from "@/components/home/SliderSection";
 import PerformanceDashboard from "@/components/home/PerformanceDashboard";
 import UpperFooter from "@/components/UpperFooter";
-import AssureSection from "@/components/Assure";
+import AssureSection from "@/components/home/Assure";
 import PerformanceOutcomesDashboard from "@/components/home/PerOutComes";
-// import RoleplaySection, { RolePlay } from "@/components/common/RolePlay";
 import ReflexStudioSection from "@/components/home/ReflexStudioSection";
-// import SecurityCompliance, { SecurityComplianceSection } from "@/components/home/SecurityComplianceSection";
-import FeatureRadarSection from "@/components/common/RolePlay";
-import RoleplaySection from "@/components/common/RolePlay";
+import RoleplaySection from "@/components/home/RolePlay";
 import SecurityComplianceCard from "@/components/home/SecurityComplianceCard";
+import PerformanceSectionMobile from "@/components/home/PerOutComes-mobile";
+import PerformanceDashboardMobile from "@/components/home/PerformanceDashboardMobile";
+import SimulationCarouselMobile from "@/components/home/SimulationCarouselMobile";
 
 const HeroMotion = dynamic(() => import("@/components/home/hero-motion"), {
   loading: () => <div className="h-40" />,
@@ -34,25 +34,49 @@ const HomePage = () => {
       </section> */}
       <HeroMotion />
       <section className="container-app">
-        <PerformanceDashboard />
+        {/* Desktop */}
+        <div className="hidden lg:block">
+          <PerformanceDashboard />
+        </div>
+
+        {/* Mobile + Tablet */}
+        <div className="lg:hidden">
+          <PerformanceDashboardMobile />
+        </div>
       </section>
+
       {/* Companies */}
       <CompaniesTrustedIcon />
+      <RoleplaySection />
+      <div className="hidden lg:block">
+        <PerformanceOutcomesDashboard />
+      </div>
+
+      <div className="lg:hidden">
+        <PerformanceSectionMobile />
+      </div>
 
       {/* Simulation Carousel */}
-      <SimulationCarousel />
+      {/* Desktop Only */}
+      <div className="hidden lg:block">
+        <SimulationCarousel />
+      </div>
+
+      {/* Mobile + Tablet Only */}
+      <div className="lg:hidden">
+        <SimulationCarouselMobile />
+      </div>
       <AssureSection />
       <ReflexStudioSection />
 
       {/* VersityTutor */}
       <VersityTutor />
-      <RoleplaySection/>
-      <PerformanceOutcomesDashboard />
+
       {/* Slider Section */}
       <SliderSection />
       {/* Footer */}
       {/* <UpperFooter /> */}
-      <SecurityComplianceCard/>
+      <SecurityComplianceCard />
       <UpperFooter />
       <Footer />
     </MarketingLayout>

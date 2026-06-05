@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { env } from "@/lib/env";
 import { ROUTES } from "@/constants/routes";
-import ProductsSection from "../ProductCard";
+import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
 
 type NavbarProps = {
-  className?: string;
-  showMenuButton?: boolean;
-  onMenuClick?: () => void;
+  readonly className?: string;
+  readonly showMenuButton?: boolean;
+  readonly onMenuClick?: () => void;
 };
 
 export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) {
@@ -132,18 +132,7 @@ transform-gpu
 
           <nav className="relative hidden items-center gap-9 text-sm text-[#0B3D0B] md:flex">
             {menuItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative flex flex-col items-center"
-                onMouseEnter={() => {
-                  setHoveredItem(item.label);
-                  setActiveDropdown(item.label.toLowerCase());
-                }}
-                onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setActiveDropdown(null);
-                }}
-              >
+              <div key={item.label} className="relative flex flex-col items-center">
                 <Link
                   href={item.route}
                   className={cn(
@@ -152,6 +141,22 @@ transform-gpu
                       ? "font-semibold text-black"
                       : "text-gray-400",
                   )}
+                  onMouseEnter={() => {
+                    setHoveredItem(item.label);
+                    setActiveDropdown(item.label.toLowerCase());
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredItem(null);
+                    setActiveDropdown(null);
+                  }}
+                  onFocus={() => {
+                    setHoveredItem(item.label);
+                    setActiveDropdown(item.label.toLowerCase());
+                  }}
+                  onBlur={() => {
+                    setHoveredItem(null);
+                    setActiveDropdown(null);
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -227,26 +232,7 @@ transform-gpu
               className="border-t border-gray-200 bg-[#F8F8F5] shadow-lg md:hidden p-5 sm:p-0"
             >
 
-              {/* <MobileHeader  onMenuOpen={handleMenuOpen}/> */}
-
-
               <div className="flex flex-col gap-4 p-6 text-[#0B3D0B] bg-[white] rounded-lg">
-                {/* {menuItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.route}
-                    className="text-base font-medium hover:text-black"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setHoveredItem(item.label);
-                      setActiveDropdown(item.label.toLowerCase());
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                ))} */}
-
-
                 <div className="flex flex-col gap-4 lg:p-6 text-[#0B3D0B]">
                   {menuItems.map((item) => (
                     <div
