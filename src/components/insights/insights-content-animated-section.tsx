@@ -12,6 +12,8 @@ import {
 } from "@/components/insights/insights-filters-sidebar";
 import { InsightsPressSlider } from "@/components/insights/insights-press-slider";
 import { InsightsSubscribeCta } from "@/components/insights/insights-subscribe-cta";
+import { InsightsPressSliderMobile } from "./insights-press-sliderMobile";
+import { InsightsBlogShowcaseMobile } from "./insights-blog-showcaseMobile";
 
 const revealVariants = {
   hidden: {
@@ -153,7 +155,14 @@ export const InsightsContentAnimatedSection = () => {
                     whileInView={shouldReduceMotion ? undefined : "visible"}
                     viewport={{ once: true, amount: 0.16 }}
                   >
-                    <InsightsBlogShowcase onViewAll={() => handleViewChange("blog")} />
+                    <div className="lg:hidden">
+                      <InsightsBlogShowcaseMobile
+                        onViewAll={() => handleViewChange("blog")}
+                      />
+                    </div>
+                    <div className="hidden lg:block">
+                      <InsightsBlogShowcase onViewAll={() => handleViewChange("blog")} />
+                    </div>
                   </motion.div>
 
                   <motion.div
@@ -183,7 +192,13 @@ export const InsightsContentAnimatedSection = () => {
                   whileInView={shouldReduceMotion ? undefined : "visible"}
                   viewport={{ once: true, amount: 0.16 }}
                 >
-                  <InsightsPressSlider />
+                  <div className="hidden lg:block">
+                    <InsightsPressSlider />
+                  </div>
+
+                  <div className="lg:hidden">
+                    <InsightsPressSliderMobile />
+                  </div>
                 </motion.div>
               ) : null}
 
