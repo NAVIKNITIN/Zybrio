@@ -7,6 +7,8 @@ import { createPageMetadata } from "@/lib/metadata";
 import AboutHeroSection from "@/components/about/about-hero-section";
 import AboutInNumbers from "@/components/about/about-in-number";
 import AboutOurStory from "@/components/about/about-our-story";
+import AboutMeetTeam from "@/components/about/about-meet-team";
+import AboutJoinTeam from "@/components/about/about-join-team";
 
 export const metadata = createPageMetadata("About", "Meet the people behind ReflexAI.");
 
@@ -16,14 +18,16 @@ const AboutPage = () => {
   return (
     <MarketingLayout>
       <AboutHeroSection />
+
       <AboutInNumbers />
+
       <AboutOurStory />
 
       <main className="bg-forest text-white">
-        <section className="relative overflow-hidden bg-forest pt-14 md:pt-20">
+        <section className="relative overflow-hidden bg-forest pt-12 md:pt-16 lg:pt-20">
           <div className="container-app">
             <div className="max-w-[620px]">
-              <h1 className="text-[56px] font-semibold leading-[1.08] text-white">
+              <h1 className="text-[36px] font-semibold leading-[1.08] text-white sm:text-[44px] lg:text-[56px]">
                 {hero.titleLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -31,7 +35,7 @@ const AboutPage = () => {
                 ))}
               </h1>
 
-              <p className="mt-5 max-w-[620px] text-[20px] font-medium leading-[1.55] text-white/78">
+              <p className="mt-5 max-w-[620px] text-[16px] font-medium leading-[1.55] text-white/78 sm:text-[18px] lg:text-[20px]">
                 {hero.description}
               </p>
             </div>
@@ -39,6 +43,8 @@ const AboutPage = () => {
         </section>
 
         <AboutTeamSection />
+        <AboutMeetTeam />
+        <AboutJoinTeam />
 
         <UpperFooter />
         <Footer />

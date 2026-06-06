@@ -1,14 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { ArrowUpRight, Search } from "lucide-react";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "framer-motion";
 import { insightsPageContent } from "@/data/insights_data";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +22,7 @@ type InsightsFiltersSidebarProps = {
 
 function hasAccent(item: FilterItem): item is FilterItem & { accent: "square" } {
   return "accent" in item && item.accent === "square";
-};
+}
 
 const hasArrow = (
   item: FilterItem,
@@ -42,19 +34,11 @@ function isActiveView(item: FilterItem, activeView: InsightsFilterView) {
   return FILTER_VIEW_BY_LABEL[item.label] === activeView;
 }
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
-
 export function InsightsFiltersSidebar({
   activeView,
   onViewChange,
 }: InsightsFiltersSidebarProps) {
   const { filtersSidebar } = insightsPageContent;
-
-  const handleViewChange = (view: InsightsFilterView) => {
-    onViewChange(view);
-  };
 
   return (
     <div className="relative z-20 lg:w-[302px]">
@@ -85,9 +69,13 @@ export function InsightsFiltersSidebar({
                     : "border-white/12 text-white/78 hover:border-white/24 hover:text-white",
                 )}
               >
-                {hasAccent(item) ? <span className="size-1.5 rounded-sm bg-[#a4ea00]" /> : null}
+                {hasAccent(item) ? (
+                  <span className="size-1.5 rounded-sm bg-[#a4ea00]" />
+                ) : null}
                 <span>{item.label}</span>
-                {hasArrow(item) ? <ArrowUpRight className="size-3 text-[#a4ea00]" /> : null}
+                {hasArrow(item) ? (
+                  <ArrowUpRight className="size-3 text-[#a4ea00]" />
+                ) : null}
               </button>
             );
           })}
@@ -109,33 +97,32 @@ export function InsightsFiltersSidebar({
           <div className="mt-12">
             <p className="insights-filter-heading">{filtersSidebar.heading}</p>
 
-              <nav className="mt-6 flex flex-col gap-4">
-                {filtersSidebar.items.map((item) => {
-                  const view = FILTER_VIEW_BY_LABEL[item.label];
+            <nav className="mt-6 flex flex-col gap-4">
+              {filtersSidebar.items.map((item) => {
+                const view = FILTER_VIEW_BY_LABEL[item.label];
 
-                  return (
-                    <button
-                      key={item.label}
-                      type="button"
-                      onClick={() => view && onViewChange(view)}
-                      className={cn(
-                        "insights-filter-link",
-                        isActiveView(item, activeView) && "insights-filter-link-active",
-                      )}
-                    >
-                      {hasAccent(item) ? <span className="insights-filter-dot" /> : null}
-                      <span>{item.label}</span>
-                      {hasArrow(item) ? (
-                        <ArrowUpRight className="insights-filter-arrow size-3.5" />
-                      ) : null}
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
+                return (
+                  <button
+                    key={item.label}
+                    type="button"
+                    onClick={() => view && onViewChange(view)}
+                    className={cn(
+                      "insights-filter-link",
+                      isActiveView(item, activeView) && "insights-filter-link-active",
+                    )}
+                  >
+                    {hasAccent(item) ? <span className="insights-filter-dot" /> : null}
+                    <span>{item.label}</span>
+                    {hasArrow(item) ? (
+                      <ArrowUpRight className="insights-filter-arrow size-3.5" />
+                    ) : null}
+                  </button>
+                );
+              })}
+            </nav>
           </div>
         </div>
       </div>
-  
+    </div>
   );
-};
+}

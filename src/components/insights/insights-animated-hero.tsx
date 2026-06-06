@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -28,15 +29,21 @@ const featuredPosts = [
 ];
 
 const WaveButton = ({ children }: { readonly children: React.ReactNode }) => {
+  const bars = Array.from({ length: 22 }, (_, index) => ({
+    id: `wave-bar-${index}`,
+    delay: Math.abs(11 - index) * 18,
+    height: `${20 + Math.sin(index) * 35 + index * 1.5}%`,
+  }));
+
   return (
     <button className="group relative inline-flex min-h-10 items-center justify-center overflow-hidden rounded-lg border border-[#F3F4E8] bg-[#F3F4E8] px-6 py-2.5 text-[16px] font-medium leading-none text-[#061F00] transition-[scale,color,background-color,border-color] duration-500 active:scale-[0.975]">
       <span className="pointer-events-none absolute inset-x-0 -inset-y-5 flex w-full items-center justify-center">
-        {Array.from({ length: 22 }).map((_, index) => (
+        {bars.map((bar) => (
           <span
-            key={index}
+            key={bar.id}
             style={{
-              transitionDelay: `${Math.abs(11 - index) * 18}ms`,
-              height: `${20 + Math.sin(index) * 35 + index * 1.5}%`,
+              transitionDelay: `${bar.delay}ms`,
+              height: bar.height,
             }}
             className="flex-[0_0_4px] scale-x-0 scale-y-0 rounded-lg bg-[#A8E61D] transition-transform duration-300 group-hover:scale-x-100 group-hover:scale-y-100"
           />
@@ -53,11 +60,11 @@ const InsightsHero = () => {
   const activePost = featuredPosts[activeIndex];
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    const timer = globalThis.setInterval(() => {
       setActiveIndex((current) => (current + 1) % featuredPosts.length);
     }, 4200);
 
-    return () => window.clearInterval(timer);
+    return () => globalThis.clearInterval(timer);
   }, []);
 
   return (
@@ -94,8 +101,8 @@ const InsightsHero = () => {
           </div>
 
           <p className="mt-8 max-w-[580px] font-serif text-[22px] leading-[1.22]">
-            Ideas, research, and stories about the intersection of empathy,
-            training, and AI - written by the people building it.
+            Ideas, research, and stories about the intersection of empathy, training, and
+            AI - written by the people building it.
           </p>
         </motion.div>
 
@@ -145,10 +152,12 @@ const InsightsHero = () => {
                   transition={{ delay: 0.12, duration: 0.65 }}
                   className="absolute bottom-6 right-6 z-20 h-[218px] w-[388px] overflow-hidden rounded-md bg-[#F8F8F5] shadow-sm"
                 >
-                  <img
+                  <Image
                     src={activePost.image}
-                    alt=""
-                    className="h-full w-full object-cover"
+                    alt={activePost.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 388px"
+                    className="object-cover"
                   />
                 </motion.div>
               </motion.article>
