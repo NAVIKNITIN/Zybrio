@@ -180,18 +180,6 @@ function polyPath(
   }
   ctx.closePath();
 }
-
-type DotDrawArgs = {
-  ctx: CanvasRenderingContext2D;
-  x: number;
-  y: number;
-  size: number;
-  color: string;
-  alpha: number;
-  W: number;
-  H: number;
-};
-
 function drawRing(
   ctx: CanvasRenderingContext2D,
   pts: [number, number][],
@@ -210,6 +198,17 @@ function drawRing(
   ctx.stroke();
   ctx.restore();
 }
+type DotDrawArgs = {
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  alpha: number;
+  W: number;
+  H: number;
+};
+
 function drawFilled(
   ctx: CanvasRenderingContext2D,
   pts: [number, number][],
@@ -226,30 +225,22 @@ function drawFilled(
   ctx.fill();
   ctx.restore();
 }
-
-function drawSquareDot({ ctx, x, y, size, color, alpha, W, H }: DotDrawArgs) {
+function drawSquareDot(args: DotDrawArgs) {
+  const { ctx, x, y, size, color, alpha, W, H } = args;
   const [px, py] = canvasPt(x, y, W, H);
   const s = size * (W / 760);
-  const radius = s * 0.2;
-  const left = px - s / 2;
-  const top = py - s / 2;
-  const right = px + s / 2;
-  const bottom = py + s / 2;
 
   ctx.save();
   ctx.globalAlpha = alpha;
   ctx.fillStyle = color;
   ctx.beginPath();
-  ctx.moveTo(left + radius, top);
-  ctx.lineTo(right - radius, top);
-  ctx.quadraticCurveTo(right, top, right, top + radius);
-  ctx.lineTo(right, bottom - radius);
-  ctx.quadraticCurveTo(right, bottom, right - radius, bottom);
-  ctx.lineTo(left + radius, bottom);
-  ctx.quadraticCurveTo(left, bottom, left, bottom - radius);
-  ctx.lineTo(left, top + radius);
-  ctx.quadraticCurveTo(left, top, left + radius, top);
-  ctx.closePath();
+
+  const roundedCtx = ctx as CanvasRenderingContext2D & {
+    roundRect: (x: number, y: number, w: number, h: number, radii?: number) => void;
+  };
+
+  roundedCtx.roundRect(px - s / 2, py - s / 2, s, s, s * 0.2);
+
   ctx.fill();
   ctx.restore();
 }
@@ -283,7 +274,7 @@ export default function RoleplaySection() {
     canvas.style.width = W + "px";
     canvas.style.height = H + "px";
     const ctx = canvas.getContext("2d")!;
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }, []);
 
   useEffect(() => {
@@ -413,7 +404,7 @@ export default function RoleplaySection() {
   return (
     <section
       style={{ background: "#f0ede3", overflow: "hidden" }}
-      className="relative w-full min-h-screen  flex flex-col items-center"
+      className="relative w-full overflow-visible flex flex-col items-center"
     >
       {/* Heading */}
       <motion.div
@@ -431,73 +422,162 @@ export default function RoleplaySection() {
             lineHeight: 1.14,
           }}
         >
-          <span className="inline-flex flex-wrap items-center justify-center">
-            <span>Roleplay</span>
-            {/* Avatar badge */}
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 34,
-                height: 34,
-                borderRadius: "50%",
-                overflow: "hidden",
-                border: "2.5px solid #bcd490",
-                background: "#7a9e4e",
-                verticalAlign: "middle",
-                position: "relative",
-                top: -2,
-                margin: "0 5px",
-                flexShrink: 0,
-              }}
-            >
-              <svg viewBox="0 0 34 34" width="34" height="34">
-                <circle cx="17" cy="17" r="17" fill="#7a9e4e" />
-                <circle cx="17" cy="12" r="5" fill="#4e6e2e" />
-                <ellipse cx="17" cy="26" rx="8" ry="5.5" fill="#4e6e2e" />
-              </svg>
-            </span>
-            {/* Score pill */}
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
-                background: "#1a3d0f",
-                borderRadius: 999,
-                padding: "3px 10px 3px 7px",
-                verticalAlign: "middle",
-                position: "relative",
-                top: -2,
-                margin: "0 4px",
-              }}
-            >
+          {/* Mobile + Tablet */}
+          <div className="block lg:hidden text-center">
+            <div className="text-[36px] font-semibold">Roleplay</div>
+
+            <div className="mt-2 flex items-center justify-center gap-2">
               <span
-                style={{ color: "#a8d070", fontSize: 12, fontWeight: 800, lineHeight: 1 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 30,
+                  height: 30,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "2.5px solid #bcd490",
+                  background: "#7a9e4e",
+                }}
               >
-                83%
+                <svg viewBox="0 0 34 34" width="30" height="30">
+                  <circle cx="17" cy="17" r="17" fill="#7a9e4e" />
+                  <circle cx="17" cy="12" r="5" fill="#4e6e2e" />
+                  <ellipse cx="17" cy="26" rx="8" ry="5.5" fill="#4e6e2e" />
+                </svg>
               </span>
-              <span style={{ display: "flex", gap: 3 }}>
-                {[1, 2, 3, 4, 5].map((ratingValue) => (
-                  <span
-                    key={`roleplay-rating-${ratingValue}`}
-                    style={{
-                      display: "inline-block",
-                      width: 7,
-                      height: 7,
-                      borderRadius: "50%",
-                      background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
-                    }}
-                  />
-                ))}
+
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: "#1a3d0f",
+                  borderRadius: 999,
+                  padding: "3px 10px 3px 7px",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#a8d070",
+                    fontSize: 20,
+                    fontWeight: 600,
+                    lineHeight: 1,
+                  }}
+                >
+                  83%
+                </span>
+
+                <span style={{ display: "flex", gap: 3 }}>
+                  {[1, 2, 3, 4, 5].map((ratingValue) => (
+                    <span
+                      key={`roleplay-rating-${ratingValue}`}
+                      style={{
+                        display: "inline-block",
+                        width: 8,
+                        height: 8,
+                        borderRadius: "50%",
+                        background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
+                      }}
+                    />
+                  ))}
+                </span>
               </span>
+
+              <span className="text-[36px] font-semibold">and QA</span>
+            </div>
+
+            <div className="mt-0 text-[36px] font-semibold">that&apos;s real-world</div>
+
+            <div className="text-[36px] font-semibold">ready</div>
+          </div>
+
+          {/* Desktop */}
+          <div className="hidden lg:block">
+            <span className="inline-flex flex-wrap items-center justify-center font-semibold">
+              <span>Roleplay</span>
+
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 34,
+                  height: 34,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "2.5px solid #bcd490",
+                  background: "#7a9e4e",
+                  verticalAlign: "middle",
+                  position: "relative",
+                  top: -2,
+                  margin: "0 5px",
+                  flexShrink: 0,
+                }}
+              >
+                <svg viewBox="0 0 34 34" width="34" height="34">
+                  <circle cx="17" cy="17" r="17" fill="#7a9e4e" />
+                  <circle cx="17" cy="12" r="5" fill="#4e6e2e" />
+                  <ellipse cx="17" cy="26" rx="8" ry="5.5" fill="#4e6e2e" />
+                </svg>
+              </span>
+
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: "#1a3d0f",
+                  borderRadius: 999,
+                  padding: "3px 10px 3px 7px",
+                  verticalAlign: "middle",
+                  position: "relative",
+                  top: -2,
+                  margin: "0 4px",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#a8d070",
+                    fontSize: 12,
+                    fontWeight: 800,
+                    lineHeight: 1,
+                  }}
+                >
+                  83%
+                </span>
+
+                <span style={{ display: "flex", gap: 3 }}>
+                  {[1, 2, 3, 4, 5].map((ratingValue) => (
+                    <span
+                      key={`roleplay-rating-${ratingValue}`}
+                      style={{
+                        display: "inline-block",
+                        width: 7,
+                        height: 7,
+                        borderRadius: "50%",
+                        background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
+                      }}
+                    />
+                  ))}
+                </span>
+              </span>
+
+              <span>&nbsp;and QA</span>
             </span>
-            <span>&nbsp;and QA</span>
-          </span>
-          <br />
-          <span>that&apos;s real-world ready</span>
+
+            <br />
+
+            <br />
+            <div className="mt-0 text-[36px] font-semibold">that&apos;s real-world</div>
+          </div>
         </h2>
+        {/* Mobile/Tablet */}
+        {/* <span className="block lg:hidden"> that&apos;s real-world </span>
+          <span className="block lg:hidden">ready</span>
+
+          {/* Desktop */}
+        {/* <span className="hidden lg:block"> that&apos;s real-world </span> */}
       </motion.div>
 
       {/* Scene */}

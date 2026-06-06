@@ -1,5 +1,5 @@
 import PricingCard from "./PricingCard";
-import { Plan } from "./types";
+import { Plan } from "../types";
 
 type PricingCardsProps = {
   readonly plans: readonly Plan[];

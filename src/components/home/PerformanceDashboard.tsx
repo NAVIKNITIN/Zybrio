@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function PerformanceDashboard() {
   return (
-    <section className="flex flex-col md:flex-row mt-30 bg-[#F5F3EE] rounded-xl overflow-hidden shadow-lg">
+    <section className="flex flex-col mx-auto max-w-7xl px-2 md:flex-row mt-30 bg-[#F5F3EE] rounded-xl overflow-hidden shadow-lg">
       {/* Left Panel */}
       <div
         className="flex flex-col justify-between items-center text-white p-6 md:w-1/3 rounded-xl"

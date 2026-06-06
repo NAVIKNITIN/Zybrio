@@ -1,62 +1,54 @@
-import { ArrowUpRight } from 'lucide-react';
-import React from 'react';
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import React from "react";
 
 const FeaturedInsights = () => {
-    return (
-        <section className="max-w-10xl mx-auto py-12 px-4">
-            <div className="flex items-center mb-8">
-                <div className="w-2 h-2 bg-black inline-block mr-2"></div>
-                <h2 className="text-sm  text-gray-800">Featured Insights</h2>
-            </div>
+  return (
+    <section className="max-w-10xl mx-auto py-12 px-4 md:px-6">
+      <div className="flex items-center mb-8">
+        <div className="w-2 h-2 bg-black inline-block mr-2"></div>
+        <h2 className="text-sm text-gray-800">Featured Insights</h2>
+      </div>
 
-            <div className="flex gap-18">
-                {/* Left Card: Blog */}
-                <div className="group cursor-pointer rounded-xl">
-                    <div className="relative rounded-xl overflow-hidden mb-4">
-                        {/* Replace with your image */}
-                        <img
-                            src="/HomePage-image/svg/FeaturedInsightsImg.svg"
-                            alt="Sales team"
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute  inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <div className="absolute bottom-5 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="bg-[#A8E61D] text-black  p-2 rounded-full cursor-pointer transition-colors duration-300">
-                            <ArrowUpRight size={18} />
-                        </div>
-                    </div>
-                    </div>
+      {/* MAIN CONTAINER RESPONSIVE */}
+      <div className="flex flex-col md:flex-row gap-8 md:gap-18">
+        {/* Left Card: Blog */}
+        <div className="group cursor-pointer rounded-xl w-full">
+          <div className="relative mb-4 h-[300px] overflow-hidden rounded-xl md:h-[400px]">
+            <Image
+              src="/HomePage-image/svg/FeaturedInsightsImg.svg"
+              alt="Sales team illustration"
+              fill
+              sizes="(max-width: 768px) 100vw, 600px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+        </div>
 
-                    <div className="relative bottom-45 left-6 w-[20rem] font-semibold tracking-wide text-neutral-500 uppercase">
-                        <div className="text-sm text-gray-500 mb-2">
-                            <span className="text-green-600 font-semibold uppercase tracking-wider">Blog</span> • 12.03.2025
-                        </div>
-                        <h3 className="text-2xl font-semibold text-[white] leading-tight">
-                            AI for sales teams: How simulation improves sales performance
-                        </h3>
-                    </div>
+        {/* Right Card: Press */}
+        <div className="group cursor-pointer w-full md:w-auto">
+          <div className="relative h-52 sm:h-60 md:h-64 rounded-xl bg-green-900 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden">
+            <Image
+              src="/HomePage-image/svg/FeaturedInsightsImg2.svg"
+              alt="Sales team image"
+              fill
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
 
-                </div>
+          <div className="text-xs sm:text-sm text-gray-500 mt-4 md:mt-15">
+            <span className="font-semibold uppercase tracking-wider">Press</span> •
+            06.22.2025
+          </div>
 
-                {/* Right Card: Press */}
-                <div className="group cursor-pointer">
-                    <div className="h-64 rounded-xl bg-green-900 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02]">
-                          <img
-                            src="/HomePage-image/svg/FeaturedInsightsImg2.svg"
-                            alt="Sales team"
-                            className="w-full h-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                    </div>
-                    <div className="text-sm text-gray-500 mt-15">
-                        <span className="font-semibold uppercase tracking-wider">Press</span> • 06.22.2025
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 leading-tight">
-                        How AI-Driven simulations are transforming workforce readiness
-                    </h3>
-                </div>
-            </div>
-        </section>
-    );
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 leading-tight">
+            How AI-Driven simulations are transforming workforce readiness
+          </h3>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default FeaturedInsights;
