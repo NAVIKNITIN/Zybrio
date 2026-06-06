@@ -153,23 +153,11 @@ export const InsightsPressSliderMobile = () => {
     setIsDragging(true);
   };
 
-  const nextSlide = () => {
-    const newIndex = Math.min(activeIndex + 1, maxIndex);
-    snapToCard(newIndex);
-  };
-
-  const prevSlide = () => {
-    const newIndex = Math.max(activeIndex - 1, 0);
-    snapToCard(newIndex);
-  };
-
   // Calculate initial position
   const initialX = -(activeIndex * SLIDE_WIDTH);
 
-  // FIXED: Indicator position - moves like a dot, not a growing bar
-  const indicatorPosition = maxIndex > 0 
-    ? `${(activeIndex / maxIndex) * 100}%` 
-    : '0%';
+  const indicatorLeft =
+    totalSteps > 1 ? (activeIndex / (totalSteps - 1)) * (100 - 100 / totalSteps) : 0;
 
   return (
     <div id="press" className="min-w-0 scroll-mt-28">
@@ -204,19 +192,19 @@ export const InsightsPressSliderMobile = () => {
         <>
           {/* Carousel with Drag */}
           <div className="relative mt-12">
-            <div 
+            <div
               ref={containerRef}
               className="overflow-hidden"
-              style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+              style={{ cursor: isDragging ? "grabbing" : "grab" }}
             >
               <motion.div
                 className="flex gap-4 sm:gap-6"
                 style={{ x }}
                 initial={{ x: initialX }}
                 drag="x"
-                dragConstraints={{ 
-                  left: -(maxIndex * SLIDE_WIDTH), 
-                  right: 0 
+                dragConstraints={{
+                  left: -(maxIndex * SLIDE_WIDTH),
+                  right: 0,
                 }}
                 dragElastic={0.05}
                 dragMomentum={false}
@@ -250,9 +238,9 @@ export const InsightsPressSliderMobile = () => {
               {/* Small indicator dot/bar that moves */}
               <motion.div
                 className="absolute top-0 h-full rounded-full bg-[#a4ea00]"
-                style={{ width: `${100 / totalSteps}%` }} 
-                animate={{ 
-                  left: `${(activeIndex / (totalSteps - 1)) * (100 - (100 / totalSteps))}%` 
+                style={{ width: `${100 / totalSteps}%` }}
+                animate={{
+                  left: `${indicatorLeft}%`,
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               />
