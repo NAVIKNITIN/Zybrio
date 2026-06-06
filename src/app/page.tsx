@@ -33,7 +33,6 @@ const HomePage = () => {
         <HeroMotion />
       </section> */}
       <HeroMotion />
-      <section className="container-app">
         {/* Desktop */}
         <div className="hidden lg:block">
           <PerformanceDashboard />
@@ -43,7 +42,7 @@ const HomePage = () => {
         <div className="lg:hidden">
           <PerformanceDashboardMobile />
         </div>
-      </section>
+      {/* </section> */}
 
       {/* Companies */}
       <CompaniesTrustedIcon />

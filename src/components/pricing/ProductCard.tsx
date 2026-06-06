@@ -19,18 +19,18 @@ function ProductCard({
   image,
 }: ProductCardProps) {
   return (
-    <div className="group relative rounded-xl border border-black/6  p-4 sm:p-6  transition-shadow duration-300 hover:shadow-md">
-      <div className="absolute top-4 right-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+    <div className="group relative  flex h-full  flex-col rounded-2xl border border-black/10 bg-white p-4 transition-all duration-300 hover:shadow-lg">
+      <div className="absolute right-3 top-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="rounded-full bg-[#0B3D0B] p-2 text-white">
-          <ArrowUpRight size={18} />
+          <ArrowUpRight size={16} />
         </div>
       </div>
 
-      <h2 className="mb-2 text-lg font-semibold text-[#0B3D0B]">
+      <h3 className="mb-2 text-xl font-semibold text-[#0B3D0B]">
         {title}
-      </h2>
+      </h3>
 
-      <p className="mb-4 text-sm sm:text-base text-gray-700">
+      <p className="mb-4 text-sm leading-6 text-gray-600">
         {description}
       </p>
 
@@ -38,8 +38,8 @@ function ProductCard({
         src={image}
         alt={title}
         width={400}
-        height={250}
-        className="h-auto w-full rounded-lg object-cover"
+        height={200}
+        className="h-40 w-full rounded-xl object-cover"
       />
     </div>
   );
@@ -48,72 +48,105 @@ function ProductCard({
 const products = [
   {
     title: "Prepare",
-    description: "Simulations tailored to high-stakes scenarios.",
+    description:
+      "Simulations tailored to high-stakes scenarios.",
     image: "/images.jpg",
   },
   {
     title: "Assure",
-    description: "Full visibility into 100% of conversations.",
+    description:
+      "Full visibility into 100% of conversations.",
     image: "/images.jpg",
   },
 ];
 
 export default function ProductsSection() {
   return (
-    <div className="border lg:ml-26 border-black/6 bg-white rounded-lg  overflow-y-auto lg:overflow-hidden">
-      <section className="mx-auto max-w-7xl rounded-xl py-0 px-0 lg:px-4 lg:pt-8 max-h-[90vh]">
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
-        {/* Products */}
-        <div>
-          <h1 className="mb-4 text-lg font-semibold text-[#0B3D0B]  hidden md:block">
-            Products
-          </h1>
+    <div
+      className="w-full mx-auto bg-white rounded-[10px] px-4 sm:px-6 lg:px-8 py-6 lg:py-18 max-h-[65vh] lg:max-h-[85vh]  overflow-y-auto lg:overflow-y-hidden overflow-x-hidden product-scrollbar">
+      <section className="sm:px-0">
+        <div className="grid gap-3 lg:grid-cols-[620px_320px] items-stretch">
+          {/* Products */}
+          <div className="flex flex-col">
+            <h2 className="mb-5 text-xl font-semibold text-[#0B3D0B]">
+              Products
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {products.map((product) => (
-              <ProductCard
-                key={product.title}
-                title={product.title}
-                description={product.description}
-                image={product.image}
-              />
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {products.map((product) => (
+                <ProductCard
+                  key={product.title}
+                  title={product.title}
+                  description={product.description}
+                  image={product.image}
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Customer Highlights */}
-        <div>
-          <h1 className="mb-4 text-lg font-semibold text-[#0B3D0B]">
-            Customer Highlights
-          </h1>
+          {/* Customer Highlights */}
+          <div className="flex flex-col h-full">
+            <h2 className="mb-5 text-xl font-semibold text-[#0B3D0B]">
+              Customer Highlights
+            </h2>
 
-          <div>
             <ProductCard
-              title="dd"
-              description="hello"
+              title="Customer Story"
+              description="See how leading teams use ZYBRIO to improve performance and customer experience."
               image="/images.jpg"
             />
           </div>
-        </div>
-      </div>
+          <div className="lg:absolute lg:bottom-0 w-full lg:left-0 bg-gradient-to-t from-white to-transparent pointer-events-none">
+            <div className="flex w-full max-w-7xl lg:rounded-[0px] rounded-lg items-start px-5 gap-2 bg-[#F3F3EB] py-2 sm:flex-row sm:items-center sm:px-8">
+              <div className="rounded-lg bg-[#0B2A0A] p-3">
+                <ShieldCheckIcon className="h-5 w-5 text-[#00FF66]" />
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2">
+                <span className="font-medium text-[#0B2A0A]">
+                  Security & Compliance
+                </span>
+                <ArrowRightIcon className="h-4 w-4 text-[#0B2A0A]" />
+              </div>
+            </div>
+          </div>
 
-      {/* Bottom Bar */}
-  
-    </section>
-        <div className="mt-8 flex flex-wrap items-center gap-3 bg-[#F3F3EB] px-4 py-4">
-        <div className="rounded-md bg-[#0B2A0A] p-2">
-          <ShieldCheckIcon className="h-5 w-5 text-green-400" />
+
         </div>
 
-        <div className="flex items-center gap-2 text-sm sm:text-base">
-          <span className="font-medium text-[#0B2A0A]">
-            Security & Compliance
-          </span>
+      </section>
 
-          <ArrowRightIcon className="h-4 w-4 text-[#0B2A0A]" />
-        </div>
-      </div>
+
+      <style jsx>{`
+        .product-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .product-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+
+        @media (max-width: 1023px) {
+          .product-scrollbar {
+            -ms-overflow-style: auto;
+            scrollbar-width: thin;
+          }
+
+          .product-scrollbar::-webkit-scrollbar {
+            display: block;
+            width: 8px;
+          }
+
+          .product-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          .product-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 9999px;
+          }
+        }
+      `}</style>
     </div>
-  
   );
 }

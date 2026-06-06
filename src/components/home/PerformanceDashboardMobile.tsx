@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function PerformanceDashboardMobile
 () {
   return (
-    <section className="flex flex-row mt-8 lg:mt-30 bg-[#F5F3EE] rounded-x2 overflow-hidden shadow-lg">
+    <section className="flex flex-row mt-8 lg:mt-30 px-4 px-0 bg-[#F5F3EE] rounded-x2 overflow-hidden shadow-lg">
       {/* Left Panel - 30% */}
       <div
         className="w-[30%] lg:w-1/3 flex flex-col justify-between rounded-lg text-white p-2 sm:p-3 lg:p-6"
