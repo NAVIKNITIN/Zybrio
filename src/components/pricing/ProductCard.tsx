@@ -63,7 +63,7 @@ const products = [
 export default function ProductsSection() {
   return (
     <div
-      className="w-full mx-auto bg-white rounded-[10px] px-4 sm:px-6 lg:px-8 py-6 lg:py-18 max-h-[65vh] lg:max-h-[85vh]  overflow-y-auto lg:overflow-y-hidden overflow-x-hidden product-scrollbar">
+      className="w-full mx-auto mt-2 lg:mt-0 bg-white rounded-[10px] px-4 sm:px-6 lg:px-8 py-6 lg:py-5 max-h-[65vh] lg:max-h-[85vh]  overflow-y-auto lg:overflow-y-hidden overflow-x-hidden product-scrollbar">
       <section className="sm:px-0">
         <div className="grid gap-3 lg:grid-cols-[620px_320px] items-stretch">
           {/* Products */}
@@ -85,7 +85,7 @@ export default function ProductsSection() {
           </div>
 
           {/* Customer Highlights */}
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col h-full lg:pb-15">
             <h2 className="mb-5 text-xl font-semibold text-[#0B3D0B]">
               Customer Highlights
             </h2>
@@ -96,8 +96,8 @@ export default function ProductsSection() {
               image="/images.jpg"
             />
           </div>
-          <div className="lg:absolute lg:bottom-0 w-full lg:left-0 bg-gradient-to-t from-white to-transparent pointer-events-none">
-            <div className="flex w-full max-w-7xl lg:rounded-[0px] rounded-lg items-start px-5 gap-2 bg-[#F3F3EB] py-2 sm:flex-row sm:items-center sm:px-8">
+          <div className="lg:absolute lg:rounded-lg lg:bottom-0 w-full lg:left-0 bg-gradient-to-t from-white to-transparent pointer-events-none">
+            <div className="flex w-full max-w-7xl  rounded-lg lg:rounded-b-lg lg:rounded-t-none items-start px-5 gap-2 bg-[#F3F3EB] py-2 sm:flex-row sm:items-center sm:px-8">
               <div className="rounded-lg bg-[#0B2A0A] p-3">
                 <ShieldCheckIcon className="h-5 w-5 text-[#00FF66]" />
               </div>

@@ -81,16 +81,17 @@ export const InsightsPressSlider = () => {
   const [dragRatio, setDragRatio] = useState<number | null>(null);
   const [showAllPress, setShowAllPress] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (globalThis.window === undefined) {
-      return false;
-    }
-
-    return globalThis.matchMedia("(min-width: 640px)").matches;
-  });
+  // Start with a stable server-friendly default (mobile) to avoid
+  // hydration mismatches. Update to the real value on the client.
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = globalThis.matchMedia("(min-width: 640px)");
+    if (typeof window === "undefined") return;
+
+    const mq = window.matchMedia("(min-width: 640px)");
+
+    // set initial value on mount so client updates after hydration
+    setIsDesktop(mq.matches);
 
     const handler = (event: MediaQueryListEvent) => {
       setIsDesktop(event.matches);

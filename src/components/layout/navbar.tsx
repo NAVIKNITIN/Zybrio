@@ -9,14 +9,15 @@ import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
 import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [title, setTitle] = useState("ZYBRIO");
-  const [navBarBgColor, setNavBarBgColor] = useState<"white" | "#F6F6EE">("white");
-  const navBarBgClass = navBarBgColor === "#F6F6EE" ? "bg-[#F6F6EE]" : "bg-white";
+  const [navBarBgColor, setNavBarBgColor] = useState<string>("bg-white");
+  // const navBarBgClass = navBarBgColor === "#F6F6EE" ? "bg-[#F6F6EE]" : "bg-white";
 
   const menuItems = [
     { label: "Products", hasDropdown: true },
@@ -25,6 +26,26 @@ export function Navbar({ className }: { className?: string }) {
     { label: "Insights", route: ROUTES.insights, hasDropdown: false },
     { label: "Pricing", route: ROUTES.pricing, hasDropdown: false },
   ];
+
+
+  const pathname = usePathname();
+  const headerBorderClass = pathname === "/customers" || pathname === "/insights" ? "" : "border-b border-gray-100";
+  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-[#0B2408]";
+  // Active color: keep white for customers, but make Insights active tab black
+  const navLinkActiveTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-black";
+
+  useEffect(() => {
+    console.log("All params:", pathname);
+
+    if (pathname === "/customers") {
+      setNavBarBgColor("bg-[#061F00]");
+    } else if (pathname === "/insights") {
+      setNavBarBgColor("bg-[#012A0B]");
+    }
+    else {
+      setNavBarBgColor("bg-white");
+    }
+  }, [pathname]);
 
   const onEnter = (item: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -57,7 +78,8 @@ export function Navbar({ className }: { className?: string }) {
       }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className={cn(
-        "sticky top-0 z-50 transition-all bg-white border-b border-gray-100",
+        "sticky top-0 z-50 transition-all bg-white",
+        headerBorderClass,
         className,
       )}
     >
@@ -67,12 +89,12 @@ export function Navbar({ className }: { className?: string }) {
       </div>
 
       <div className={cn(
-        "mx-auto flex py-2 lg:py-0 max-w-400 items-center justify-between px-4",
-        navBarBgClass,
+        "mx-auto flex py-3 lg:py-0 max-w-400 items-center justify-between px-4",
+        navBarBgColor,
       )}>
         <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
           <ArrowLeftIcon onClick={() => setActive(null)} className="lg:hidden size-6 text-[#0B2408]" />
-          <Link href={ROUTES.home} className="text-[18px] lg:text-[25px] lg:font-bold text-[#0B2408]">{title}</Link>
+          <Link href={ROUTES.home} className={cn("text-[18px] lg:text-[25px] lg:font-bold", navLinkTextColor)}>{title}</Link>
           <nav className="hidden md:flex items-center gap-10 ml-6">
             {menuItems.map((item) => (
               <div
@@ -84,13 +106,13 @@ export function Navbar({ className }: { className?: string }) {
                 {item.hasDropdown ? (
                   <button
                     type="button"
-                    className={cn("text-base font-medium", active === item.label ? "text-black" : "text-[#0B2408]")}
+                    className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
                     onClick={() => setActive(active === item.label ? null : item.label)}
                   >
                     {item.label}
                   </button>
                 ) : (
-                  <Link href={item.route ?? "#"} className={cn("text-base font-medium", active === item.label ? "text-black" : "text-[#0B2408]")}>
+                  <Link href={item.route ?? "#"} className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}>
                     {item.label}
                   </Link>
                 )}
@@ -105,7 +127,7 @@ export function Navbar({ className }: { className?: string }) {
 
 
         <div className="flex items-center gap-3 mr-0 lg:mr-25">
-          <Link href="/schedule-a-demo/" className="hidden md:block rounded-xl bg-[#E8E7DE] px-5 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
+          <Link href="/schedule-a-demo/" className="hidden md:block rounded-lg bg-[#E8E7DE] px-8 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
             Get Demo
           </Link>
           <Button
@@ -133,11 +155,11 @@ export function Navbar({ className }: { className?: string }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed md:left-25 top-22 lg:top-30 z-50 w-full max-w-5xl lg:pt-4"
+            className="fixed md:left-25 top-22 lg:top-30 z-50 w-full  max-w-5xl lg:pt-4"
             onMouseEnter={() => onEnter(active)}
             onMouseLeave={onLeave}
           >
-            <div className="overflow-hidden border lg:h-full  border-[#ECECE5] px-4 lg:px-0 rounded-lg bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
+            <div className="overflow-hidden lg:h-full rounded-lg border-[#ECECE5] px-4 lg:px-0  bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
               {active === "Products" ? <ProductsSection /> : <SolNavbar />}
             </div>
 
@@ -152,7 +174,7 @@ export function Navbar({ className }: { className?: string }) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute left-0 lg:top-35 h-[calc(100vh-140px)] w-full bg-[#F6F6EE] px-6 pt-2 md:hidden"
+            className="absolute left-0 lg:top-35 h-[calc(120vh-140px)] w-full bg-[#F6F6EE] px-6 pt-2 md:hidden"
           >
             <div className="flex flex-col bg-white rounded-lg px-4 pb-20">
               {menuItems.map((item) => (
@@ -160,7 +182,10 @@ export function Navbar({ className }: { className?: string }) {
                   <button
                     key={item.label}
                     type="button"
-                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B3D0B]"
+                    className={cn(
+                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
+                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
+                    )}
                     onClick={() => {
                       setActive(active === item.label ? null : item.label);
                       setTitle(item.label);
@@ -174,7 +199,10 @@ export function Navbar({ className }: { className?: string }) {
                   <Link
                     key={item.label}
                     href={item.route ?? "#"}
-                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B3D0B]"
+                    className={cn(
+                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
+                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
+                    )}
                     onClick={() => {
                       setMobileOpen(false);
                       setActive(null);

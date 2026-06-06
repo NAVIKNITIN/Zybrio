@@ -72,7 +72,7 @@ const logos = [
 export default function SolNavbar() {
   return (
   <section 
-  className="w-full  mx-auto bg-white rounded-[10px] px-4 sm:px-6 lg:px-10 py-8 lg:py-5  max-h-[90vh] overflow-y-auto lg:overflow-y-hidden overflow-x-hidden">
+  className="w-full mt-2 lg:mt-0  mx-auto bg-white rounded-[10px] px-4 sm:px-6 lg:px-10 py-8 lg:py-5  max-h-[90vh] overflow-y-auto lg:overflow-y-hidden overflow-x-hidden">
   <div className="grid grid-cols-1 lg:grid-cols-[48%_52%] gap-10 lg:gap-14">
     
     {/* LEFT SIDE */}
