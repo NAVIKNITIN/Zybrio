@@ -41,6 +41,7 @@ const HomePage = () => {
 
       {/* Simulation Carousel */}
       <SimulationCarousel />
+      
       <AssureSection />
       <ReflexStudioSection />
 
