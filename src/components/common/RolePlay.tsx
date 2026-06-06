@@ -181,6 +181,17 @@ function polyPath(
   ctx.closePath();
 }
 
+type DotDrawArgs = {
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  alpha: number;
+  W: number;
+  H: number;
+};
+
 function drawRing(
   ctx: CanvasRenderingContext2D,
   pts: [number, number][],

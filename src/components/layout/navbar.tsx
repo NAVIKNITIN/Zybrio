@@ -11,7 +11,13 @@ import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export function Navbar({ className }: { className?: string }) {
+type NavbarProps = {
+  className?: string;
+  showMenuButton?: boolean;
+  onMenuClick?: () => void;
+};
+
+export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -93,6 +99,17 @@ export function Navbar({ className }: { className?: string }) {
         navBarBgColor,
       )}>
         <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
+          {showMenuButton && onMenuClick && (
+            <button
+              type="button"
+              onClick={onMenuClick}
+              aria-label="Open sidebar"
+              className="text-[#0B2408] lg:hidden"
+            >
+              <Menu className="size-6" />
+            </button>
+          )}
+
           <ArrowLeftIcon onClick={() => setActive(null)} className="lg:hidden size-6 text-[#0B2408]" />
           <Link href={ROUTES.home} className={cn("text-[18px] lg:text-[25px] lg:font-bold", navLinkTextColor)}>{title}</Link>
           <nav className="hidden md:flex items-center gap-10 ml-6">
