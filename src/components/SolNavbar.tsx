@@ -71,16 +71,17 @@ const logos = [
 
 export default function SolNavbar() {
   return (
-  <section className="w-full max-w-[1280px] mx-auto bg-white rounded-[28px] px-4 sm:px-6 lg:px-10 py-8 lg:py-10  max-h-[90vh] overflow-y-auto lg:overflow-y-hidden overflow-x-hidden">
+  <section 
+  className="w-full mt-2 lg:mt-0  mx-auto bg-white rounded-[10px] px-4 sm:px-6 lg:px-10 py-8 lg:py-5  max-h-[90vh] overflow-y-auto lg:overflow-y-hidden overflow-x-hidden">
   <div className="grid grid-cols-1 lg:grid-cols-[48%_52%] gap-10 lg:gap-14">
     
     {/* LEFT SIDE */}
     <div>
-      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 font-medium">
         by Industry
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-y-8 lg:gap-x-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-y-6 lg:gap-x-12">
         {industries.map((item) => {
           const Icon = item.icon;
 
@@ -105,7 +106,7 @@ export default function SolNavbar() {
 
       {/* USE CASE */}
       <div className="mt-10 lg:mt-14">
-        <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+        <h2 className="text-sm md:text-base text-[#5E6553] mb-6 font-medium">
           by Use Case
         </h2>
 
@@ -136,18 +137,18 @@ export default function SolNavbar() {
 
     {/* RIGHT SIDE */}
     <div className="sm:pr-10">
-      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 lg:mb-8 font-medium">
+      <h2 className="text-sm md:text-base text-[#5E6553] mb-6 font-medium">
         by Organization
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {organizations.map((item) => {
           const Icon = item.icon;
 
           return (
             <div
               key={item.title}
-              className="border border-[#E3E5DB] rounded-[16px] px-4 sm:px-6 py-4 sm:py-5 bg-[#F8F8F4] w-full"
+              className="border border-[#E3E5DB] rounded-lg px-4 sm:px-6 py-4 sm:py-5  w-full"
             >
               <div className="flex gap-4">
                 <Icon

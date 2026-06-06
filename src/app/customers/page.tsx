@@ -1,4 +1,3 @@
-
 import CustomersHero from "@/components/customer/CustomersHero";
 import CustomerStoriesSlider from "@/components/customer/CustomerStoriesSlider";
 import CustomersTrustedSection from "@/components/customer/CustomersTrustedSection";
@@ -22,7 +21,7 @@ export default function CustomersPage() {
       <CustomersLogoTicker />
       <CustomersTrustedSection />
       <CustomersAllStories />
-      <UpperFooter/>
+      <UpperFooter />
       <Footer />
     </MarketingLayout>
   );

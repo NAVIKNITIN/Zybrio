@@ -4,16 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { simulationCarouselData } from "@/data/simulationCarouselData";
-import { AppButton } from "./common/app-button";
+import { AppButton } from "../common/app-button";
 
 const SimulationCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   return (
     <section className="bg-[#f7f7f5]">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-20 px-6 lg:grid-cols-[1.3fr_1fr] lg:px-12">
-        <div className="relative">
-          <div className="pt-[90px]">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-20 px-6 lg:grid-cols-[1.3fr_1fr] lg:px-12 py-20">
+<div className="relative h-screen overflow-y-auto scrollbar-hide">          <div className="pt-[90px]">
             <p className="mb-6 flex items-center gap-3 pl-16 text-[18px] text-[#1f2a1f]">
               <span className="h-2 w-2 rounded-full bg-[#0f240f]" />
               Prepare: AI Training Simulations

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ContentSliderProps<T> {
-  items: readonly T[];
+  readonly items: readonly T[];
   autoplayMs?: number;
   className?: string;
   renderMain: (item: T, index: number) => React.ReactNode;
@@ -13,17 +13,41 @@ interface ContentSliderProps<T> {
     position: "previous" | "next",
     index: number,
   ) => React.ReactNode;
+  getItemKey?: (item: T) => string;
 }
 
-export function ContentSlider<T>({
-  items,
-  autoplayMs,
-  className,
-  renderMain,
-  renderPreview,
-}: ContentSliderProps<T>) {
+export function ContentSlider<T>(props: Readonly<ContentSliderProps<T>>) {
+  const { items, autoplayMs, className, renderMain, renderPreview, getItemKey } = props;
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const getKey = (item: T) => {
+    if (typeof item === "string" || typeof item === "number") {
+      return String(item);
+    }
+
+    if (item && typeof item === "object") {
+      const itemAny = item as Record<string, unknown>;
+      if (typeof itemAny.id === "string" || typeof itemAny.id === "number") {
+        return String(itemAny.id);
+      }
+      if (typeof itemAny.key === "string" || typeof itemAny.key === "number") {
+        return String(itemAny.key);
+      }
+      if (typeof itemAny.title === "string") {
+        return itemAny.title;
+      }
+      if (typeof itemAny.label === "string") {
+        return itemAny.label;
+      }
+      try {
+        return JSON.stringify(itemAny);
+      } catch {
+        return Object.prototype.toString.call(itemAny);
+      }
+    }
+
+    return String(item);
+  };
   const previousIndex = useMemo(
     () => (activeIndex === 0 ? items.length - 1 : activeIndex - 1),
     [activeIndex, items.length],
@@ -39,11 +63,11 @@ export function ContentSlider<T>({
       return;
     }
 
-    const timer = window.setInterval(() => {
+    const timer = globalThis.setInterval(() => {
       setActiveIndex((current) => (current + 1) % items.length);
     }, autoplayMs);
 
-    return () => window.clearInterval(timer);
+    return () => globalThis.clearInterval(timer);
   }, [autoplayMs, items.length]);
 
   if (!items.length) {
@@ -65,15 +89,15 @@ export function ContentSlider<T>({
       </div>
 
       <div className="flex items-center justify-center gap-2">
-        {items.map((_, index) => (
+        {items.map((item, idx) => (
           <button
-            key={index}
+            key={getItemKey?.(item) ?? getKey(item)}
             type="button"
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Go to slide ${index + 1}`}
+            onClick={() => setActiveIndex(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
             className={cn(
               "size-3 rounded-full border border-[#bdfd49] transition",
-              index === activeIndex ? "bg-[#bdfd49]" : "bg-transparent",
+              idx === activeIndex ? "bg-[#bdfd49]" : "bg-transparent",
             )}
           />
         ))}

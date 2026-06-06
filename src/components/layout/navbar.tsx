@@ -1,336 +1,233 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, Menu, ShieldCheckIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { env } from "@/lib/env";
 import { ROUTES } from "@/constants/routes";
-import ProductsSection from "../ProductCard";
+import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
+import { usePathname, useSearchParams } from "next/navigation";
 
-type NavbarProps = {
-  className?: string;
-  showMenuButton?: boolean;
-  onMenuClick?: () => void;
-};
-
-export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+export function Navbar({ className }: { className?: string }) {
+  const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [title, setTitle] = useState("ZYBRIO");
+  const [navBarBgColor, setNavBarBgColor] = useState<string>("bg-white");
+  // const navBarBgClass = navBarBgColor === "#F6F6EE" ? "bg-[#F6F6EE]" : "bg-white";
+
+  const menuItems = [
+    { label: "Products", hasDropdown: true },
+    { label: "Solutions", hasDropdown: true },
+    { label: "Customers", route: ROUTES.customers, hasDropdown: false },
+    { label: "Insights", route: ROUTES.insights, hasDropdown: false },
+    { label: "Pricing", route: ROUTES.pricing, hasDropdown: false },
+  ];
 
 
+  const pathname = usePathname();
+  const headerBorderClass = pathname === "/customers" || pathname === "/insights" ? "" : "border-b border-gray-100";
+  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-[#0B2408]";
+  // Active color: keep white for customers, but make Insights active tab black
+  const navLinkActiveTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-black";
 
-  const [visible, setVisible] = useState(true);
-  const prevScrollY = useRef(0);
+  useEffect(() => {
+    console.log("All params:", pathname);
+
+    if (pathname === "/customers") {
+      setNavBarBgColor("bg-[#061F00]");
+    } else if (pathname === "/insights") {
+      setNavBarBgColor("bg-[#012A0B]");
+    }
+    else {
+      setNavBarBgColor("bg-white");
+    }
+  }, [pathname]);
+
+  const onEnter = (item: string) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActive(item);
+  };
+
+  const onLeave = () => {
+    timeoutRef.current = setTimeout(() => setActive(null), 150);
+  };
+  const [scrollY, setScrollY] = useState(0);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-
-      if (currentY < 50) {
-        setVisible(true);
-      } else {
-        setVisible(currentY < prevScrollY.current);
-      }
-
-      prevScrollY.current = currentY;
+      setHidden(currentY > scrollY && currentY > 80);
+      setScrollY(currentY);
     };
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-
-  const menuItems = [
-    { label: "Products", route: "#" },
-    { label: "Solutions", route: "#" },
-    { label: "Customers", route: ROUTES.customers },
-    { label: "Insights", route: ROUTES.insights },
-    { label: "Pricing", route: ROUTES.pricing },
-  ];
-
-  const handleMobileToggle = () => {
-    if (showMenuButton && onMenuClick) {
-      onMenuClick();
-      return;
-    }
-
-    setMobileOpen((open) => !open);
-  };
-
-
-
-
-  useEffect(() => {
-    let prevScrollPos = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-
-      setVisible(
-        prevScrollPos > currentScrollPos || currentScrollPos < 50
-      );
-
-      prevScrollPos = currentScrollPos;
-    };
-
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollY]);
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-
-  // setList name
-  const [title, setTitle] = useState("ZYBRIO");
 
   return (
     <motion.header
-      initial={false}
+      initial={{ y: 0, opacity: 1 }}
       animate={{
-        y: visible ? 0 : "-100%",
+        y: hidden ? -100 : 0,
+        opacity: hidden ? 0 : 1,
       }}
-      transition={{
-        duration: 0.25,
-        ease: "easeInOut",
-      }}
-      className="
-fixed
-top-0
-left-0
-z-50
-w-full
-bg-[#F8F8F5]/95
-sm:bg-white/95
-backdrop-blur-lg
-will-change-transform
-transform-gpu
-"
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className={cn(
+        "sticky top-0 z-50 transition-all bg-white",
+        headerBorderClass,
+        className,
+      )}
     >
-      <div className="bg-[#A8E61D] py-3 text-center font-medium">
+      {/* Banner */}
+      <div className="bg-[#A8E61D] py-2 text-center text-sm font-medium">
         ReflexAI + Google.org: $4M to scale AI training globally
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 flex h-20 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link
-            href={ROUTES.home}
-            className="text-lg font-bold text-[#0B3D0B]"
-          >
-            {title}
-          </Link>
-
-
-          <nav className="relative hidden items-center gap-9 text-sm text-[#0B3D0B] md:flex">
+      <div className={cn(
+        "mx-auto flex py-3 lg:py-0 max-w-400 items-center justify-between px-4",
+        navBarBgColor,
+      )}>
+        <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
+          <ArrowLeftIcon onClick={() => setActive(null)} className="lg:hidden size-6 text-[#0B2408]" />
+          <Link href={ROUTES.home} className={cn("text-[18px] lg:text-[25px] lg:font-bold", navLinkTextColor)}>{title}</Link>
+          <nav className="hidden md:flex items-center gap-10 ml-6">
             {menuItems.map((item) => (
               <div
                 key={item.label}
-                className="relative flex flex-col items-center"
-                onMouseEnter={() => {
-                  setHoveredItem(item.label);
-                  setActiveDropdown(item.label.toLowerCase());
-                }}
-                onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setActiveDropdown(null);
-                }}
+                className="relative h-24 flex items-center"
+                onMouseEnter={() => item.hasDropdown && onEnter(item.label)}
+                onMouseLeave={onLeave}
               >
-                <Link
-                  href={item.route}
-                  className={cn(
-                    "transition-colors",
-                    hoveredItem === item.label
-                      ? "font-semibold text-black"
-                      : "text-gray-400",
-                  )}
-                >
-                  {item.label}
-                </Link>
-
-                {hoveredItem === item.label && (
-                  <motion.div
-                    layoutId="indicator"
-                    className="absolute -bottom-3 h-2 w-2 rounded-sm bg-[#A8E61D]"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
+                {item.hasDropdown ? (
+                  <button
+                    type="button"
+                    className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
+                    onClick={() => setActive(active === item.label ? null : item.label)}
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link href={item.route ?? "#"} className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}>
+                    {item.label}
+                  </Link>
                 )}
 
-                {/* Dropdowns */}
-                <AnimatePresence mode="wait">
-                  {activeDropdown === "products" && item.label === "Products" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.25 }}
-                      className="absolute top-full left-5/1 -translate-x-1/2 mt-8 rounded-xl p-4 w-5xl bg-transparent"
-                    >
-                      <ProductsSection />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <AnimatePresence>
-                  {activeDropdown === "solutions" &&
-                    item.label === "Solutions" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25 }}
-                        className="absolute top-full left-1/2 z-[999] pt-4 -translate-x-[25%]"
-                      >
-                        <div
-                          className="w-5xl rounded-[28px] mt-8 absolute top-full left-70 -translate-x-1/2 shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-[#ECECE5] overflow-hidden">
-                          <SolNavbar />
-                        </div>
-                      </motion.div>
-                    )}
-                </AnimatePresence>
+                {active === item.label && item.hasDropdown && (
+                  <motion.div layoutId="nav-indicator" className="absolute bottom-6 left-1/2 h-2 w-2 -translate-x-1/2 rounded-sm bg-[#A8E61D]" />
+                )}
               </div>
             ))}
           </nav>
         </div>
 
-        <div className="hidden sm:flex items-center gap-3">
-          <Link
-            href="/schedule-a-demo/"
-            className="rounded-xl bg-[#E8E7DE] px-5 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]"
-          >
-            Schedule Demo
+
+        <div className="flex items-center gap-3 mr-0 lg:mr-25">
+          <Link href="/schedule-a-demo/" className="hidden md:block rounded-lg bg-[#E8E7DE] px-8 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
+            Get Demo
           </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => {
+              setMobileOpen(!mobileOpen);
+              if (mobileOpen) {
+                setActive(null);
+                setTitle("ZYBRIO");
+                setNavBarBgColor("white");
+              }
+
+            }}
+          >
+            {mobileOpen ? <X className="size-6 bg-[#EDEDE1] text-[#0B2408]" /> : <Menu className="size-6 bg-[#EDEDE1] text-[#0B2408]" />}
+          </Button>
         </div>
-
-
-
-        <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X className="size-6 bg-[#EDEDE1] text-[#0B2408]" /> : <Menu className="size-6 bg-[#EDEDE1] text-[#0B2408]" />}
-        </Button>
       </div>
 
-      {!showMenuButton && (
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="border-t border-gray-200 bg-[#F8F8F5] shadow-lg md:hidden p-5 sm:p-0"
-            >
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="fixed md:left-25 top-22 lg:top-30 z-50 w-full  max-w-5xl lg:pt-4"
+            onMouseEnter={() => onEnter(active)}
+            onMouseLeave={onLeave}
+          >
+            <div className="overflow-hidden lg:h-full rounded-lg border-[#ECECE5] px-4 lg:px-0  bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
+              {active === "Products" ? <ProductsSection /> : <SolNavbar />}
+            </div>
 
-              {/* <MobileHeader  onMenuOpen={handleMenuOpen}/> */}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
 
-              <div className="flex flex-col gap-4 p-6 text-[#0B3D0B] bg-[white] rounded-lg">
-                {/* {menuItems.map((item) => (
-                  <Link
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute left-0 lg:top-35 h-[calc(120vh-140px)] w-full bg-[#F6F6EE] px-6 pt-2 md:hidden"
+          >
+            <div className="flex flex-col bg-white rounded-lg px-4 pb-20">
+              {menuItems.map((item) => (
+                item.hasDropdown ? (
+                  <button
                     key={item.label}
-                    href={item.route}
-                    className="text-base font-medium hover:text-black"
+                    type="button"
+                    className={cn(
+                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
+                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
+                    )}
                     onClick={() => {
-                      setMobileOpen(false);
-                      setHoveredItem(item.label);
-                      setActiveDropdown(item.label.toLowerCase());
+                      setActive(active === item.label ? null : item.label);
+                      setTitle(item.label);
+                      setNavBarBgColor("#F6F6EE");
                     }}
                   >
                     {item.label}
-                  </Link>
-                ))} */}
-
-
-                <div className="flex flex-col gap-4 lg:p-6 text-[#0B3D0B]">
-                  {menuItems.map((item) => (
-                    <div
-                      key={item.label}
-                      className="border-b border-dashed border-gray-300 py-4"
-                    >
-                      {(item.label === "Products" || item.label === "Solutions") ? (
-                        <>
-                          <button
-                            className="flex w-full items-center justify-between text-left text-base font-medium"
-                            onClick={() => {
-                              setActiveDropdown(
-                                activeDropdown === item.label.toLowerCase()
-                                  ? null
-                                  : item.label.toLowerCase()
-                              );
-
-                              setTitle(item.label);
-                            }}
-                          >
-                            <span>{item.label}</span>
-
-                            <span
-                              className={cn(
-                                "transition-transform duration-300",
-                                activeDropdown === item.label.toLowerCase()
-                                  ? "rotate-180"
-                                  : ""
-                              )}
-                            >
-                              ▼
-                            </span>
-                          </button>
-
-                          <AnimatePresence>
-                            {activeDropdown === item.label.toLowerCase() && (
-                              <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                              >
-                                <div className="mt-4">
-                                  {item.label === "Products" ? (
-                                    <ProductsSection />
-                                  ) : (
-                                    <SolNavbar />
-                                  )}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <Link
-                          href={item.route}
-                          className="block text-base font-medium hover:text-black"
-                          onClick={() => {
-                            setMobileOpen(false);
-                            setActiveDropdown(null);
-                          }}
-                        >
-                          {item.label}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                    <span className="text-gray-400">→</span>
+                  </button>
+                ) : (
                   <Link
-                    href="/schedule-a-demo/"
-                    className="rounded-xl bg-[#E8E7DE] px-5 py-3 text-center text-sm font-semibold text-[#0B2408]"
+                    key={item.label}
+                    href={item.route ?? "#"}
+                    className={cn(
+                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
+                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
+                    )}
                     onClick={() => {
                       setMobileOpen(false);
-                      setActiveDropdown(null);
+                      setActive(null);
+                      setNavBarBgColor("#F6F6EE");
                     }}
                   >
-                    Schedule Demo
+                    {item.label}
+                    <span className="text-gray-400">→</span>
                   </Link>
-                </div>
+                )
+              ))}
+            </div>
 
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+            <div className="mt-8">
+              <Link
+                href="/schedule-a-demo/"
+                className="flex w-full items-center justify-center rounded-lg bg-[#0B2408] py-2 text-center font-semibold text-[#A8E61D] transition hover:bg-black"
+                onClick={() => setMobileOpen(false)}
+              >
+                Get a demo
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

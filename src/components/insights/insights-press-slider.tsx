@@ -54,9 +54,7 @@ const PressCard = ({ item, index, layout = "slider" }: PressCardProps) => {
     <article
       className={cn(
         "min-w-0",
-        layout === "slider"
-          ? "w-full shrink-0 sm:w-[calc((100%-2rem)/2)]"
-          : "w-full",
+        layout === "slider" ? "w-full shrink-0 sm:w-[calc((100%-2rem)/2)]" : "w-full",
       )}
     >
       <PressArtwork item={item} index={index} />
@@ -83,10 +81,16 @@ export const InsightsPressSlider = () => {
   const [dragRatio, setDragRatio] = useState<number | null>(null);
   const [showAllPress, setShowAllPress] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
+  // Start with a stable server-friendly default (mobile) to avoid
+  // hydration mismatches. Update to the real value on the client.
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const mq = window.matchMedia("(min-width: 640px)");
+
+    // set initial value on mount so client updates after hydration
     setIsDesktop(mq.matches);
 
     const handler = (event: MediaQueryListEvent) => {
@@ -107,11 +111,11 @@ export const InsightsPressSlider = () => {
       return;
     }
 
-    const timer = window.setInterval(() => {
+    const timer = globalThis.setInterval(() => {
       setActiveIndex((current) => (current + 1) % totalSteps);
     }, 4200);
 
-    return () => window.clearInterval(timer);
+    return () => globalThis.clearInterval(timer);
   }, [dragRatio, showAllPress, totalSteps]);
 
   const committedRatio = useMemo(() => {

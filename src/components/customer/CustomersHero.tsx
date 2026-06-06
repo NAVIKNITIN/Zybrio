@@ -4,7 +4,7 @@ export default function CustomersHero() {
   const { hero } = customersPageData;
 
   return (
-    <section className="bg-[#061F00] text-white pt-[10rem]">
+    <section className="bg-[#061F00] text-white pt-[20px]">
       <div className="container-app flex min-h-[250px]  items-start justify-center pt-20 pb-5">
         <div className="text-center">
           <p className="mb-5 text-[15px] font-medium leading-none text-white">
