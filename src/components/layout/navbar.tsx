@@ -30,12 +30,12 @@ export function Navbar({ className }: { className?: string }) {
 
   const pathname = usePathname();
   const headerBorderClass = pathname === "/customers" || pathname === "/insights" ? "" : "border-b border-gray-100";
-  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-[#0B2408]";
+  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" || pathname === "/Pricing" ? "text-white" : "text-[#0B2408]";
   // Active color: keep white for customers, but make Insights active tab black
   const navLinkActiveTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-black";
 
   useEffect(() => {
-    console.log("All params:", pathname);
+    // console.log("All params:", pathname);
 
     if (pathname === "/customers") {
       setNavBarBgColor("bg-[#061F00]");
@@ -117,7 +117,7 @@ export function Navbar({ className }: { className?: string }) {
                   </Link>
                 )}
 
-                {active === item.label && item.hasDropdown && (
+                {active === item.label && (
                   <motion.div layoutId="nav-indicator" className="absolute bottom-6 left-1/2 h-2 w-2 -translate-x-1/2 rounded-sm bg-[#A8E61D]" />
                 )}
               </div>

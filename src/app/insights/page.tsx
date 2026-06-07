@@ -5,6 +5,7 @@ import { InsightsFeatureSlider } from "@/components/insights/insights-feature-sl
 import { InsightsHero } from "@/components/insights/insights-hero";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
 import { createPageMetadata } from "@/lib/metadata";
+import InsightsHeroMMobile from "@/components/insights/insights-animated-heroMobile";
 
 export const metadata = createPageMetadata(
   "Insights",
@@ -15,8 +16,18 @@ const InsightsPage = () => {
   return (
     <MarketingLayout>
       <div className="insights-page">
-        <InsightsHero />
-        <InsightsFeatureSlider />
+        <div className="hidden lg:block">
+          <InsightsHero />
+        </div>
+
+        {/* Mobile + Tablet */}
+        <div className="lg:hidden">
+          <InsightsHeroMMobile />
+        </div>
+        <div className="hidden lg:block">
+          <InsightsFeatureSlider />
+        </div>
+
         <InsightsContentAnimatedSection />
         <UpperFooter />
         <Footer />

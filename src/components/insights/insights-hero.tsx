@@ -4,7 +4,7 @@ export function InsightsHero() {
   const { hero } = insightsPageContent;
 
   return (
-    <section className="bg-forest text-white">
+    <section className=" text-white">
       <div className="container-app pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14">
         <div>
           <div className="flex flex-wrap items-start gap-x-4 gap-y-2">

@@ -12,7 +12,8 @@ const SimulationCarousel = () => {
   return (
     <section className="bg-[#f7f7f5]">
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-20 px-6 lg:grid-cols-[1.3fr_1fr] lg:px-12 py-20">
-<div className="relative h-screen overflow-y-auto scrollbar-hide">          <div className="pt-[90px]">
+        <div className="relative h-screen overflow-y-auto scrollbar-hide">
+          <div className="pt-[90px]">
             <p className="mb-6 flex items-center gap-3 pl-16 text-[18px] text-[#1f2a1f]">
               <span className="h-2 w-2 rounded-full bg-[#0f240f]" />
               Prepare: AI Training Simulations
@@ -42,11 +43,10 @@ const SimulationCarousel = () => {
                       {simulationCarouselData.map((dotSlide, dotIndex) => (
                         <div
                           key={dotSlide.id}
-                          className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                            activeSlide === dotIndex
+                          className={`h-3 w-3 rounded-full transition-all duration-300 ${activeSlide === dotIndex
                               ? "scale-110 bg-[#0f240f]"
                               : "border border-[#9c9c9c]"
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>

@@ -61,7 +61,7 @@ export default function SecurityComplianceCard() {
               27001.
             </p>
 
-            <button className="flex items-center gap-2 whitespace-nowrap border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group">
+            <button className="flex items-center lg:w-[260px] gap-2 whitespace-nowrap border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group">
               <span>Explore security & compliance</span>
               <svg
                 className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
