@@ -2,7 +2,7 @@ export default function AboutHeroSection() {
   return (
     <section className="bg-[#D7F0A8] min-h-[420px] overflow-hidden px-4 flex items-center justify-center sm:min-h-[520px] lg:min-h-[600px]">
       <div className="w-full max-w-[1280px] mx-auto text-center">
-        <p className="text-[16px] text-[#667C38] font-medium">Our Mission</p>
+        <p className="text-[16px] text-[#667C38] font-medium pt-[100px]">Our Mission</p>
 
         <h2
           className="

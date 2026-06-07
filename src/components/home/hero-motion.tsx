@@ -8,7 +8,7 @@ import { greenTheme, headerTitle } from "@/themes/themes";
 export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
   return (
     <div className={bgColor ? "bg-[#F8F8F5]" : "bg-white"}>
-<section className="mx-auto max-w-7xl px-6 mt-[14rem] flex flex-col items-start justify-center">
+      <section className="mx-auto max-w-7xl px-6 mt-[14rem] flex flex-col items-start justify-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,13 +90,19 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
           <CommonButton
             title="Schedule a demo"
             height="40px"
-            width="180px"
+            width="200px"
             textColor={greenTheme}
             bgColor="black"
           />
 
-          <button className="whitespace-nowrap font-medium text-[#0B3D0B]">
-            Take a tour →
+          <button className="font-medium text-[#0B3D0B] leading-none">
+            <span className="block lg:hidden">
+              Take a
+              <br />
+              tour →
+            </span>
+
+            <span className="hidden lg:block whitespace-nowrap">Take a tour →</span>
           </button>
         </motion.div>
       </section>

@@ -119,7 +119,7 @@ export default function PricingPage() {
       <section className="px-4 sm:px-6 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto text-center">
           {/* Header */}
-          <p className="text-[#5B6553] text-xl sm:text-2xl md:text-lg mb-3 sm:mb-4 mt-[80px] sm:mt-[100px]">
+          <p className="text-[#5B6553] text-xl sm:text-2xl md:text-lg mb-3 sm:mb-4 mt-[80px] sm:mt-[100px] pt-30">
             Pricing
           </p>
           <h1 className="text-[#0D2B0B] text-[2rem] leading-tight sm:text-[3.25rem] md:text-[55px] font-bold md:leading-[1.05]">
