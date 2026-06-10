@@ -42,7 +42,8 @@ const CategoryDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("All Insights");
 
-  const categories = ["All Insights", "Blog", "Press"];
+  // const categories = insightsPageContent;
+  const categories = insightsPageContent.filtersSidebar;
 
   return (
     <div className="relative block sm:hidden">
@@ -64,21 +65,21 @@ const CategoryDropdown = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 w-56 mt-2  rounded-md shadow-lg">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setSelected(category);
-                setIsOpen(false);
-              }}
-              className={`block w-full px-4 py-2 text-left text-sm ${selected === category
-                  ? "bg-green-200 font-semibold"
-                  : "hover:bg-green-200"
-                }`}
-            >
-              {category}
-            </button>
+        <div className="absolute left-0 w-full mt-2  rounded-lg shadow-lg  bg-[#FFFFFF] text-black">
+          {categories.items.map((item) => (
+          <button
+            key={item.label}
+            onClick={() => {
+              setSelected(item.label);
+              setIsOpen(false);
+            }}
+            className={`block w-full px-4 py-2 text-[black] rounded-t-2xl text-left text-sm ${selected === item.label
+              ? "bg-[#F6FCE8] font-semibold"
+              : "hover:bg-green-200"
+              }`}
+          >
+            {item.label}
+          </button>
           ))}
         </div>
       )}
@@ -101,7 +102,7 @@ export function InsightsFiltersSidebar({
     <div className="relative z-20 lg:w-[302px]">
       <div className="lg:hidden">
         <div className="relative">
-          <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-white/55"/>
+          <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-white/55" />
           <input
             type="text"
             placeholder={filtersSidebar.searchPlaceholder}

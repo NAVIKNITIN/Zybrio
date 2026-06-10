@@ -124,7 +124,7 @@ export const InsightsContentAnimatedSection = () => {
       data-insights-scroll-zone
     >
       <div className="grid mx-auto max-w-7xl px-5 gap-10 grid-cols-1 lg:grid-cols-[302px_1fr] lg:gap-16">
-        <aside className="sticky top-[56px] self-start h-fit">
+        <aside className="sm:sticky top-[56px] self-start h-fit">
           <InsightsFiltersSidebar
             activeView={activeView}
             onViewChange={handleViewChange}
