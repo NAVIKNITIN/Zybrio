@@ -116,14 +116,21 @@ export const InsightsContentAnimatedSection = () => {
   const showPress = activeView === "all" || activeView === "press";
   const showCaseStudies = activeView === "case-studies";
 
+
+  
   return (
     <section
-      ref={sectionRef}
-      className="bg-[#012a0b] pb-16 pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16"
+      className="bg-[#012a0b]  pb-16 pt-25 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16"
       data-insights-scroll-zone
     >
-      <div className="container-app flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-14">
-        <aside className="relative z-20 lg:sticky lg:top-24 lg:w-[302px] lg:flex-none lg:self-start">
+      <div className="grid mx-auto max-w-7xl px-5 gap-10 grid-cols-1 lg:grid-cols-[302px_1fr] lg:gap-16">
+        <aside className="sticky top-[56px] self-start h-fit">
+          <InsightsFiltersSidebar
+            activeView={activeView}
+            onViewChange={handleViewChange}
+          />
+        </aside>
+        {/* <aside className="relative z-20 lg:sticky lg:top-24">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: -28 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
@@ -135,7 +142,7 @@ export const InsightsContentAnimatedSection = () => {
               onViewChange={handleViewChange}
             />
           </motion.div>
-        </aside>
+        </aside> */}
 
         <div className="min-w-0 flex-1">
           <AnimatePresence mode="wait">

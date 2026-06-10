@@ -84,19 +84,21 @@ export const InsightsPressSliderMobile = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const x = useMotionValue(0);
 
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (globalThis.window === undefined) {
-      return false;
-    }
-    return globalThis.matchMedia("(min-width: 640px)").matches;
-  });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = globalThis.matchMedia("(min-width: 640px)");
+    const mq = window.matchMedia("(min-width: 640px)");
+    const updateDesktop = () => {
+      setIsDesktop(mq.matches);
+      setActiveIndex(0);
+    };
+
+    updateDesktop();
     const handler = (event: MediaQueryListEvent) => {
       setIsDesktop(event.matches);
       setActiveIndex(0);
     };
+
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
@@ -106,7 +108,7 @@ export const InsightsPressSliderMobile = () => {
   const maxIndex = totalSteps - 1;
 
   // Card dimensions for drag
-  const CARD_WIDTH = isDesktop ? 340 : 280;
+  const CARD_WIDTH = isDesktop ? 340 : 350;
   const GAP = isDesktop ? 24 : 16;
   const SLIDE_WIDTH = CARD_WIDTH + GAP;
 
@@ -161,13 +163,13 @@ export const InsightsPressSliderMobile = () => {
 
   return (
     <div id="press" className="min-w-0 scroll-mt-28">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+      <div className="flex gap-4 sm:flex-row items-end sm:justify-between sm:gap-6">
         <div>
-          <p className="text-[1.15rem] font-medium text-white/88">
+          <p className="text-[14px] font-medium text-white/88">
             {pressAnnouncements.eyebrow}
           </p>
 
-          <h2 className="mt-3 max-w-[50rem] text-[2.8rem] font-semibold leading-[0.98] tracking-[-0.06em] text-white sm:text-[4rem]">
+          <h2 className="mt-3 max-w-[50rem] text-[40px] font-semibold leading-[0.98] tracking-[-0.06em] text-white sm:text-[4rem]">
             {pressAnnouncements.title}
           </h2>
         </div>
@@ -175,7 +177,7 @@ export const InsightsPressSliderMobile = () => {
         <button
           type="button"
           onClick={() => setShowAllPress((current) => !current)}
-          className="inline-flex h-12 w-fit shrink-0 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/[0.03] px-6 text-base font-semibold text-white shadow-[0_14px_34px_rgba(0,0,0,0.16)] transition hover:border-[#a4ea00]/45 hover:bg-white/[0.07]"
+          className="inline-flex  w-fit shrink-0 items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] h-10 px-2 text-base font-semibold text-white shadow-[0_14px_34px_rgba(0,0,0,0.16)] transition hover:border-[#a4ea00]/45 hover:bg-white/[0.07]"
         >
           {showAllPress ? "Show slider" : pressAnnouncements.ctaLabel}
           <ArrowRight className="size-4 text-[#a4ea00]" />
@@ -194,7 +196,7 @@ export const InsightsPressSliderMobile = () => {
           <div className="relative mt-12">
             <div
               ref={containerRef}
-              className="overflow-hidden"
+              className=""
               style={{ cursor: isDragging ? "grabbing" : "grab" }}
             >
               <motion.div
@@ -231,7 +233,7 @@ export const InsightsPressSliderMobile = () => {
 
           {/* FIXED Progress Bar - Small indicator that moves, not growing bar */}
           <div className="mx-auto mt-10 w-full max-w-[300px]">
-            <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-[#10361a]">
+            <div className="relative h-1.5 w-full  rounded-full bg-[#10361a]">
               {/* Static track background */}
               <div className="absolute inset-0 rounded-full bg-[#10361a]" />
 

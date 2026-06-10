@@ -4,7 +4,7 @@ export function MarketingLayout({ children }: Readonly<{ children: React.ReactNo
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="overflow-x-hidden bg-[white]">{children}</main>
+      <main className="overflow-x-hidden sm:overflow-x-visible bg-[white]">{children}</main>
     </div>
   );
 }

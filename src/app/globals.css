@@ -138,7 +138,7 @@ body {
   }
 
   .insights-filter-search {
-    height: 3.2rem;
+    height: 45px;
     border-radius: 9999px;
     border: 1px solid rgba(255, 255, 255, 0.16);
     background: rgba(0, 0, 0, 0.24);

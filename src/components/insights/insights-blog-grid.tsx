@@ -7,7 +7,7 @@ function BlogGridArtwork({ item }: { readonly item: BlogGridItem }) {
   const imageSrc = item.imageSrc ?? "/insights/Image1.png";
 
   return (
-    <div className="relative h-[10rem] overflow-hidden rounded-[1rem] bg-[#dfffa3]">
+    <div className="relative h-[14rem] overflow-hidden rounded-[1rem] bg-[#dfffa3]">
       <Image
         src={imageSrc}
         alt={item.imageAlt}

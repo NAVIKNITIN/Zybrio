@@ -13,7 +13,7 @@ export const InsightsBlogShowcaseMobile = ({ onViewAll }: InsightsBlogShowcasePr
   return (
     <section className="flex-1" id="blog">
       {/* Header Section */}
-      <div className="flex flex-col gap-4">
+      <div className="flex items-end gap-4">
         <div>
           <p className="text-[0.95rem] font-medium text-white/88">
             {blogShowcase.eyebrow}
@@ -37,7 +37,7 @@ export const InsightsBlogShowcaseMobile = ({ onViewAll }: InsightsBlogShowcasePr
       {/* Featured Article Card - Text at Bottom */}
       <article className="mt-10 rounded-[24px] bg-[#022b05]">
         {/* Top Thumbnail */}x
-        <div className="relative h-[150px] w-[300px] overflow-hidden rounded-[20px]">
+        <div className="relative h-[150px] w-[300px]  rounded-[20px]">
           <Image
             src="/insights/Herocen.png"
             alt={featured.headline}

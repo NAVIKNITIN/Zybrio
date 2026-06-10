@@ -3,13 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeftIcon, ArrowRightIcon, Menu, ShieldCheckIcon, X } from "lucide-react";
+import { ArrowLeftIcon, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
 import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
@@ -29,14 +29,17 @@ export function Navbar({ className }: { className?: string }) {
 
 
   const pathname = usePathname();
-  const headerBorderClass = pathname === "/customers" || pathname === "/insights" ? "" : "border-b border-gray-100";
-  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" || pathname === "/Pricing" ? "text-white" : "text-[#0B2408]";
-  // Active color: keep white for customers, but make Insights active tab black
-  const navLinkActiveTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-black";
+  const isDarkRoute = pathname === "/customers" || pathname === "/insights";
+  const headerBorderClass = isDarkRoute ? "" : "border-b border-gray-100";
+  const navLinkTextColor = isDarkRoute ? "text-black lg:text-white" : "text-black";
+  const navLinkActiveTextColor = isDarkRoute ? "text-white" : "text-black";
+  const [titleTextColor, setTitleTextColor] = useState(
+    isDarkRoute ? "text-white" : "text-black"
+  );
+  const [textColor, setTextColor] = useState(titleTextColor);
 
   useEffect(() => {
-    // console.log("All params:", pathname);
-
+    // console.log("All params:", pathname)
     if (pathname === "/customers") {
       setNavBarBgColor("bg-[#061F00]");
     } else if (pathname === "/insights") {
@@ -68,7 +71,6 @@ export function Navbar({ className }: { className?: string }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollY]);
 
-
   return (
     <motion.header
       initial={{ y: 0, opacity: 1 }}
@@ -93,8 +95,21 @@ export function Navbar({ className }: { className?: string }) {
         navBarBgColor,
       )}>
         <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
-          <ArrowLeftIcon onClick={() => setActive(null)} className="lg:hidden size-6 text-[#0B2408]" />
-          <Link href={ROUTES.home} className={cn("text-[18px] lg:text-[25px] lg:font-bold", navLinkTextColor)}>{title}</Link>
+          <ArrowLeftIcon onClick={() => setActive(null)}   className={cn(
+              "text-[18px] lg:text-[25px] lg:font-bold lg:hidden",
+              titleTextColor,
+            )}
+          //  className=" size-6 text-[#0B2408]" 
+           />
+          <Link
+            href={ROUTES.home}
+            className={cn(
+              "text-[18px] lg:text-[25px] lg:font-bold",
+              titleTextColor,
+            )}
+          >
+            {title}
+          </Link>
           <nav className="hidden md:flex items-center gap-10 ml-6">
             {menuItems.map((item) => (
               <div
@@ -106,7 +121,7 @@ export function Navbar({ className }: { className?: string }) {
                 {item.hasDropdown ? (
                   <button
                     type="button"
-                    className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
+                    className={cn("font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
                     onClick={() => setActive(active === item.label ? null : item.label)}
                   >
                     {item.label}
@@ -139,7 +154,7 @@ export function Navbar({ className }: { className?: string }) {
               if (mobileOpen) {
                 setActive(null);
                 setTitle("ZYBRIO");
-                setNavBarBgColor("white");
+                setNavBarBgColor("bg-white");
               }
 
             }}
@@ -182,11 +197,9 @@ export function Navbar({ className }: { className?: string }) {
                   <button
                     key={item.label}
                     type="button"
-                    className={cn(
-                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
-                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
-                    )}
+                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B2408]"
                     onClick={() => {
+                      setTitleTextColor("text-black")
                       setActive(active === item.label ? null : item.label);
                       setTitle(item.label);
                       setNavBarBgColor("#F6F6EE");
@@ -199,10 +212,7 @@ export function Navbar({ className }: { className?: string }) {
                   <Link
                     key={item.label}
                     href={item.route ?? "#"}
-                    className={cn(
-                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
-                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
-                    )}
+                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B2408]"
                     onClick={() => {
                       setMobileOpen(false);
                       setActive(null);
