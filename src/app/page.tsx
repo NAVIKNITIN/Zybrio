@@ -16,6 +16,7 @@ import SecurityComplianceCard from "@/components/home/SecurityComplianceCard";
 import PerformanceSectionMobile from "@/components/home/PerOutComes-mobile";
 import PerformanceDashboardMobile from "@/components/home/PerformanceDashboardMobile";
 import SimulationCarouselMobile from "@/components/home/SimulationCarouselMobile";
+import CompaniesTrustedIconMobile from "@/components/home/CompaniesTrustedIconMobile";
 
 const HeroMotion = dynamic(() => import("@/components/home/hero-motion"), {
   loading: () => <div className="h-40" />,
@@ -45,7 +46,15 @@ const HomePage = () => {
       {/* </section> */}
 
       {/* Companies */}
-      <CompaniesTrustedIcon />
+      <div className="hidden lg:block">
+        <CompaniesTrustedIcon />
+      </div>
+
+      {/* Mobile + Tablet */}
+      <div className="lg:hidden">
+        <CompaniesTrustedIconMobile />
+      </div>
+
       <RoleplaySection />
       <div className="hidden lg:block">
         <PerformanceOutcomesDashboard />

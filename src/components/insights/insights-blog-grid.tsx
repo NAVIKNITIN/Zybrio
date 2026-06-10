@@ -7,7 +7,7 @@ function BlogGridArtwork({ item }: { readonly item: BlogGridItem }) {
   const imageSrc = item.imageSrc ?? "/insights/Image1.png";
 
   return (
-    <div className="relative h-[15.6rem] overflow-hidden rounded-[1rem] bg-[#dfffa3]">
+    <div className="relative h-[14rem] overflow-hidden rounded-[1rem] bg-[#dfffa3]">
       <Image
         src={imageSrc}
         alt={item.imageAlt}
@@ -28,7 +28,7 @@ function BlogGridCard({ item }: { readonly item: BlogGridItem }) {
       <div className="mt-6">
         <p className="text-[1rem] font-semibold text-white/78">
           {item.category}
-          <span className="mx-3 inline-block size-1.5 rounded-full bg-[#a4ea00]" />
+          <span className="mx-3 inline-block size-1.2 rounded-full bg-[#a4ea00]" />
           {item.date}
         </p>
 

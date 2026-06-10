@@ -10,13 +10,13 @@ const teamData = {
     {
       name: "Sam Dorison",
       role: "Cofounder and Chief Executive Officer",
-      image: "/About-images/no2.jpg",
+      image: "/about/Leader1.png",
       linkedin: "#",
     },
     {
       name: "John Callery",
       role: "Cofounder and Chief Product & Technology Officer",
-      image: "/About-images/no1.jpg",
+      image: "/about/Leader2.png",
       linkedin: "#",
     },
   ],
@@ -25,13 +25,13 @@ const teamData = {
     {
       name: "Advisor One",
       role: "Senior Strategic Advisor",
-      image: "/About-images/no3.jpg",
+      image: "/about/advisors1.png",
       linkedin: "#",
     },
     {
       name: "Advisor Two",
       role: "Board Advisor",
-      image: "/About-images/no4.jpg",
+      image: "/about/advisors2.png",
       linkedin: "#",
     },
   ],
@@ -41,15 +41,15 @@ export default function TeamSection() {
   const [activeTab, setActiveTab] = useState<"leaders" | "advisors">("leaders");
 
   return (
-    <section className="bg-[#012100] py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-[#012100] py-16 sm:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
-        <h2 className="text-center text-white text-[40px] font-bold mb-12">
+        <h2 className="mb-8 text-center text-[32px] font-bold text-white sm:mb-10 sm:text-[36px] lg:mb-12 lg:text-[40px]">
           Meet our team
         </h2>
 
         {/* Toggle */}
-        <div className="flex justify-center mb-16">
+        <div className="mb-10 flex justify-center sm:mb-12 lg:mb-16">
           <div className="relative flex rounded-full border border-[#39552a] p-[3px] overflow-hidden">
             <motion.div
               className="absolute top-[3px] bottom-[3px] left-[3px] bg-[#c7ff1a] rounded-full"
@@ -94,23 +94,24 @@ export default function TeamSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid md:grid-cols-2 gap-6 max-w-[760px] mx-auto"
+            className="mx-auto grid max-w-[760px] gap-5 md:grid-cols-2 lg:gap-6"
           >
             {teamData[activeTab].map((person) => (
               <motion.div
                 key={person.name}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="rounded-[28px] border border-[#1e5d23] p-[3px] bg-[#01450d] h-[390px]"
+                className="h-[360px] rounded-[24px] border border-[#1e5d23] bg-[#01450d] p-[3px] sm:h-[390px] sm:rounded-[28px]"
               >
-                <div className="relative h-full rounded-[24px] bg-[#01520d] px-6 pt-6 pb-6 flex flex-col">
+                <div className="relative flex h-full flex-col rounded-[20px] bg-[#01520d] px-5 pt-5 pb-5 sm:rounded-[24px] sm:px-6 sm:pt-6 sm:pb-6">
                   {/* Image */}
                   <div className="flex justify-center">
-                    <div className="relative w-[160px] h-[160px]">
+                    <div className="relative h-[140px] w-[140px] sm:h-[160px] sm:w-[160px]">
                       <Image
                         src={person.image}
                         alt={person.name}
                         fill
+                        sizes="160px"
                         className="object-contain"
                       />
                     </div>
@@ -120,7 +121,7 @@ export default function TeamSection() {
                   <div className="flex-1" />
 
                   {/* Text */}
-                  <div className="pr-14">
+                  <div className="pr-12 sm:pr-14">
                     <h3 className="text-white text-2x1 font-semibold ">{person.name}</h3>
 
                     <p className="text-[#a8b7a2] text-base leading-relaxed max-w-[220px]">
