@@ -9,7 +9,7 @@ export default function CustomersHero() {
         <div className="text-center">
           <p className="mb-5 text-[15px] font-medium leading-none text-white">
             {hero.eyebrow}
-          </p>
+          </p>mmmmmmm
 
           <h1 className="mt-3 text-[clamp(48px,4.5vw,68px)] font-semibold leading-[0.95] tracking-[-0.06em] text-white">
             {hero.title}
