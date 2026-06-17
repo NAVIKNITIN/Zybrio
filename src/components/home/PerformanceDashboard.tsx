@@ -12,15 +12,15 @@ export default function PerformanceDashboard() {
       >
         {/* Top Section */}
         <div className="w-full flex items-center justify-between mb-4">
-          <h2 className="text-sm font-medium">Overall Score</h2>
+          <h2 className="text-sm font-medium">Projects Delivered</h2>
           <div className="flex items-center gap-2 bg-[#003A0B] text-white px-2 py-1 rounded-full">
-            <h2 className="text-sm font-bold">94%</h2>
-            <div className="flex items-center gap-1">
+            <h2 className="text-sm font-bold">60+ </h2>
+            {/* <div className="flex items-center gap-1">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
               <span className="w-2 h-2 border border-green-500 rounded-full"></span>
-            </div>
-            <h2 className="text-xs text-green-400 font-semibold">+12%</h2>
+            </div>*/}
+            <h2 className="text-xs text-green-400 font-semibold">+18 this quarter</h2> 
           </div>
         </div>
 
@@ -33,8 +33,8 @@ export default function PerformanceDashboard() {
             height={80}
             className="rounded-full mb-2"
           />
-          <h3 className="text-lg font-semibold">Joan Simmons</h3>
-          <p className="text-xs text-gray-300">Team Member</p>
+          <h3 className="text-lg font-semibold">Rahul Mehta</h3>
+          <p className="text-xs text-gray-300">Founder</p>
         </div>
 
         {/* Bottom Section */}

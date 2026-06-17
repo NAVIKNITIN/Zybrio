@@ -11,7 +11,7 @@ export default function RootError({
   readonly reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    console.error(error.message || "Unknown error", error.digest || "");
   }, [error]);
 
   return (

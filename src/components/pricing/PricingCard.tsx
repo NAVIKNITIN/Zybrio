@@ -40,16 +40,13 @@ export default function PricingCard({ plan }: PricingCardProps) {
         )}
       </div>
 
-      {/* BUTTON - Centered text, py-5 on all screens */}
+      {/* BUTTON - Same effect for all cards */}
       <AppButton
-        className={`
+        className="
           mt-6 sm:mt-8 w-full min-h-0 rounded-lg px-6 py-5 font-semibold text-center flex items-center justify-center
-          ${
-            plan.custom
-              ? "border border-[#D7D7CF] bg-white text-black hover:bg-[#f5f5f0]"
-              : "bg-[#062900] text-[#B7FF45] hover:bg-[#B7FF45] hover:text-[#062900]"
-          }
-        `}
+          transition-all duration-300 ease-in-out
+          bg-[#062900] text-[#B7FF45] hover:bg-[#B7FF45] hover:text-[#062900]
+        "
       >
         {plan.buttonText}
       </AppButton>
@@ -78,7 +75,6 @@ export default function PricingCard({ plan }: PricingCardProps) {
           <ul className="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3">
             {plan.features.map((feature: string) => (
               <li key={feature} className="flex items-start gap-3">
-                {/* BULLET */}
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8EDF2B] mt-[7px] sm:mt-[9px] shrink-0" />
 
                 <span className="text-[15px] sm:text-[14px] leading-[22px] sm:leading-[24px] text-[#4C564B]">

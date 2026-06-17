@@ -17,7 +17,6 @@ export function Navbar({ className }: { className?: string }) {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [title, setTitle] = useState("ZYBRIO");
   const [navBarBgColor, setNavBarBgColor] = useState<string>("bg-white");
-  // const navBarBgClass = navBarBgColor === "#F6F6EE" ? "bg-[#F6F6EE]" : "bg-white";
 
   const menuItems = [
     { label: "Products", hasDropdown: true },
@@ -27,7 +26,6 @@ export function Navbar({ className }: { className?: string }) {
     { label: "Pricing", route: ROUTES.pricing, hasDropdown: false },
   ];
 
-
   const pathname = usePathname();
   const isDarkRoute = pathname === "/customers" || pathname === "/insights";
   const headerBorderClass = isDarkRoute ? "" : "border-b border-gray-100";
@@ -36,16 +34,13 @@ export function Navbar({ className }: { className?: string }) {
   const [titleTextColor, setTitleTextColor] = useState(
     isDarkRoute ? "text-white" : "text-black"
   );
-  const [textColor, setTextColor] = useState(titleTextColor);
 
   useEffect(() => {
-    // console.log("All params:", pathname)
     if (pathname === "/customers") {
       setNavBarBgColor("bg-[#061F00]");
     } else if (pathname === "/insights") {
       setNavBarBgColor("bg-[#012A0B]");
-    }
-    else {
+    } else {
       setNavBarBgColor("bg-white");
     }
   }, [pathname]);
@@ -58,6 +53,7 @@ export function Navbar({ className }: { className?: string }) {
   const onLeave = () => {
     timeoutRef.current = setTimeout(() => setActive(null), 150);
   };
+
   const [scrollY, setScrollY] = useState(0);
   const [hidden, setHidden] = useState(false);
 
@@ -85,7 +81,6 @@ export function Navbar({ className }: { className?: string }) {
         className,
       )}
     >
-      {/* Banner */}
       <div className="bg-[#A8E61D] py-2 text-center text-sm font-medium">
         ReflexAI + Google.org: $4M to scale AI training globally
       </div>
@@ -94,22 +89,23 @@ export function Navbar({ className }: { className?: string }) {
         "mx-auto flex py-3 lg:py-0 max-w-400 items-center justify-between px-4",
         navBarBgColor,
       )}>
-        <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
-          <ArrowLeftIcon onClick={() => setActive(null)}   className={cn(
+        <div className="flex items-center gap-3 lg:gap-12 lg:ml-25">
+          <ArrowLeftIcon
+            onClick={() => setActive(null)}
+            className={cn(
               "text-[18px] lg:text-[25px] lg:font-bold lg:hidden",
               titleTextColor,
             )}
-          //  className=" size-6 text-[#0B2408]" 
-           />
-          <Link
-            href={ROUTES.home}
-            className={cn(
-              "text-[18px] lg:text-[25px] lg:font-bold",
-              titleTextColor,
-            )}
-          >
-            {title}
+          />
+
+          <Link href={ROUTES.home} className="flex items-center">
+            <img
+              src="/HomePage-image/zybrio-logo-black.svg"
+              alt="ZYBRIO"
+              className="h-14 w-auto"
+            />
           </Link>
+
           <nav className="hidden md:flex items-center gap-10 ml-6">
             {menuItems.map((item) => (
               <div
@@ -140,7 +136,6 @@ export function Navbar({ className }: { className?: string }) {
           </nav>
         </div>
 
-
         <div className="flex items-center gap-3 mr-0 lg:mr-25">
           <Link href="/schedule-a-demo/" className="hidden md:block rounded-lg bg-[#E8E7DE] px-8 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
             Get Demo
@@ -156,7 +151,6 @@ export function Navbar({ className }: { className?: string }) {
                 setTitle("ZYBRIO");
                 setNavBarBgColor("bg-white");
               }
-
             }}
           >
             {mobileOpen ? <X className="size-6 bg-[#EDEDE1] text-[#0B2408]" /> : <Menu className="size-6 bg-[#EDEDE1] text-[#0B2408]" />}
@@ -170,18 +164,16 @@ export function Navbar({ className }: { className?: string }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed md:left-25 top-22 lg:top-30 z-50 w-full  max-w-5xl lg:pt-4"
+            className="fixed md:left-25 top-22 lg:top-30 z-50 w-full max-w-5xl lg:pt-4"
             onMouseEnter={() => onEnter(active)}
             onMouseLeave={onLeave}
           >
-            <div className="overflow-hidden lg:h-full rounded-lg border-[#ECECE5] px-4 lg:px-0  bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
+            <div className="overflow-hidden lg:h-full rounded-lg border-[#ECECE5] px-4 lg:px-0 bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
               {active === "Products" ? <ProductsSection /> : <SolNavbar />}
             </div>
-
           </motion.div>
         )}
       </AnimatePresence>
-
 
       <AnimatePresence>
         {mobileOpen && (
@@ -199,7 +191,7 @@ export function Navbar({ className }: { className?: string }) {
                     type="button"
                     className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B2408]"
                     onClick={() => {
-                      setTitleTextColor("text-black")
+                      setTitleTextColor("text-black");
                       setActive(active === item.label ? null : item.label);
                       setTitle(item.label);
                       setNavBarBgColor("#F6F6EE");
