@@ -11,11 +11,10 @@ export default function OurStory() {
         <div className="space-y-8 pb-16 sm:space-y-10 sm:pb-20 lg:pb-27">
           {/* Left Side */}
           <h2 className="max-w-[900px] text-[30px] font-medium leading-[1.08] tracking-[-0.035em] text-black sm:text-[40px] md:text-[48px] lg:-ml-10 lg:text-[44px] lg:leading-[1.05] lg:tracking-[-0.04em]">
-            Born in the toughest environments,
+            Born from the belief that great work changes everything
             <br />
-            ReflexAI powers high-stakes
+            Zybrio partners with ambitious brands to design, build, and market their way to the top.
             <br />
-            conversations across industries
           </h2>
 
           {/* Right Side */}

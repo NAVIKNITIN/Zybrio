@@ -58,9 +58,7 @@ export default function VersityTutor() {
             {/* Quote */}
             <Link href="https://google.com" target="_blank">
               <p className="cursor-pointer text-[23px] sm:text-[22px] lg:text-[20px] font-medium leading-[1.5] sm:leading-[1.6] text-[#0d2d12]">
-                “ReflexAI has scaled our training in a way that wouldn’t have been
-                possible otherwise, allowing us to focus on coaching and performance
-                while ensuring consistent preparation across the team.”
+                "Zybrio didn't just deliver a website — they delivered a brand. Our sales conversations changed completely because people finally understood who we were before we even spoke."
               </p>
             </Link>
 
@@ -73,11 +71,11 @@ export default function VersityTutor() {
           {/* Stats */}
           <div className="flex items-end gap-3 sm:gap-4 lg:gap-5 mt-6 sm:mt-8">
             <h1 className="text-[40px] sm:text-[48px] lg:text-[60px] leading-none font-bold text-[#0d2d12]">
-              460
+              3.8x
             </h1>
 
             <p className="text-[11px] sm:text-[12px] lg:text-[13px] text-[#5a5a5a] max-w-[200px] mb-1 leading-snug">
-              Total individuals trained in 6 months
+              Return on investment within 6 months of launch
             </p>
           </div>
         </div>

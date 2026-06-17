@@ -13,12 +13,12 @@ export default function ReflexStudioSection() {
           <div className="mb-2 flex items-center gap-3 text-[13px] text-[#1a2e10] sm:text-[15px]">
             <div className="h-2 w-2 shrink-0 rounded-[20%] bg-[#ED502F]" />
             <span className="break-words">
-              ReflexAI Studio: Self-Serve Simulations & Scoring
+              Marketing: Growth + Performance
             </span>
           </div>
 
           <h2 className="mt-6 text-[34px] font-bold leading-[1] text-black sm:mt-8 sm:text-[40px] lg:text-[48px]">
-            Build your own simulations and scoring models – in just minutes
+            Build campaigns that convert browsers into buyers — in just weeks, not quarters.
           </h2>
 
           <div className="mt-8 hidden lg:block">
@@ -29,15 +29,12 @@ export default function ReflexStudioSection() {
           </div>
 
           <p className="mt-10 max-w-[420px] text-[16px] leading-[1.5] text-[#1a2e10] sm:mt-14 sm:text-[18px] lg:mt-40 lg:text-[20px]">
-            Create lifelike simulations and scoring models from any script, file,
-            scenario, or prompt. ReflexAI Studio powers both Prepare and Assure, giving
-            teams the tools to train, measure, and improve — all in one platform, with no
-            code.
+         From brand strategy and SEO to performance ads and content — Zybrio builds marketing systems that generate real pipeline. Not just impressions. Not just clicks. Revenue.
           </p>
 
           <div className="mt-8 lg:hidden">
             <ToggleTabs
-              options={["Simulations", "Scoring"]}
+              options={["Performance Marketing", "Organic Growth"]}
               onChange={(val) => console.log(val)}
             />
           </div>

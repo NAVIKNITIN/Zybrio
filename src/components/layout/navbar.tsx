@@ -22,8 +22,8 @@ export function Navbar({ className }: { className?: string }) {
   const menuItems = [
     { label: "Products", hasDropdown: true },
     { label: "Solutions", hasDropdown: true },
-    { label: "Customers", route: ROUTES.customers, hasDropdown: false },
-    { label: "Insights", route: ROUTES.insights, hasDropdown: false },
+    { label: "Clients", route: ROUTES.customers, hasDropdown: false },
+    { label: "Journal", route: ROUTES.insights, hasDropdown: false },
     { label: "Pricing", route: ROUTES.pricing, hasDropdown: false },
   ];
 

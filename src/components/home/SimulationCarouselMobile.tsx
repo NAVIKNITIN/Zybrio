@@ -18,15 +18,15 @@ const SimulationCarouselMobile = () => {
           <div className="pt-[90px]">
             <p className="mb-6 flex items-center gap-3 pl-16 text-[18px] text-[#1f2a1f]">
               <span className="h-2 w-2 rounded-full bg-[#0f240f]" aria-hidden="true" />
-              <span>Prepare: AI Training Simulations</span>
+              <span>Design: AI Training Simulations</span>
             </p>
 
             <h3 className="mt-4 max-w-[550px] pl-16 text-4xl font-semibold leading-[1.2] tracking-[-0.08em] text-[#102110] md:text-5xl">
-              Give your agents realistic practice before they take a single live call.
+              Give your brand a presence that's impossible to ignore.
             </h3>
 
             <AppButton className="mt-6 ml-14 inline-flex w-fit items-center rounded-[12px] border border-[#d7d5cb] bg-white px-4 py-2.5 text-[14px] font-medium text-[#102110] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bdbbae] hover:bg-[#ecebe4] hover:shadow-sm">
-              See Simulations in Action →
+              See Design Work →
             </AppButton>
           </div>
 

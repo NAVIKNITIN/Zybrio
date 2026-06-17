@@ -1,17 +1,19 @@
-// src/data/customersPageData.ts
 
 export const customersPageData = {
   hero: {
-    eyebrow: "Customers",
-    title: "ReflexAI in action",
+    eyebrow: "Clients",
+    title: "Real Brands. Real Results.",
+    subtitle:
+      "We measure our success by the outcomes our clients achieve—not just the deliverables we provide.",
   },
+
 
   stories: [
     {
       id: 1,
-      brand: "lines for life",
+      brand: "Featured case study",
       title:
-        "Transforming Crisis Line Training and Quality Assurance at Lines for Life with ReflexAI",
+        "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
       metricValue: "71%",
       metricLabel: "Feel better prepared to answer calls",
       image: "/Customer/Customer_hero1.png",
@@ -48,7 +50,7 @@ export const customersPageData = {
   ],
 
   trustedSection: {
-    title: "Trusted by companies across industries",
+    title: "Brands that trusted us to lead.",
     cards: [
       {
         id: 1,
@@ -103,8 +105,8 @@ export const customersPageData = {
     items: [
       {
         id: 1,
-        category: "Staffing & Recruiting",
-        title: "Enhancing Verstela's Outbound Sales with ReflexAI",
+        category: "E-Commerce",
+        title: "How a D2C jewellery brand built 40K Instagram followers in 4 months",
         image: "/Customer/Customer_hero2.png",
         imageAlt: "Verstela customer story",
         overlay: false,
@@ -115,9 +117,9 @@ export const customersPageData = {
       },
       {
         id: 2,
-        category: "Education",
+        category: "SaaS",
         title:
-          "Enhancing How Varsity Tutors Engages Students and Parents with ReflexAI",
+          " A complete product redesign that cut churn by 31%",
         image: "/Customer/Customer_hero3.png",
         imageAlt: "Varsity Tutors customer story",
         overlay: false,
@@ -128,9 +130,9 @@ export const customersPageData = {
       },
       {
         id: 3,
-        category: "211 and 988 Contact Center",
+        category: "Real Estate",
         title:
-          "United Way of Connecticut: transforming crisis line operations with ReflexAI",
+          "A property platform that went from 0 to ₹2Cr in listings enquiries",
         image: "/Customer/Customer_her4.png",
         imageAlt: "United Way of Connecticut customer story",
         overlay: false,
@@ -141,9 +143,9 @@ export const customersPageData = {
       },
       {
         id: 4,
-        category: "Crisis Center",
+        category: "Fintech",
         title:
-          "Transforming Crisis Line Training and Quality Assurance at Lines for Life with ReflexAI",
+          "Rebranding a payments startup for Series A readiness",
         image: "/Customer/Customer_hero1.png",
         imageAlt: "Lines for Life customer story",
         overlay: false,

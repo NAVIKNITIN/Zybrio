@@ -1,9 +1,9 @@
 export const insightsPageContent = {
   hero: {
-    eyebrow: "by ReflexAI",
-    title: "Reflexions",
+    eyebrow: "from the Zybrio team.",
+    title: "Ideas, opinions, and playbooks ",
     description:
-      "Ideas, research, and stories about the intersection of empathy, training, and AI - written by the people building it.",
+      "We write about design, technology, brand strategy, and the business of building things people love. No fluff. Just thinking.",
   },
 
 featuredSlider: {
@@ -72,23 +72,33 @@ filtersSidebar: {
   heading: "Categories",
   items: [
     {
-      label: "All Insights",
+      label: "All",
       href: "/insights",
       active: true,
       accent: "square",
     },
     {
-      label: "Blog",
-      href: "/insights#blog",
+      label: "Brand",
+      href: "/insights#brand",
       accent: "square",
     },
     {
-      label: "Press",
-      href: "/insights#press",
+      label: "Design",
+      href: "/insights#design",
       accent: "square",
     },
     {
-      label: "Case studies",
+      label: "Technology",
+      href: "/insights#technology",
+      accent: "square",
+    },
+    {
+      label: "Marketing",
+      href: "/insights#marketing",
+      accent: "square",
+    },
+    {
+      label: "Case Studies",
       href: "/customers#top",
       trailingIcon: "arrow-up-right",
     },

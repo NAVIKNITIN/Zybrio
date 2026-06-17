@@ -7,7 +7,8 @@ const FeaturedInsights = () => {
     <section className="max-w-10xl mx-auto py-12 px-4 md:px-6">
       <div className="flex items-center mb-8">
         <div className="w-2 h-2 bg-black inline-block mr-2"></div>
-        <h2 className="text-sm text-gray-800">Featured Insights</h2>
+        <h2 className="text-sm text-gray-800">Fresh thinking from the Zybrio team.</h2>
+       {/*<p className="text-sm text-gray-800">Fresh thinking from the Zybrio team.</p>*/}
       </div>
 
       {/* MAIN CONTAINER RESPONSIVE */}
@@ -38,7 +39,7 @@ const FeaturedInsights = () => {
           </div>
 
           <div className="text-xs sm:text-sm text-gray-500 mt-4 md:mt-15">
-            <span className="font-semibold uppercase tracking-wider">Press</span> •
+            <span className="font-semibold uppercase tracking-wider"></span> •
             06.22.2025
           </div>
 

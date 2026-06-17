@@ -1,20 +1,20 @@
 export const simulationCarouselData = [
   {
     id: 1,
-    title: "Configurable personas",
-    description: "Build or upload your own scenarios in seconds with a single prompt.",
+    title: "Brand Identity",
+    description: "Logo, typography, colour system, and brand guidelines built to last.",
     image: "/SimulationCarousel-images/1.jpg",
   },
   {
     id: 2,
-    title: "Realistic conversations",
-    description: "Train agents with human-like AI conversations before live calls.",
+    title: "UI/UX Design",
+    description: "Interfaces that are intuitive, beautiful, and designed to convert.",
     image: "/SimulationCarousel-images/2.jpeg",
   },
   {
     id: 3,
-    title: "Performance analytics",
-    description: "Track improvements and identify coaching opportunities instantly.",
+    title: "Motion & Visual Design",
+    description: "Animation, illustrations, and visuals that make people stop scrolling",
     image: "/SimulationCarousel-images/3.jpeg",
   },
 ];

@@ -5,45 +5,41 @@ export type FooterColumn = {
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: "Products",
-    links: ["Prepare", "Assure"],
+    title: "Services",
+    links: ["UI/UX Design", "Brand Identity","Web Development","Mobile Apps","Digital Marketing","SEO"],
   },
   {
-    title: "Industries",
+    title: "Work",
     links: [
-      "Crisis",
-      "Education",
-      "Healthcare",
+      "Fintech",
+      "E-Commerce",
+      "SaaS & Tech",
       "Mental Health",
-      "Emergency Response",
-      "Contact Centers",
-      "Staffing Services",
-      "Financial Services",
-      "Large Hospitals",
-      "Insurance",
-      "Travel",
+      "D2C Brands",
+      "Real Estate",
+      "EdTech",      
     ],
   },
   {
     title: "Use Cases",
     links: [
-      "Customer Service",
-      "Sales Teams",
-      "Clinical Teams",
-      "Regulatory Compliance",
+      "Startup Launch",
+      "Brand Refresh",
+      "Product Design",
+      "Growth Campaigns",
     ],
   },
   {
-    title: "Resources",
-    links: ["Customers", "Blog", "Press"],
+    title: "Connect",
+    links: ["Case Studies", "Blog", "Process", "Pricing"],
   },
   {
     title: "Company",
-    links: ["About", "Careers", "Security & Compliance", "HomeTeam"],
+    links: ["About Zybrio", "Our Work", "Journal", "Careers"],
   },
 ];
 
 export const organizationsColumn: FooterColumn = {
-  title: "Organizations",
-  links: ["SMB", "Enterprise", "Nonprofit"],
+  title: "Connect",
+  links: ["hello@zybrio.com", "LinkedIn", "Instagram", "Behance"],
 };
