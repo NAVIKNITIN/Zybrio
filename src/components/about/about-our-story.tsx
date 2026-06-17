@@ -1,16 +1,16 @@
 export default function OurStory() {
   return (
-    <section className="relative overflow-hidden bg-[#f4f3ed] py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-[#f4f3ed] py-16 sm:py-20 lg:py-32">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
         {/* Label */}
-        <div className="mb-10 flex items-center gap-3 -ml-8">
+        <div className="mb-8 flex items-center gap-3 lg:-ml-8 lg:mb-10">
           <span className="h-[5px] w-[5px] rounded-full bg-black" />
           <span className="text-[16px] font-normal text-black">Our Story</span>
         </div>
 
-        <div className="space-y-10 pb-27">
+        <div className="space-y-8 pb-16 sm:space-y-10 sm:pb-20 lg:pb-27">
           {/* Left Side */}
-          <h2 className="-ml-10 max-w-[900px] text-[32px] font-medium leading-[1.05] tracking-[-0.04em] text-black md:text-[48px] lg:text-[44px]">
+          <h2 className="max-w-[900px] text-[30px] font-medium leading-[1.08] tracking-[-0.035em] text-black sm:text-[40px] md:text-[48px] lg:-ml-10 lg:text-[44px] lg:leading-[1.05] lg:tracking-[-0.04em]">
             Born in the toughest environments,
             <br />
             ReflexAI powers high-stakes
@@ -20,7 +20,7 @@ export default function OurStory() {
 
           {/* Right Side */}
           <div className="flex items-start lg:justify-end">
-            <div className="max-w-[560px] space-y-10 text-[10px] lg:ml-[200px] leading-[1.65] text-[#4e5649] md:text-[16px]">
+            <div className="max-w-[560px] space-y-6 text-[15px] leading-[1.65] text-[#4e5649] md:text-[16px] lg:ml-[200px] lg:space-y-10">
               <p>
                 Our story began in the high-stakes world of crisis intervention, where
                 every conversation could have life-changing implications. We built AI
@@ -41,7 +41,7 @@ export default function OurStory() {
       </div>
 
       {/* Background Shape */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden pb-10">
+      <div className="pointer-events-none absolute inset-0 hidden overflow-hidden pb-10 lg:block">
         <svg
           className="absolute top-65 -left-28 h-[75%] w-[70%]"
           viewBox="0 0 1200 800"

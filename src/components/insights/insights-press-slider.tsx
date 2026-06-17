@@ -75,6 +75,11 @@ const PressCard = ({ item, index, layout = "slider" }: PressCardProps) => {
 };
 
 export const InsightsPressSlider = () => {
+
+  const sliderContainerRef = useRef<HTMLDivElement | null>(null);
+
+
+
   const { pressAnnouncements } = insightsPageContent;
   const items = pressAnnouncements.items.slice(0, MAX_PRESS_ITEMS);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -106,6 +111,36 @@ export const InsightsPressSlider = () => {
   const totalSteps = Math.max(items.length - visibleCount + 1, 1);
   const maxIndex = totalSteps - 1;
 
+
+  const SCROLL_STEP = 3;
+
+  useEffect(() => {
+    const container = sliderContainerRef.current;
+
+    if (!container || showAllPress) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      event.preventDefault();
+
+      setActiveIndex((prev) => {
+        if (event.deltaY > 0) {
+          return Math.min(prev + SCROLL_STEP, maxIndex);
+        }
+
+        return Math.max(prev - SCROLL_STEP, 0);
+      });
+    };
+
+    container.addEventListener("wheel", handleWheel, {
+      passive: false,
+    });
+
+    return () => {
+      container.removeEventListener("wheel", handleWheel);
+    };
+  }, [maxIndex, showAllPress]);
+
+
   useEffect(() => {
     if (showAllPress || totalSteps <= 1 || dragRatio !== null) {
       return;
@@ -122,6 +157,18 @@ export const InsightsPressSlider = () => {
     return maxIndex <= 0 ? 0 : activeIndex / maxIndex;
   }, [activeIndex, maxIndex]);
 
+  const handleWheel = (event: WheelEvent) => {
+    event.preventDefault();
+
+    const container = sliderContainerRef.current;
+
+    if (!container) return;
+
+    container.scrollBy({
+      left: event.deltaY > 0 ? 900 : -900, // ≈ 3 cards
+      behavior: "smooth",
+    });
+  };
   const effectiveRatio = dragRatio ?? committedRatio;
   const floatingIndex = effectiveRatio * maxIndex;
 
@@ -149,7 +196,10 @@ export const InsightsPressSlider = () => {
   };
 
   return (
-    <div id="press" className="min-w-0 scroll-mt-28">
+    <div
+      ref={sliderContainerRef}
+      className="mt-12 overflow-x-auto scrollbar-hide"
+    >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div>
           <p className="text-[1.15rem] font-medium text-white/88">
@@ -177,8 +227,9 @@ export const InsightsPressSlider = () => {
             <PressCard key={item.id} item={item} index={index} layout="grid" />
           ))}
         </div>
-      ) : (
-        <>
+      )  
+      : (
+        <> 
           <div className="mt-12 min-w-0 overflow-hidden">
             <div
               className={cn(
@@ -186,9 +237,9 @@ export const InsightsPressSlider = () => {
                 dragRatio === null && "transition-transform duration-500 ease-out",
               )}
               style={{
-                transform: `translateX(calc(-${floatingIndex * (100 / visibleCount)}% - ${
-                  floatingIndex * (isDesktop ? 32 : 24)
-                }px))`,
+                transform: `translateX(calc(-${floatingIndex * (100 / visibleCount)}% - ${floatingIndex * (isDesktop ? 32 : 24)
+                  }px))`,
+                willChange: "transform",
               }}
             >
               {items.map((item, index) => (

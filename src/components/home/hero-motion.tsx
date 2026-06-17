@@ -90,13 +90,19 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
           <CommonButton
             title="Schedule a demo"
             height="40px"
-            width="180px"
+            width="200px"
             textColor={greenTheme}
             bgColor="black"
           />
 
-          <button className="whitespace-nowrap font-medium text-[#0B3D0B]">
-            Take a tour →
+          <button className="font-medium text-[#0B3D0B] leading-none">
+            <span className="block lg:hidden">
+              Take a
+              <br />
+              tour →
+            </span>
+
+            <span className="hidden lg:block whitespace-nowrap">Take a tour →</span>
           </button>
         </motion.div>
       </section>

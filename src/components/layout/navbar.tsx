@@ -3,21 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeftIcon, ArrowRightIcon, Menu, ShieldCheckIcon, X } from "lucide-react";
+import { ArrowLeftIcon, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
 import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-type NavbarProps = {
-  className?: string;
-  showMenuButton?: boolean;
-  onMenuClick?: () => void;
-};
-
-export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) {
+export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -35,14 +29,17 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
 
 
   const pathname = usePathname();
-  const headerBorderClass = pathname === "/customers" || pathname === "/insights" ? "" : "border-b border-gray-100";
-  const navLinkTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-[#0B2408]";
-  // Active color: keep white for customers, but make Insights active tab black
-  const navLinkActiveTextColor = pathname === "/customers" || pathname === "/insights" ? "text-white" : "text-black";
+  const isDarkRoute = pathname === "/customers" || pathname === "/insights";
+  const headerBorderClass = isDarkRoute ? "" : "border-b border-gray-100";
+  const navLinkTextColor = isDarkRoute ? "text-black lg:text-white" : "text-black";
+  const navLinkActiveTextColor = isDarkRoute ? "text-white" : "text-black";
+  const [titleTextColor, setTitleTextColor] = useState(
+    isDarkRoute ? "text-white" : "text-black"
+  );
+  const [textColor, setTextColor] = useState(titleTextColor);
 
   useEffect(() => {
-    console.log("All params:", pathname);
-
+    // console.log("All params:", pathname)
     if (pathname === "/customers") {
       setNavBarBgColor("bg-[#061F00]");
     } else if (pathname === "/insights") {
@@ -74,7 +71,6 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollY]);
 
-
   return (
     <motion.header
       initial={{ y: 0, opacity: 1 }}
@@ -99,19 +95,21 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
         navBarBgColor,
       )}>
         <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
-          {showMenuButton && onMenuClick && (
-            <button
-              type="button"
-              onClick={onMenuClick}
-              aria-label="Open sidebar"
-              className="text-[#0B2408] lg:hidden"
-            >
-              <Menu className="size-6" />
-            </button>
-          )}
-
-          <ArrowLeftIcon onClick={() => setActive(null)} className="lg:hidden size-6 text-[#0B2408]" />
-          <Link href={ROUTES.home} className={cn("text-[18px] lg:text-[25px] lg:font-bold", navLinkTextColor)}>{title}</Link>
+          <ArrowLeftIcon onClick={() => setActive(null)}   className={cn(
+              "text-[18px] lg:text-[25px] lg:font-bold lg:hidden",
+              titleTextColor,
+            )}
+          //  className=" size-6 text-[#0B2408]" 
+           />
+          <Link
+            href={ROUTES.home}
+            className={cn(
+              "text-[18px] lg:text-[25px] lg:font-bold",
+              titleTextColor,
+            )}
+          >
+            {title}
+          </Link>
           <nav className="hidden md:flex items-center gap-10 ml-6">
             {menuItems.map((item) => (
               <div
@@ -123,7 +121,7 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                 {item.hasDropdown ? (
                   <button
                     type="button"
-                    className={cn("text-base font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
+                    className={cn("font-medium", active === item.label ? navLinkActiveTextColor : navLinkTextColor)}
                     onClick={() => setActive(active === item.label ? null : item.label)}
                   >
                     {item.label}
@@ -134,7 +132,7 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                   </Link>
                 )}
 
-                {active === item.label && item.hasDropdown && (
+                {active === item.label && (
                   <motion.div layoutId="nav-indicator" className="absolute bottom-6 left-1/2 h-2 w-2 -translate-x-1/2 rounded-sm bg-[#A8E61D]" />
                 )}
               </div>
@@ -156,7 +154,7 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
               if (mobileOpen) {
                 setActive(null);
                 setTitle("ZYBRIO");
-                setNavBarBgColor("white");
+                setNavBarBgColor("bg-white");
               }
 
             }}
@@ -199,11 +197,9 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                   <button
                     key={item.label}
                     type="button"
-                    className={cn(
-                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
-                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
-                    )}
+                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B2408]"
                     onClick={() => {
+                      setTitleTextColor("text-black")
                       setActive(active === item.label ? null : item.label);
                       setTitle(item.label);
                       setNavBarBgColor("#F6F6EE");
@@ -216,10 +212,7 @@ export function Navbar({ className, showMenuButton, onMenuClick }: NavbarProps) 
                   <Link
                     key={item.label}
                     href={item.route ?? "#"}
-                    className={cn(
-                      "flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium",
-                      active === item.label ? navLinkActiveTextColor : navLinkTextColor,
-                    )}
+                    className="flex items-center justify-between border-b border-gray-100 py-4 text-lg font-medium text-[#0B2408]"
                     onClick={() => {
                       setMobileOpen(false);
                       setActive(null);

@@ -102,7 +102,7 @@ function CompaniesTrustedIcon() {
                 h-[68px] md:h-[85px]
                 w-full min-w-0
                 items-center justify-center
-                rounded-[4px] md:rounded-[20px]
+                rounded-[16px] md:rounded-[20px]
                 px-2 md:px-8
                 transition-all duration-300
                 hover:bg-[#F3F2EB]

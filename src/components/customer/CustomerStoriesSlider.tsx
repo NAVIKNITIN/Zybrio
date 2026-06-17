@@ -20,7 +20,7 @@ export default function CustomerStoriesSlider() {
   return (
     <section className="bg-[#061F00] px-5 pb-16 pt-8 text-white">
       <div className="mx-auto grid max-w-[1240px] gap-5 sm:grid-cols-2">
-        <article className="flex min-h-[470px] flex-col justify-between rounded-[16px] border border-[#0E4A16] bg-[#061F00] px-9 py-10">
+        <article className="hidden lg:block flex min-h-[470px] flex-col justify-between rounded-[16px] border border-[#0E4A16] bg-[#061F00] px-9 py-10">
           <div>
             <p className="text-[23px] font-semibold leading-none tracking-[-0.04em] text-white">
               {activeStory.brand}
@@ -95,8 +95,51 @@ export default function CustomerStoriesSlider() {
             </button>
           )}
         </div>
+
+        <article className="lg:hidden block flex min-h-[470px] flex-col justify-between rounded-[16px] border border-[#0E4A16] bg-[#061F00] px-9 py-10">
+          <div>
+            <p className="text-[23px] font-semibold leading-none tracking-[-0.04em] text-white">
+              {activeStory.brand}
+            </p>
+
+            <h2 className="mt-11 max-w-[500px] text-[clamp(28px,2.4vw,34px)] font-semibold leading-[1.13] tracking-[-0.055em] text-white">
+              {activeStory.title}
+            </h2>
+          </div>
+
+          <div className="flex items-end justify-between gap-6">
+            <div className="flex items-center gap-6">
+              <AnimatedMetricNumber
+                value={metricNumber}
+                suffix={metricSuffix}
+                replayKey={activeStory.id}
+                className="text-[52px] font-semibold leading-none tracking-[-0.07em] text-[#DFFF8D]"
+              />
+
+              <p className="max-w-[270px] text-[16px] font-medium leading-[1.25] tracking-[-0.03em] text-white/65">
+                {activeStory.metricLabel}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              {stories.map((story, index) => (
+                <button
+                  key={story.id}
+                  type="button"
+                  aria-label={`Show story ${index + 1}`}
+                  onClick={() => setActiveIndex(index)}
+                  className={
+                    index === activeIndex
+                      ? "size-2.5 rounded-full bg-[#DFFF8D]"
+                      : "size-2.5 rounded-full border border-white bg-transparent"
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        </article>
       </div>
     </section>
-    
+
   );
 }

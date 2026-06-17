@@ -484,10 +484,10 @@ export default function RoleplaySection() {
                 </span>
               </span>
 
-              <span className="text-[36px] font-semibold">and QA</span>
+              <span className="text-[34px] font-semibold">and QA</span>
             </div>
 
-            <div className="mt-0 text-[36px] font-semibold">that&apos;s real-world</div>
+            <div className="mt-0 text-[34px] font-semibold">that&apos;s real-world</div>
 
             <div className="text-[36px] font-semibold">ready</div>
           </div>
