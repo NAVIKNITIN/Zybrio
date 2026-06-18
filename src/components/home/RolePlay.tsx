@@ -494,83 +494,14 @@ export default function RoleplaySection() {
 
           {/* Desktop */}
           <div className="hidden lg:block">
-            <span className="inline-flex flex-wrap items-center justify-center font-semibold">
-              <span>Roleplay</span>
-
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 34,
-                  height: 34,
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  border: "2.5px solid #bcd490",
-                  background: "#7a9e4e",
-                  verticalAlign: "middle",
-                  position: "relative",
-                  top: -2,
-                  margin: "0 5px",
-                  flexShrink: 0,
-                }}
-              >
-                <svg viewBox="0 0 34 34" width="34" height="34">
-                  <circle cx="17" cy="17" r="17" fill="#7a9e4e" />
-                  <circle cx="17" cy="12" r="5" fill="#4e6e2e" />
-                  <ellipse cx="17" cy="26" rx="8" ry="5.5" fill="#4e6e2e" />
-                </svg>
-              </span>
-
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 4,
-                  background: "#1a3d0f",
-                  borderRadius: 999,
-                  padding: "3px 10px 3px 7px",
-                  verticalAlign: "middle",
-                  position: "relative",
-                  top: -2,
-                  margin: "0 4px",
-                }}
-              >
-                <span
-                  style={{
-                    color: "#a8d070",
-                    fontSize: 12,
-                    fontWeight: 800,
-                    lineHeight: 1,
-                  }}
-                >
-                  83%
-                </span>
-
-                <span style={{ display: "flex", gap: 3 }}>
-                  {[1, 2, 3, 4, 5].map((ratingValue) => (
-                    <span
-                      key={`roleplay-rating-${ratingValue}`}
-                      style={{
-                        display: "inline-block",
-                        width: 7,
-                        height: 7,
-                        borderRadius: "50%",
-                        background: ratingValue <= 4 ? "#4ade80" : "#2d5a1a",
-                      }}
-                    />
-                  ))}
-                </span>
-              </span>
-
-              <span>&nbsp;and QA</span>
-            </span>
-
-            <br />
-
-            <br />
-            <div className="mt-0 text-[36px] font-semibold">that&apos;s real-world</div>
-          </div>
+  <div className="text-[36px] font-semibold font-poppins leading-tight">
+    Strategy that thinks
+    
+    Design that sells
+    <br />
+    Technology that scales
+  </div>
+</div>
         </h2>
         {/* Mobile/Tablet */}
         {/* <span className="block lg:hidden"> that&apos;s real-world </span>

@@ -21,61 +21,59 @@ type Plan = {
 
 const preparePlans: Plan[] = [
   {
-    title: "Essential",
+    title: " Starter",
     icon: "🪪",
     buttonText: "Start now",
     features: [
-      "Limited roleplay scenarios",
-      "Self-serve capabilities",
-      "Single modality (voice or text)",
-      "Most advanced voice capabilities",
-      "Asynchronous customer support",
-      "Shorter conversation durations",
-      "Limited manager licenses",
+      "Single service scope (brand identity OR website OR campaign)",
+      "Up to 5 screens / deliverables",
+      "1 revision round",
+      "15-day turnaround",
+      "Email support",
+     
     ],
   },
   {
     title: "Growth",
     icon: "👜",
     popular: true,
-    buttonText: "Start now",
+    buttonText: "Start a Project ",
     features: [
-      "Unlimited roleplay scenarios",
-      "Self-serve capabilities",
-      "Library of pre-built scenarios",
-      "Multiple modalities (voice and text)",
-      "Most advanced voice capabilities",
+      "Brand identity + website design + development",
+      "Up to 15 screens / pages",
+      "2 revision rounds",
+      "30-day turnaround",
+      "Dedicated project manager",
       "Dedicated customer support",
-      "Medium conversation duration",
-      "Expanded manager licenses",
-      "Single sign-on (SSO)",
+      "Monthly performance report",
+      "Priority support",
+      "NDA & IP transfer included",
     ],
   },
+ 
   {
-    title: "Pro",
+    title: "Scale",
     icon: "👑",
-    buttonText: "Start now",
+    buttonText: "Let's Talk →",
     features: [
-      "Unlimited roleplay scenarios",
-      "Self-serve capabilities",
-      "Library of pre-built scenarios",
-      "Multiple modalities (voice and text)",
-      "Most advanced voice capabilities",
-      "Dedicated customer support",
-      "Longest conversation durations",
-      "Unlimited manager licenses",
-      "Single sign-on (SSO)",
-      "SCIM provisioning",
-      "IP address restrictions",
+      "Full-scope design, technology, and/or marketing",
+      "Unlimited deliverables within agreed scope",
+      "Ongoing retainer option available",
+      "Dedicated creative team (designer + developer + strategist)",
+      "Weekly sync calls",
+      "SLA-backed delivery timelines",
+      "SCIM / SSO for enterprise clients",
+     
     ],
+
   },
   {
     title: "Enterprise",
     icon: "📊",
     custom: true,
     buttonText: "Talk to us",
-    description: "Enterprise solutions built for complex requirements.",
-    features: [],
+    description: "Built around your requirements",
+    features: ["Custom scope, NDA, dedicated team, flexible billing. For organisations with complex needs."],
   },
 ];
 
@@ -124,12 +122,11 @@ export default function PricingPage() {
             Pricing
           </p>
           <h1 className="text-[#0D2B0B] text-[2rem] leading-tight sm:text-[3.25rem] md:text-[55px] font-bold md:leading-[1.05]">
-            Pricing that scales with <br className="hidden sm:block" />
-            your team, and your ROI
+           Pricing that scales with your <br className="hidden sm:block" />
+            ambition — and your ROI. 
           </h1>
           <p className="text-[#4D5A45] text-lg sm:text-xl md:text-xl mt-6 sm:mt-8 max-w-[620px] mx-auto px-2 sm:px-0">
-            Flexible plans designed to reduce training costs, save time, and deliver value
-            fast.
+           No hidden fees. No bloated retainers. Just clear, honest pricing for work that delivers.
           </p>
 
           {/* Toggle */}
