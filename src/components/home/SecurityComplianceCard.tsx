@@ -10,11 +10,11 @@ export default function SecurityComplianceCard() {
           {/* LEFT */}
           <div className="relative w-full md:w-[30rem] min-h-[200px] md:min-h-[250px] bg-[#eeefe4] rounded-2xl p-6 overflow-hidden flex items-center justify-center">
             <div className="absolute top-6 left-6 flex flex-col gap-1.5 text-[11px] md:text-xs font-semibold tracking-wide text-neutral-500 uppercase">
-              <span>SOC2</span>
-              <span>HIPAA</span>
-              <span>HITRUST</span>
-              <span>GDPR</span>
-              <span>ISO 27001</span>
+              <span>Awwwards</span>
+              <span>Google Partner</span>
+              <span>Meta Business Partner</span>
+              <span>Clutch Top Agency</span>
+              <span>Featured on Behance</span>
             </div>
 
             <div className="w-[260px] h-[200px] md:w-[260px] md:h-[320px] flex items-center justify-center">
@@ -47,22 +47,20 @@ export default function SecurityComplianceCard() {
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 bg-black inline-block"></span>
               <span className="text-sm font-medium tracking-wide text-neutral-800">
-                Security and compliance
+                CREDENTIALS / TRUST
               </span>
             </div>
 
             <h2 className="text-2xl md:text-[44px] leading-[1.1] font-bold text-[#061e0f] tracking-tight mb-5">
-              Security and compliance that exceed your standards
+              Partnerships and practices that protect your investment.
             </h2>
 
             <p className="text-neutral-600 text-base md:text-[17px] leading-relaxed max-w-[520px] mb-8">
-              Your data (and your conversations) are safe with us. ReflexAI meets the
-              highest global standards, including SOC 2, HIPAA, HITRUST, GDPR and ISO
-              27001.
+              Every Zybrio engagement comes with a signed NDA, fixed-scope agreements, and a dedicated point of contact. No surprises. No excuses.
             </p>
 
             <button className="flex items-center lg:w-[260px] gap-2 whitespace-nowrap border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group">
-              <span>Explore security & compliance</span>
+              <span>How we work</span>
               <svg
                 className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
                 fill="none"
@@ -85,7 +83,7 @@ export default function SecurityComplianceCard() {
       <section className="w-full bg-white py-24 px-0 md:py-32 flex flex-col items-center justify-center font-sans">
         <div className="max-w-[1100px] w-full text-center flex flex-col items-center">
           <h1 className="text-[30px] sm:text-[42px] md:text-[50px] font-bold text-black tracking-tight leading-[1.25] max-w-[1300px] mb-10">
-            Born in the toughest environments,{" "}
+            Born from the belief that great work changes everything{" "}
             <span className="inline-flex items-center whitespace-nowrap">
               ReflexAI
               <svg
@@ -99,7 +97,7 @@ export default function SecurityComplianceCard() {
                 <polygon points="50,32 70,44 70,56 50,68 30,56 30,44" fill="white" />
               </svg>
             </span>{" "}
-            powers high-stakes conversations across industries
+            Zybrio partners with ambitious brands to design, build, and market their way to the top.
           </h1>
 
           <Link

@@ -205,9 +205,9 @@ body {
     color: #a4ea00;
   }
 
-  .insights-page {
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  }
+ .insights-page {
+  font-family: inherit;
+}
 
   .insights-page
     :where(h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label, li, div) {

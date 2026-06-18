@@ -13,11 +13,11 @@ export default function SecurityComplianceCard() {
           
           {/* Compliance Text Labels Stacked on the Top-Left */}
           <div className="absolute top-6 left-6 flex flex-col gap-1.5 text-[11px] md:text-xs font-semibold tracking-wide text-neutral-500 uppercase">
-            <span>SOC2</span>
-            <span>HIPAA</span>
-            <span>HITRUST</span>
-            <span>GDPR</span>
-            <span>ISO 27001</span>
+            <span>Awwwards</span>
+            <span>Google Partner</span>
+            <span>Meta Business Partner</span>
+            <span>Clutch Top Agency</span>
+            <span>Featured on Behance</span>
           </div>
 
           {/* Central Shield/Radar Graphic Wrapper */}
@@ -31,24 +31,24 @@ export default function SecurityComplianceCard() {
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2 h-2 bg-black inline-block"></span>
             <span className="text-sm font-medium tracking-wide text-neutral-800">
-              Security and compliance
+              CREDENTIALS / TRUST
             </span>
           </div>
 
           {/* Main Title Head */}
           <h2 className="text-4xl md:text-[44px] leading-[1.1] font-bold text-[#061e0f] tracking-tight mb-5">
-            Security and compliance that exceed your standards
+            Partnerships and practices that protect your investment.
           </h2>
 
           {/* Descriptive Body Paragraph */}
           <p className="text-neutral-600 text-base md:text-[17px] leading-relaxed max-w-[520px] mb-8">
-            Your data (and your conversations) are safe with us. ReflexAI meets the highest global standards, including SOC 2, HIPAA, HITRUST, GDPR and ISO 27001.
+            Every Zybrio engagement comes with a signed NDA, fixed-scope agreements, and a dedicated point of contact. No surprises. No excuses.
           </p>
 
           {/* Dynamic Button CTA */}
           <div>
             <button className="flex items-center gap-2 border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm font-semibold text-neutral-900 transition-colors bg-white group">
-              <span>Explore security & compliance</span>
+              <span>How we work</span>
               <svg 
                 className="w-3.5 h-3.5 transform transition-transform group-hover:translate-x-0.5" 
                 fill="none" 

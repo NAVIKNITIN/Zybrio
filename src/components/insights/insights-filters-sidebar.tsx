@@ -5,16 +5,26 @@ import { insightsPageContent } from "@/data/insights_data";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-export type InsightsFilterView = "all" | "blog" | "press" | "case-studies";
+export type InsightsFilterView =
+  | "all"
+  | "brand"
+  | "design"
+  | "technology"
+  | "marketing"
+  | "case-studies";
+
+const FILTER_VIEW_BY_LABEL: Record<string, InsightsFilterView> = {
+  All: "all",
+  Brand: "brand",
+  Design: "design",
+  Technology: "technology",
+  Marketing: "marketing",
+  "Case Studies": "case-studies",
+};
 
 type FilterItem = (typeof insightsPageContent.filtersSidebar.items)[number];
 
-const FILTER_VIEW_BY_LABEL: Record<string, InsightsFilterView> = {
-  "All Insights": "all",
-  Blog: "blog",
-  Press: "press",
-  "Case studies": "case-studies",
-};
+
 
 type InsightsFiltersSidebarProps = {
   readonly activeView: InsightsFilterView;
@@ -40,7 +50,7 @@ function isActiveView(item: FilterItem, activeView: InsightsFilterView) {
 
 const CategoryDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("All Insights");
+  const [selected, setSelected] = useState("All");
 
   // const categories = insightsPageContent;
   const categories = insightsPageContent.filtersSidebar;
@@ -170,7 +180,7 @@ export function InsightsFiltersSidebar({
                       isActiveView(item, activeView) && "insights-filter-link-active",
                     )}
                   >
-                    {item.label == "All Insights" ? <span className="insights-filter-dot" /> : null}
+                    {hasAccent(item) ? <span className="insights-filter-dot" /> : null}
                     <span className="text-[15px]">{item.label}</span>
                     {hasArrow(item) ? (
                       <ArrowUpRight className="insights-filter-arrow size-3.5" />

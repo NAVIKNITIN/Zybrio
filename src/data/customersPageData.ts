@@ -1,54 +1,62 @@
-// src/data/customersPageData.ts
 
 export const customersPageData = {
   hero: {
-    eyebrow: "Customers",
-    title: "ReflexAI in action",
-  },
+  eyebrow: "Clients",
+  title: "Real brands. Real results.",
+  subtitle:
+    "We measure our success in the outcomes our clients achieve — not the deliverables we ship.",
+},
 
-  stories: [
-    {
-      id: 1,
-      brand: "lines for life",
-      title:
-        "Transforming Crisis Line Training and Quality Assurance at Lines for Life with ReflexAI",
-      metricValue: "71%",
-      metricLabel: "Feel better prepared to answer calls",
-      image: "/Customer/Customer_hero1.png",
-      imageAlt: "Lines for Life customer story",
-      showPlayButton: true,
-      imageBadge: null,
-      hasImageOverlay: false,
-    },
-    {
-      id: 2,
-      brand: "verstela.",
-      title: "Enhancing Verstela's Outbound Sales with ReflexAI",
-      metricValue: "1,000+",
-      metricLabel: "Hours of roleplays completed since start of partnership",
-      image: "/Customer/Customer_hero2.png",
-      imageAlt: "Verstela customer story",
-      showPlayButton: false,
-      imageBadge: null,
-      hasImageOverlay: false,
-    },
-    {
-      id: 3,
-      brand: "Varsity Tutors",
-      title:
-        "Enhancing How Varsity Tutors Engages Students and Parents with ReflexAI",
-      metricValue: "460",
-      metricLabel: "Total individuals trained in 6 months",
-      image: "/Customer/Customer_hero3.png",
-      imageAlt: "Varsity Tutors customer story",
-      showPlayButton: false,
-      imageBadge: null,
-      hasImageOverlay: true,
-    },
-  ],
+stories: [
+  {
+    id: 1,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero1.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
+  },
+  {
+    id: 2,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero2.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
+  },
+  {
+    id: 3,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero3.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
+  },
+],
 
   trustedSection: {
-    title: "Trusted by companies across industries",
+    title: "Brands that trusted us to lead.",
     cards: [
       {
         id: 1,
@@ -103,8 +111,8 @@ export const customersPageData = {
     items: [
       {
         id: 1,
-        category: "Staffing & Recruiting",
-        title: "Enhancing Verstela's Outbound Sales with ReflexAI",
+        category: "E-Commerce",
+        title: "How a D2C jewellery brand built 40K Instagram followers in 4 months",
         image: "/Customer/Customer_hero2.png",
         imageAlt: "Verstela customer story",
         overlay: false,
@@ -115,9 +123,9 @@ export const customersPageData = {
       },
       {
         id: 2,
-        category: "Education",
+        category: "SaaS",
         title:
-          "Enhancing How Varsity Tutors Engages Students and Parents with ReflexAI",
+          " A complete product redesign that cut churn by 31%",
         image: "/Customer/Customer_hero3.png",
         imageAlt: "Varsity Tutors customer story",
         overlay: false,
@@ -128,9 +136,9 @@ export const customersPageData = {
       },
       {
         id: 3,
-        category: "211 and 988 Contact Center",
+        category: "Real Estate",
         title:
-          "United Way of Connecticut: transforming crisis line operations with ReflexAI",
+          "A property platform that went from 0 to ₹2Cr in listings enquiries",
         image: "/Customer/Customer_her4.png",
         imageAlt: "United Way of Connecticut customer story",
         overlay: false,
@@ -141,9 +149,9 @@ export const customersPageData = {
       },
       {
         id: 4,
-        category: "Crisis Center",
+        category: "Fintech",
         title:
-          "Transforming Crisis Line Training and Quality Assurance at Lines for Life with ReflexAI",
+          "Rebranding a payments startup for Series A readiness",
         image: "/Customer/Customer_hero1.png",
         imageAlt: "Lines for Life customer story",
         overlay: false,

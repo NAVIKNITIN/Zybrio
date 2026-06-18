@@ -94,7 +94,7 @@ export default function Footer() {
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-black/10 pt-8 md:flex-row">
           <div className="flex flex-col items-center gap-4 text-[13px] tracking-[0.03em] md:flex-row md:gap-8">
             <span className="text-black/60">
-              ©2026 ReflexAI All Rights Reserved
+              © 2026 Zybrio. All rights reserved.
             </span>
 
             <div className="hidden h-1.5 w-1.5 bg-[#061f00] md:block" />

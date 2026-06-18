@@ -97,10 +97,10 @@ const InsightsHero = () => {
             <h1 className="text-[clamp(64px,8vw,118px)] font-semibold leading-[0.88] tracking-[-0.07em]">
               Reflexions
             </h1>
-            <span className="mt-3 font-serif text-[18px]">by ReflexAI</span>
+            <span className="mt-3 text-[18px]">by ReflexAI</span>
           </div>
 
-          <p className="mt-8 max-w-[580px] font-serif text-[22px] leading-[1.22]">
+          <p className="mt-8 max-w-[580px] text-[22px] leading-[1.22]">
             Ideas, research, and stories about the intersection of empathy, training, and
             AI - written by the people building it.
           </p>

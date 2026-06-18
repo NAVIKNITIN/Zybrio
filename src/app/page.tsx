@@ -65,15 +65,7 @@ const HomePage = () => {
       </div>
 
       {/* Simulation Carousel */}
-      {/* Desktop Only */}
-      <div className="hidden lg:block">
-        <SimulationCarousel />
-      </div>
-
-      {/* Mobile + Tablet Only */}
-      <div className="lg:hidden">
-        <SimulationCarouselMobile />
-      </div>
+      <SimulationCarousel />
       <AssureSection />
       <ReflexStudioSection />
 

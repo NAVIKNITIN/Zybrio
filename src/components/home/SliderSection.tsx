@@ -7,44 +7,44 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const cards = [
   {
-    title: "Crisis",
+    title: "Fintech",
     image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507",
-    text: "Train teams for high-stakes conversations with realistic, guided practice.",
+    text: "Build trust through design in a high-stakes, regulated industry.",
   },
   {
-    title: "Education",
+    title: "E-Commerce",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    text: "Help learners build confidence through repeatable simulation and feedback.",
+    text: "Turn browsers into buyers with experience-led design and performance marketing.",
+  },
+  {
+    title: "SaaS & Tech",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
+    text: "Ship better products faster with UX systems built for scale.",
+  },
+  {
+    title: "Real Estate",
+    image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2",
+    text: "Digital presence that makes high-value properties feel premium before anyone visits.",
   },
   {
     title: "Healthcare",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
-    text: "Prepare care teams for sensitive interactions with measurable coaching.",
-  },
-  {
-    title: "Mental Health",
-    image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2",
-    text: "Support empathetic conversations before the most important moments happen.",
-  },
-  {
-    title: "Emergency Response",
     image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528",
-    text: "Practice clear communication when speed, calm, and accuracy matter.",
+    text: "Patient-first experiences that simplify complex journeys.",
   },
   {
-    title: "Contact Centers",
+    title: "D2C Brands",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72",
-    text: "Improve QA, coaching, onboarding, and customer conversations at scale.",
+    text: "Brand identity and marketing that builds loyalty from day one.",
   },
   {
-    title: "Financial Services",
+    title: "EdTech",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f",
-    text: "Build compliant, confident teams for complex customer interactions.",
+    text: "Intuitive platforms that make learning feel effortless.",
   },
   {
-    title: "Insurance",
+    title: "Hospitality",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85",
-    text: "Give agents realistic practice for claims, support, and policy questions.",
+    text: "Visual storytelling and booking experiences that sell themselves.",
   },
 ];
 
@@ -123,9 +123,9 @@ export default function SliderSection() {
         {/* HEADER */}
         <div className="mb-12 sm:mb-20 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <h2 className="max-w-[530px] text-[28px] sm:text-[42px] lg:text-[48px] font-semibold leading-[1.08]">
-            Proven in crisis,
+            Built for ambition. 
             <br />
-            powerful everywhere
+            Proven across sectors.
           </h2>
 
           {/* HIDE ARROWS ON MOBILE + TAB */}

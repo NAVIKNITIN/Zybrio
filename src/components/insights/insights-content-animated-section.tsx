@@ -112,10 +112,15 @@ export const InsightsContentAnimatedSection = () => {
     [shouldReduceMotion],
   );
 
-  const showBlog = activeView === "all" || activeView === "blog";
-  const showPress = activeView === "all" || activeView === "press";
-  const showCaseStudies = activeView === "case-studies";
+ const showBlog =
+  activeView === "all" ||
+  activeView === "brand" ||
+  activeView === "design" ||
+  activeView === "technology" ||
+  activeView === "marketing";
 
+const showPress = activeView === "all";
+const showCaseStudies = activeView === "case-studies";
 
   
   return (
@@ -164,11 +169,11 @@ export const InsightsContentAnimatedSection = () => {
                   >
                     <div className="lg:hidden">
                       <InsightsBlogShowcaseMobile
-                        onViewAll={() => handleViewChange("blog")}
+                        onViewAll={() => handleViewChange("brand")}
                       />
                     </div>
                     <div className="hidden lg:block">
-                      <InsightsBlogShowcase onViewAll={() => handleViewChange("blog")} />
+                      <InsightsBlogShowcase onViewAll={() => handleViewChange("brand")} />
                     </div>
                   </motion.div>
 

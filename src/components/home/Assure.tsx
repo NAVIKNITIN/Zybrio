@@ -9,26 +9,26 @@ import { motion } from "framer-motion";
 const tabs = [
   {
     id: 0,
-    title: "Automated interaction analysis",
+    title: "Web Development",
     icon: Sparkles,
     image: "/Homepage-image/img1.jpg",
   },
   {
     id: 1,
-    title: "Cohort tracking",
+    title: "Mobile Apps",
     icon: ShieldCheck,
     image: "/Homepage-image/img2.jpg",
   },
   {
     id: 2,
-    title: "Collaborative workspaces",
+    title: "Custom Software",
     icon: Users,
     image: "/Homepage-image/img3.jpg",
   },
 ];
 
 const tabDescriptions = [
-  "Automatically analyze every interaction with AI-powered quality assurance insights.",
+  "Clean, scalable, and fast — every product we build is engineered for performance and built to grow with your business.",
   "Track team performance and customer experience trends across cohorts.",
   "Flexible, secure workspaces make it easy for managers to comment, review, and improve together.",
 ];
@@ -42,16 +42,16 @@ export default function AssureSection() {
         <div className="mb-4 flex items-center justify-center gap-2">
           <div className="mt-8 sm:mt-12 lg:mt-18 h-2.5 w-2.5 shrink-0 rounded-sm bg-purple-500" />
           <p className="mt-8 sm:mt-12 lg:mt-18 text-center text-[13px] sm:text-[14px] lg:text-[15px] text-gray-300">
-            Assure: Automated Quality Assurance
+            Technology: Web + Apps
           </p>
         </div>
 
         <h1 className="mx-auto max-w-[600px] text-[32px] leading-[1.08] tracking-[-0.04em] sm:text-[40px] lg:text-[48px] font-medium">
-          Stop relying on random sampling. Automatically QA 100% of conversations.
+          Stop patching together tools. Build something that actually works.
         </h1>
 
         <AppButton className="mt-6 sm:mt-8 rounded-lg border border-[#35553A] bg-[#0C3214] px-5 py-4 text-base sm:text-lg font-medium text-white transition duration-300 hover:bg-[#15451D]">
-          See QA in Action →
+          See Tech Work →
         </AppButton>
 
         <div className="mt-14 sm:mt-20 lg:mt-24">

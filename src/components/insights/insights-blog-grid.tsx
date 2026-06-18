@@ -35,6 +35,10 @@ function BlogGridCard({ item }: { readonly item: BlogGridItem }) {
         <h3 className="mt-4 max-w-[30rem] text-[1.6rem] font-semibold leading-[1.04] tracking-[-0.05em] text-white sm:text-[2.05rem]">
           {item.title}
         </h3>
+
+        <p className="mt-4 max-w-[31rem] text-[1rem] leading-[1.5] text-white/64">
+          {item.excerpt}
+        </p>
       </div>
     </article>
   );
