@@ -13,9 +13,9 @@ export default function CustomerStoriesSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeStory = stories[activeIndex];
-
-  const metricNumber = Number(activeStory.metricValue.replace(/[^0-9]/g, ""));
-  const metricSuffix = activeStory.metricValue.replace(/[0-9,\s]/g, "");
+  const metricNumber = Number(activeStory.metricValue);
+  const metricPrefix = "metricPrefix" in activeStory ? activeStory.metricPrefix : "";
+  const metricSuffix = "metricSuffix" in activeStory ? activeStory.metricSuffix : "";
 
   return (
     <section className="bg-[#061F00] px-5 pb-16 pt-8 text-white">
@@ -35,14 +35,17 @@ export default function CustomerStoriesSlider() {
             <div className="flex items-center gap-6">
               <AnimatedMetricNumber
                 value={metricNumber}
+                prefix={metricPrefix}
                 suffix={metricSuffix}
                 replayKey={activeStory.id}
                 className="text-[52px] font-semibold leading-none tracking-[-0.07em] text-[#DFFF8D]"
               />
 
-              <p className="max-w-[270px] text-[16px] font-medium leading-[1.25] tracking-[-0.03em] text-white/65">
-                {activeStory.metricLabel}
-              </p>
+              {activeStory.metricLabel ? (
+  <p className="max-w-[270px] text-[16px] font-medium leading-[1.25] tracking-[-0.03em] text-white/65">
+    {activeStory.metricLabel}
+  </p>
+) : null}
             </div>
 
             <div className="flex items-center gap-1.5">
@@ -116,9 +119,11 @@ export default function CustomerStoriesSlider() {
                 className="text-[52px] font-semibold leading-none tracking-[-0.07em] text-[#DFFF8D]"
               />
 
-              <p className="max-w-[270px] text-[16px] font-medium leading-[1.25] tracking-[-0.03em] text-white/65">
-                {activeStory.metricLabel}
-              </p>
+              {activeStory.metricLabel ? (
+  <p className="max-w-[270px] text-[16px] font-medium leading-[1.25] tracking-[-0.03em] text-white/65">
+    {activeStory.metricLabel}
+  </p>
+) : null}
             </div>
 
             <div className="flex items-center gap-1.5">
@@ -140,6 +145,5 @@ export default function CustomerStoriesSlider() {
         </article>
       </div>
     </section>
-
   );
 }

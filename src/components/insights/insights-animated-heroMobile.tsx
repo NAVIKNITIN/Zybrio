@@ -7,38 +7,43 @@ import { motion, useMotionValue, animate, PanInfo } from "framer-motion";
 const featuredPosts = [
   {
     id: 1,
-    type: "Blog",
-    date: "02.09.2026",
-    title: "How AI Simulations Are Transforming Hospital Workforce Readiness",
-    image: "/insights/image1.png",
+    type: "Brand Strategy",
+    date: "June 2026",
+    title:
+      "Why Most Indian Startups Have a Design Problem — Not a Product Problem",
+    image: "/insights/Slide1.png",
   },
   {
     id: 2,
-    type: "Press",
-    date: "04.08.2026",
-    title: "ReflexAI and Google.org Expand AI-Powered Training Globally",
-    image: "/insights/image2.png",
+    type: "Brand Strategy",
+    date: "June 2026",
+    title:
+      "Why Most Indian Startups Have a Design Problem — Not a Product Problem",
+    image: "/insights/Slide2.png",
   },
   {
     id: 3,
-    type: "Blog",
-    date: "03.27.2026",
-    title: "AI simulations are improving hospital workforce training and readiness",
-    image: "/insights/image3.png",
+    type: "Brand Strategy",
+    date: "June 2026",
+    title:
+      "Why Most Indian Startups Have a Design Problem — Not a Product Problem",
+    image: "/insights/Slide3.png",
   },
   {
     id: 4,
-    type: "Blog",
-    date: "01.18.2026",
-    title: "AI simulations are helping doctors and nurses practice real-life cases safely",
-    image: "/insights/image4.png",
+    type: "Brand Strategy",
+    date: "June 2026",
+    title:
+      "Why Most Indian Startups Have a Design Problem — Not a Product Problem",
+    image: "/insights/Slide4.png",
   },
   {
     id: 5,
-    type: "Blog",
-    date: "12.11.2025",
-    title: "AI simulations are enhancing hospital preparedness for real emergencies",
-    image: "/insights/image5.png",
+    type: "Brand Strategy",
+    date: "June 2026",
+    title:
+      "Why Most Indian Startups Have a Design Problem — Not a Product Problem",
+    image: "/insights/Slide5.png",
   },
 ];
 
@@ -232,9 +237,9 @@ export default function InsightsHeroMobile() {
             <h1 className="text-[40px] font-bold leading-none tracking-[-0.07em]">
               Reflexions
             </h1>
-            <span className="font-serif text-[15px] text-[#C5D0C0]">by ReflexAI</span>
+            <span className="text-[15px] text-[#C5D0C0]">by ReflexAI</span>
           </div>
-          <p className="mt-8 font-serif text-[17px] leading-[1.35] text-[#E6ECE0]">
+          <p className="mt-8 text-[17px] leading-[1.35] text-[#E6ECE0]">
             Ideas, research, and stories about the intersection of empathy, training, and
             AI — written by the people building it.
           </p>

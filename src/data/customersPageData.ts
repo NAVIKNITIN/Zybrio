@@ -1,53 +1,59 @@
 
 export const customersPageData = {
   hero: {
-    eyebrow: "Clients",
-    title: "Real Brands. Real Results.",
-    subtitle:
-      "We measure our success by the outcomes our clients achieve—not just the deliverables we provide.",
+  eyebrow: "Clients",
+  title: "Real brands. Real results.",
+  subtitle:
+    "We measure our success in the outcomes our clients achieve — not the deliverables we ship.",
+},
+
+stories: [
+  {
+    id: 1,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero1.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
   },
-
-
-  stories: [
-    {
-      id: 1,
-      brand: "Featured case study",
-      title:
-        "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
-      metricValue: "71%",
-      metricLabel: "Feel better prepared to answer calls",
-      image: "/Customer/Customer_hero1.png",
-      imageAlt: "Lines for Life customer story",
-      showPlayButton: true,
-      imageBadge: null,
-      hasImageOverlay: false,
-    },
-    {
-      id: 2,
-      brand: "verstela.",
-      title: "Enhancing Verstela's Outbound Sales with ReflexAI",
-      metricValue: "1,000+",
-      metricLabel: "Hours of roleplays completed since start of partnership",
-      image: "/Customer/Customer_hero2.png",
-      imageAlt: "Verstela customer story",
-      showPlayButton: false,
-      imageBadge: null,
-      hasImageOverlay: false,
-    },
-    {
-      id: 3,
-      brand: "Varsity Tutors",
-      title:
-        "Enhancing How Varsity Tutors Engages Students and Parents with ReflexAI",
-      metricValue: "460",
-      metricLabel: "Total individuals trained in 6 months",
-      image: "/Customer/Customer_hero3.png",
-      imageAlt: "Varsity Tutors customer story",
-      showPlayButton: false,
-      imageBadge: null,
-      hasImageOverlay: true,
-    },
-  ],
+  {
+    id: 2,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero2.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
+  },
+  {
+    id: 3,
+    brand: "Fintech · Brand + UI/UX + Web",
+    title:
+      "How We Helped a Fintech Startup Go From Zero to 10,000 Users in 90 Days",
+    metricValue: "10000",
+    metricPrefix: "0% → ",
+    metricSuffix: " users",
+    metricLabel: "",
+    image: "/Customer/Customer_hero3.png",
+    imageAlt: "Fintech startup case study",
+    showPlayButton: false,
+    imageBadge: null,
+    hasImageOverlay: false,
+  },
+],
 
   trustedSection: {
     title: "Brands that trusted us to lead.",

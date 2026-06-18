@@ -88,7 +88,7 @@ function CompaniesTrustedIcon() {
     <section className="mt-1 w-full py-12 md:py-20 lg:py-35">
       <div className="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-12">
         {/* Heading */}
-        <h2 className="mb-10 text-center font-syne text-[18px] font-medium tracking-[-0.02em] text-[#1f2a1f] md:mb-16 md:text-[20px]">
+        <h2 className="mb-10 text-center text-[18px] font-medium tracking-[-0.02em] text-[#1f2a1f] md:mb-16 md:text-[20px]">
        Trusted by founders and brands across India and beyond.
         </h2>
 
