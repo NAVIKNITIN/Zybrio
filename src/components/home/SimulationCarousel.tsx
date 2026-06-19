@@ -10,7 +10,7 @@ const SimulationCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   return (
-    <section className="bg-[#f7f7f5]">
+    <section>
       <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-20 px-6 lg:grid-cols-[1.3fr_1fr] lg:px-12 py-20">
         <div className="overflow-y-auto scrollbar-hide">
           <div className="pt-[90px]">

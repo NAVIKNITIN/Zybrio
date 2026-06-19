@@ -9,7 +9,7 @@ export function AboutTeamSection() {
 
   return (
     <section className="bg-forest pb-14 sm:pb-16 md:pb-20 lg:pb-24">
-      <div className="container-app">
+      <div className="m-auto max-w-7xl">
         <div className="border-moss mt-10 w-full rounded-2xl border p-2 pb-8 md:mt-16 md:pb-12 lg:mt-24 lg:pb-16">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] bg-white/5 sm:aspect-[16/9] lg:aspect-[1264/600]">
             <Image

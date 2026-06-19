@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeftIcon, Menu, X } from "lucide-react";
@@ -10,8 +10,21 @@ import { ROUTES } from "@/constants/routes";
 import ProductsSection from "../pricing/ProductCard";
 import SolNavbar from "../SolNavbar";
 import { usePathname } from "next/navigation";
+import CommonButton from "../common/commonBtn";
+import HeroMotion from "../home/hero-motion";
+import { BgThemeContext } from "@/globalStore/BgColorChange";
 
-export function Navbar({ className }: { className?: string }) {
+interface NavbarProps {
+  className?: string;
+  showMenuButton?: boolean;
+  onMenuClick?: () => void;
+}
+
+export function Navbar({
+  className,
+  showMenuButton,
+  onMenuClick,
+}: NavbarProps) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -19,11 +32,12 @@ export function Navbar({ className }: { className?: string }) {
   const [navBarBgColor, setNavBarBgColor] = useState<string>("bg-white");
   // const navBarBgClass = navBarBgColor === "#F6F6EE" ? "bg-[#F6F6EE]" : "bg-white";
 
+  //  Work | Services | Studio | Journal | Careers
   const menuItems = [
-    { label: "Products", hasDropdown: true },
-    { label: "Solutions", hasDropdown: true },
-    { label: "Customers", route: ROUTES.customers, hasDropdown: false },
-    { label: "Insights", route: ROUTES.insights, hasDropdown: false },
+    { label: "Work", hasDropdown: true },
+    { label: "Services", hasDropdown: true },
+    { label: "Studio", route: ROUTES.customers, hasDropdown: false },
+    { label: "Journal", route: ROUTES.insights, hasDropdown: false },
     { label: "Pricing", route: ROUTES.pricing, hasDropdown: false },
   ];
 
@@ -37,6 +51,7 @@ export function Navbar({ className }: { className?: string }) {
     isDarkRoute ? "text-white" : "text-black"
   );
   const [textColor, setTextColor] = useState(titleTextColor);
+  const context = useContext(BgThemeContext);
 
   useEffect(() => {
     // console.log("All params:", pathname)
@@ -52,11 +67,13 @@ export function Navbar({ className }: { className?: string }) {
 
   const onEnter = (item: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    context?.setBgThemeColor(true);
     setActive(item);
   };
 
   const onLeave = () => {
     timeoutRef.current = setTimeout(() => setActive(null), 150);
+    context?.setBgThemeColor(false);
   };
   const [scrollY, setScrollY] = useState(0);
   const [hidden, setHidden] = useState(false);
@@ -80,8 +97,7 @@ export function Navbar({ className }: { className?: string }) {
       }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className={cn(
-        "sticky top-0 z-50 transition-all bg-white",
-        headerBorderClass,
+        "sticky top-0 z-50 ransition-all bg-white",
         className,
       )}
     >
@@ -95,12 +111,11 @@ export function Navbar({ className }: { className?: string }) {
         navBarBgColor,
       )}>
         <div className="flex items-center gap-3  lg:gap-12 lg:ml-25">
-          <ArrowLeftIcon onClick={() => setActive(null)}   className={cn(
-              "text-[18px] lg:text-[25px] lg:font-bold lg:hidden",
-              titleTextColor,
-            )}
-          //  className=" size-6 text-[#0B2408]" 
-           />
+          <ArrowLeftIcon onClick={() => setActive(null)} className={cn(
+            "text-[18px] lg:text-[25px] lg:font-bold lg:hidden",
+            titleTextColor,
+          )}
+          />
           <Link
             href={ROUTES.home}
             className={cn(
@@ -114,8 +129,8 @@ export function Navbar({ className }: { className?: string }) {
             {menuItems.map((item) => (
               <div
                 key={item.label}
-                className="relative h-24 flex items-center"
-                onMouseEnter={() => item.hasDropdown && onEnter(item.label)}
+                className="relative h-22 flex items-center"
+                onMouseEnter={() => onEnter(item.label)}
                 onMouseLeave={onLeave}
               >
                 {item.hasDropdown ? (
@@ -133,7 +148,7 @@ export function Navbar({ className }: { className?: string }) {
                 )}
 
                 {active === item.label && (
-                  <motion.div layoutId="nav-indicator" className="absolute bottom-6 left-1/2 h-2 w-2 -translate-x-1/2 rounded-sm bg-[#A8E61D]" />
+                  <motion.div layoutId="nav-indicator" className="absolute bottom-6 left-1/2 h-2 w-2 top-15 -translate-x-1/2  bg-[#A8E61D]" />
                 )}
               </div>
             ))}
@@ -142,9 +157,15 @@ export function Navbar({ className }: { className?: string }) {
 
 
         <div className="flex items-center gap-3 mr-0 lg:mr-25">
-          <Link href="/schedule-a-demo/" className="hidden md:block rounded-lg bg-[#E8E7DE] px-8 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
+          <CommonButton
+            title="Start a Project →"
+            bgColor="bg-[#EDEDE1]"
+            color="black"
+          />
+          {/* <CommonButton title="Start a Project →" size="16" color="forest" bgColor="bgtextColor" className="hidden md:block" /> */}
+          {/* <Link href="/schedule-a-demo/" className="hidden md:block rounded-lg bg-[#E8E7DE] px-8 py-3 text-sm font-semibold text-[#0B2408] transition hover:bg-[#A8E61D]">
             Get Demo
-          </Link>
+          </Link> */}
           <Button
             variant="ghost"
             size="icon"
@@ -165,7 +186,7 @@ export function Navbar({ className }: { className?: string }) {
       </div>
 
       <AnimatePresence>
-        {active && (
+        {(active === "Work" || active === "Services") && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,7 +196,7 @@ export function Navbar({ className }: { className?: string }) {
             onMouseLeave={onLeave}
           >
             <div className="overflow-hidden lg:h-full rounded-lg border-[#ECECE5] px-4 lg:px-0  bg-[#F3F3EB] lg:bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full">
-              {active === "Products" ? <ProductsSection /> : <SolNavbar />}
+              {active === "Work" ? <ProductsSection /> : <SolNavbar />}
             </div>
 
           </motion.div>

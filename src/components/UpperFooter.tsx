@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { AppButton } from "@/components/common/app-button";
+import FooterBlobAnimation from "./FooterBlobAnimation";
+import CommonButton from "./common/commonBtn";
 
 export default function UpperFooter() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -204,15 +206,17 @@ export default function UpperFooter() {
         </h1>
 
         <div className="mt-6 flex items-center gap-6">
-          <AppButton className="ml-5 md:ml-10 cursor-pointer rounded-[10px] bg-black px-6 py-5 text-base font-medium text-lime-400 transition hover:opacity-90">
+          <CommonButton title="Start a Project → " size="15" color="lime" bgColor="#072300" className="ml-5 md:ml-10" />
+          {/* <AppButton className="ml-5 md:ml-10 cursor-pointer rounded-[10px] bg-black px-6 py-5 text-base font-medium text-lime-400 transition hover:opacity-90">
             Get a demo
-          </AppButton>
+          </AppButton> */}
 
-          <button className="text-lg font-medium text-black">Take a tour →</button>
+          <button className="text-sm font-bold text-black">Take a tour →</button>
         </div>
       </div>
 
       <div className="absolute top-0 right-0 h-full w-[46%]">
+        {/* <FooterBlobAnimation/> */}
         <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
     </section>

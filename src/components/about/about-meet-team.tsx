@@ -101,9 +101,9 @@ export default function TeamSection() {
                 key={person.name}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="h-[360px] rounded-[24px] border border-[#1e5d23] bg-[#01450d] p-[3px] sm:h-[390px] sm:rounded-[28px]"
+                className="h-[360px] rounded-lg border border-[#1e5d23] bg-[#01450d] p-[3px] sm:h-[390px]"
               >
-                <div className="relative flex h-full flex-col rounded-[20px] bg-[#01520d] px-5 pt-5 pb-5 sm:rounded-[24px] sm:px-6 sm:pt-6 sm:pb-6">
+                <div className="relative flex h-full flex-col  bg-[#01520d] px-5 pt-5 pb-5 rounded-lg sm:px-6 sm:pt-6 sm:pb-6">
                   {/* Image */}
                   <div className="flex justify-center">
                     <div className="relative h-[140px] w-[140px] sm:h-[160px] sm:w-[160px]">

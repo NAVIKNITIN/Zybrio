@@ -63,7 +63,7 @@ const products = [
 export default function ProductsSection() {
   return (
     <div
-      className="w-full mx-auto mt-2 lg:mt-0 bg-white rounded-[10px] px-4 sm:px-6 lg:px-8 py-6 lg:py-5 max-h-[65vh] lg:max-h-[85vh]  overflow-y-auto lg:overflow-y-hidden overflow-x-hidden product-scrollbar">
+      className="w-full sticky top-0 mx-auto mt-2 lg:mt-0 bg-white rounded-[10px] px-4 sm:px-6 lg:px-8 py-6 lg:py-5 max-h-[65vh] lg:max-h-[85vh]  overflow-y-auto lg:overflow-y-hidden overflow-x-hidden product-scrollbar">
       <section className="sm:px-0">
         <div className="grid gap-3 lg:grid-cols-[620px_320px] items-stretch">
           {/* Products */}

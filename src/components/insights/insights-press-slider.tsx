@@ -122,15 +122,16 @@ export const InsightsPressSlider = () => {
     const handleWheel = (event: WheelEvent) => {
       event.preventDefault();
 
+      if (event.deltaX === 0) return;
+
       setActiveIndex((prev) => {
-        if (event.deltaY > 0) {
+        if (event.deltaX > 0) {
           return Math.min(prev + SCROLL_STEP, maxIndex);
         }
 
         return Math.max(prev - SCROLL_STEP, 0);
       });
     };
-
     container.addEventListener("wheel", handleWheel, {
       passive: false,
     });
@@ -165,7 +166,7 @@ export const InsightsPressSlider = () => {
     if (!container) return;
 
     container.scrollBy({
-      left: event.deltaY > 0 ? 900 : -900, // ≈ 3 cards
+      left: event.deltaX > 0 ? 900 : -900, // ≈ 3 cards
       behavior: "smooth",
     });
   };
@@ -227,73 +228,73 @@ export const InsightsPressSlider = () => {
             <PressCard key={item.id} item={item} index={index} layout="grid" />
           ))}
         </div>
-      )  
-      : (
-        <> 
-          <div className="mt-12 min-w-0 overflow-hidden">
-            <div
-              className={cn(
-                "flex gap-6 sm:gap-8",
-                dragRatio === null && "transition-transform duration-500 ease-out",
-              )}
-              style={{
-                transform: `translateX(calc(-${floatingIndex * (100 / visibleCount)}% - ${floatingIndex * (isDesktop ? 32 : 24)
-                  }px))`,
-                willChange: "transform",
-              }}
-            >
-              {items.map((item, index) => (
-                <PressCard key={item.id} item={item} index={index} layout="slider" />
-              ))}
-            </div>
-          </div>
-
-          <div className="mx-auto mt-14 w-full max-w-[76rem]">
-            <div
-              ref={trackRef}
-              className="relative h-2 cursor-pointer touch-none overflow-hidden rounded-full bg-[#10361a]"
-              onPointerDown={(event) => {
-                setDragRatio(getRatioFromPointer(event.clientX));
-                event.currentTarget.setPointerCapture(event.pointerId);
-              }}
-              onPointerMove={(event) => {
-                if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-                  setDragRatio(getRatioFromPointer(event.clientX));
-                }
-              }}
-              onPointerUp={(event) => {
-                const nextRatio = getRatioFromPointer(event.clientX);
-                const nextIndex = maxIndex <= 0 ? 0 : Math.round(nextRatio * maxIndex);
-
-                setActiveIndex(nextIndex);
-                setDragRatio(null);
-
-                if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-                  event.currentTarget.releasePointerCapture(event.pointerId);
-                }
-              }}
-              onPointerCancel={(event) => {
-                setDragRatio(null);
-
-                if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-                  event.currentTarget.releasePointerCapture(event.pointerId);
-                }
-              }}
-            >
+      )
+        : (
+          <>
+            <div className="mt-12 min-w-0 overflow-hidden">
               <div
                 className={cn(
-                  "absolute top-0 h-full rounded-full bg-[#a4ea00]",
-                  dragRatio === null && "transition-[left] duration-500 ease-out",
+                  "flex gap-6 sm:gap-8",
+                  dragRatio === null && "transition-transform duration-500 ease-out",
                 )}
                 style={{
-                  width: indicatorWidth,
-                  left: indicatorLeft,
+                  transform: `translateX(calc(-${floatingIndex * (100 / visibleCount)}% - ${floatingIndex * (isDesktop ? 32 : 24)
+                    }px))`,
+                  willChange: "transform",
                 }}
-              />
+              >
+                {items.map((item, index) => (
+                  <PressCard key={item.id} item={item} index={index} layout="slider" />
+                ))}
+              </div>
             </div>
-          </div>
-        </>
-      )}
+
+            <div className="mx-auto mt-14 w-full max-w-[76rem]">
+              <div
+                ref={trackRef}
+                className="relative h-2  overflow-x-auto cursor-pointer touch-none overflow-hidden rounded-full bg-[#10361a]"
+                onPointerDown={(event) => {
+                  setDragRatio(getRatioFromPointer(event.clientX));
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                }}
+                onPointerMove={(event) => {
+                  if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+                    setDragRatio(getRatioFromPointer(event.clientX));
+                  }
+                }}
+                onPointerUp={(event) => {
+                  const nextRatio = getRatioFromPointer(event.clientX);
+                  const nextIndex = maxIndex <= 0 ? 0 : Math.round(nextRatio * maxIndex);
+
+                  setActiveIndex(nextIndex);
+                  setDragRatio(null);
+
+                  if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+                    event.currentTarget.releasePointerCapture(event.pointerId);
+                  }
+                }}
+                onPointerCancel={(event) => {
+                  setDragRatio(null);
+
+                  if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+                    event.currentTarget.releasePointerCapture(event.pointerId);
+                  }
+                }}
+              >
+                <div
+                  className={cn(
+                    "absolute top-0 h-full rounded-full bg-[#a4ea00]",
+                    dragRatio === null && "transition-[left] duration-500 ease-out",
+                  )}
+                  style={{
+                    width: indicatorWidth,
+                    left: indicatorLeft,
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        )}
     </div>
   );
 };

@@ -216,7 +216,7 @@ function drawFilled(
   ctx.restore();
 }
 
-function drawSquareDot({ ctx, x, y, size, color, alpha, W, H }: DotDrawArgs) {
+function drawSquareDot({ ctx, x, y, size, color, alpha, W, H }:any) {
   const [px, py] = canvasPt(x, y, W, H);
   const s = size * (W / 760);
   const radius = s * 0.2;

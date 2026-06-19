@@ -3,6 +3,7 @@ import Image from "next/image";
 type Company = {
   id: number;
   name: string;
+  title: string;
   image: string;
 };
 
@@ -24,62 +25,50 @@ const companiesTrustedIcon: Company[] = [
   {
     id: 1,
     name: "Amazon One Medical",
-    image: "/HomePage-image/amazon.png",
+    title: "Fintech",
+    image: "",
   },
   {
     id: 2,
     name: "Veterans Affairs",
-    image: "/HomePage-image/va.png",
+    title: "E-commerce",
+    image: "",
   },
   {
     id: 3,
     name: "Pearson",
-    image: "/HomePage-image/pearson.png",
+    title: "SaaS",
+    image: "",
   },
   {
     id: 4,
     name: "Block",
-    image: "/HomePage-image/block.png",
+    title: "Real Estate",
+    image: "",
   },
   {
     id: 5,
     name: "iLending",
-    image: "/HomePage-image/ilending.png",
+    title: "Healthcare",
+    image: "",
   },
   {
     id: 6,
     name: "Cortland",
-    image: "/HomePage-image/cortland.png",
+    title: "Fashion",
+    image: "",
   },
   {
     id: 7,
     name: "Community Tax",
-    image: "/HomePage-image/communityTax.png",
+    title: "EdTech",
+    image: "",
   },
   {
     id: 8,
     name: "Varsity Tutors",
-    image: "/HomePage-image/ilending.png",
-  },
-  {
-    id: 9,
-    name: "United Way",
-    image: "/HomePage-image/ilending.png",
-  },
-  {
-    id: 10,
-    name: "HRS",
-    image: "/HomePage-image/hrs.png",
-  },
-  {
-    id: 11,
-    name: "Compass",
-    image: "/HomePage-image/compass.png",
-  },
-  {
-    id: 12,
-    name: "Alleviate Tax",
-    image: "/HomePage-image/alleviate.png",
+    title: "Hospitality",
+    image: "",
   },
 ];
 
@@ -89,7 +78,7 @@ function CompaniesTrustedIcon() {
       <div className="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-12">
         {/* Heading */}
         <h2 className="mb-10 text-center font-syne text-[18px] font-medium tracking-[-0.02em] text-[#1f2a1f] md:mb-16 md:text-[20px]">
-          Trusted by companies across industries
+          Brands that trust us to lead.
         </h2>
 
         {/* Companies Grid */}
@@ -129,17 +118,24 @@ function CompaniesTrustedIcon() {
                 "
               />
 
-              <Image
-                src={company.image}
-                alt={company.name}
-                width={500}
-                height={200}
-                sizes="(max-width: 768px) 70px, (max-width: 1024px) 140px, 160px"
-                unoptimized
-                className={`object-contain transition-transform duration-300 ${getImageSize(
-                  company.name,
-                )}`}
-              />
+              {company.image !== "" ? (
+                <Image
+                  src={company.image}
+                  alt={company.name}
+                  width={500}
+                  height={200}
+                  sizes="(max-width: 768px) 70px, (max-width: 1024px) 140px, 160px"
+                  unoptimized
+                  className={`object-contain transition-transform duration-300 ${getImageSize(
+                    company.name,
+                  )}`}
+                />
+              ) : 
+              
+              <h2 className="text-black">{company.title}</h2>
+              
+              }
+
             </div>
           ))}
         </div>

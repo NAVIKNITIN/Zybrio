@@ -17,6 +17,7 @@ import PerformanceSectionMobile from "@/components/home/PerOutComes-mobile";
 import PerformanceDashboardMobile from "@/components/home/PerformanceDashboardMobile";
 import SimulationCarouselMobile from "@/components/home/SimulationCarouselMobile";
 import CompaniesTrustedIconMobile from "@/components/home/CompaniesTrustedIconMobile";
+import { RolyPlyBgLine } from "@/components/common/RolyPlyBgLine";
 
 const HeroMotion = dynamic(() => import("@/components/home/hero-motion"), {
   loading: () => <div className="h-40" />,
@@ -27,6 +28,7 @@ export const metadata = createPageMetadata(
   "Production-ready Next.js starter with auth, dashboard, and scalable architecture.",
 );
 
+
 const HomePage = () => {
   return (
     <MarketingLayout>
@@ -34,15 +36,15 @@ const HomePage = () => {
         <HeroMotion />
       </section> */}
       <HeroMotion />
-        {/* Desktop */}
-        <div className="hidden lg:block">
-          <PerformanceDashboard />
-        </div>
+      {/* Desktop */}
+      <div className="hidden lg:block">
+        <PerformanceDashboard />
+      </div>
 
-        {/* Mobile + Tablet */}
-        <div className="lg:hidden">
-          <PerformanceDashboardMobile />
-        </div>
+      {/* Mobile + Tablet */}
+      <div className="lg:hidden">
+        <PerformanceDashboardMobile />
+      </div>
       {/* </section> */}
 
       {/* Companies */}
@@ -55,7 +57,8 @@ const HomePage = () => {
         <CompaniesTrustedIconMobile />
       </div>
 
-      <RoleplaySection />
+      {/* <RolyPlyBgLine /> */}
+      {/* <RoleplaySection /> */}
       <div className="hidden lg:block">
         <PerformanceOutcomesDashboard />
       </div>

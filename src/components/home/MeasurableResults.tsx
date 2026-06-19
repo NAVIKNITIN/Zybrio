@@ -30,7 +30,7 @@ export default function MeasurableResults() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="mb-10 text-[28px] leading-tight font-bold text-white md:text-[40px]"
+        className="mb-10 text-[28px] leading-tight font-bold md:text-[40px]"
       >
         Measurable results from Day One
       </motion.h2>
@@ -53,7 +53,7 @@ export default function MeasurableResults() {
             </div>
 
             <div className="flex flex-col items-start gap-4 pb-2 md:flex-row md:items-center">
-              <span className="text-[72px] font-bold leading-none text-white md:text-[75px]">
+              <span className="text-[72px] font-bold leading-none md:text-[75px]">
                 {stat.value}
               </span>
 

@@ -25,7 +25,7 @@ const AboutPage = () => {
 
       <main className="bg-forest text-white">
         <section className="relative overflow-hidden bg-forest pt-12 md:pt-16 lg:pt-20">
-          <div className="container-app">
+          <div className="m-auto max-w-7xl pt-10">
             <div className="max-w-[620px]">
               <h1 className="text-[36px] font-semibold leading-[1.08] text-white sm:text-[44px] lg:text-[56px]">
                 {hero.titleLines.map((line) => (
