@@ -8,10 +8,10 @@ export function AboutTeamSection() {
   const { teamImage, teamPrinciples } = aboutPageContent;
 
   return (
-    <section className="bg-forest pb-16 md:pb-24">
-      <div className="container-app">
-        <div className="border-moss mt-12 w-full rounded-2xl border p-2 pb-8 md:mt-24 md:pb-16">
-          <div className="relative aspect-[1264/600] w-full overflow-hidden rounded-[10px] bg-white/5">
+    <section className="bg-forest pb-14 sm:pb-16 md:pb-20 lg:pb-24">
+      <div className="m-auto max-w-7xl">
+        <div className="border-moss mt-10 w-full rounded-2xl border p-2 pb-8 md:mt-16 md:pb-12 lg:mt-24 lg:pb-16">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] bg-white/5 sm:aspect-[16/9] lg:aspect-[1264/600]">
             <Image
               src={teamImage.src}
               alt={teamImage.alt}
@@ -22,14 +22,14 @@ export function AboutTeamSection() {
             />
           </div>
 
-          <div className="mt-10 flex flex-col justify-around gap-8 gap-y-8 px-2 md:mt-20 md:flex-row md:px-4 xl:px-10">
+          <div className="mt-8 flex flex-col justify-around gap-8 gap-y-8 px-2 sm:mt-10 md:px-4 lg:mt-20 lg:flex-row xl:px-10">
             {teamPrinciples.map((principle, index) => {
               const Icon = principleIcons[index] ?? BookOpen;
 
               return (
                 <div
                   key={principle.title}
-                  className="flex flex-1 gap-5 md:max-w-[364px]"
+                  className="flex flex-1 gap-4 sm:gap-5 lg:max-w-[364px]"
                 >
                   <div className="size-6 flex-none text-[#7baa1d]">
                     <Icon className="size-6" strokeWidth={2.4} />

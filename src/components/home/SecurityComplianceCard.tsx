@@ -1,4 +1,5 @@
 "use client";
+import CommonButton from "../common/commonBtn";
 import FeaturedInsights from "./FeaturedInsights";
 import Link from "next/link";
 
@@ -61,7 +62,9 @@ export default function SecurityComplianceCard() {
               27001.
             </p>
 
-            <button className="flex items-center gap-2 whitespace-nowrap border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group">
+            <CommonButton title="Explore security & compliance →" size="15" width="265px"  color="" bgColor="white" className="flex items-center gap-2 whitespace-nowrap border border-neutral-300 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group" />
+
+            {/* <button className="flex items-center lg:w-[260px] gap-2 whitespace-nowrap border border-neutral-300 hover:border-neutral-800 rounded-lg px-5 py-2.5 text-sm md:text-base font-semibold text-neutral-900 bg-white group">
               <span>Explore security & compliance</span>
               <svg
                 className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
@@ -76,7 +79,7 @@ export default function SecurityComplianceCard() {
                   d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

@@ -48,7 +48,7 @@ export const customersPageData = {
   ],
 
   trustedSection: {
-    title: "Trusted by companies across industries",
+    title: "Brands that trust us to lead.",
     cards: [
       {
         id: 1,

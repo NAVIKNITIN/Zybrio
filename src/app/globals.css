@@ -78,6 +78,7 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -89,11 +90,13 @@ body {
     transform: translateY(0);
   }
 }
+
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -107,10 +110,12 @@ body {
   * {
     box-sizing: border-box;
   }
+
   body {
     background: var(--background);
     color: var(--foreground);
   }
+
   html {
     font-family: "Poppins", sans-serif;
   }
@@ -137,8 +142,13 @@ body {
     background-color: #012a0b;
   }
 
+  @theme {
+    --color-forest: #072300;
+    --color-lime: #a4ed22;
+  }
+
   .insights-filter-search {
-    height: 3.2rem;
+    height: 45px;
     border-radius: 9999px;
     border: 1px solid rgba(255, 255, 255, 0.16);
     background: rgba(0, 0, 0, 0.24);
@@ -152,6 +162,44 @@ body {
       border-color 160ms ease,
       background 160ms ease,
       color 160ms ease;
+  }
+
+  .toolTip {
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    animation: tooltipMove 10s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes tooltipMove {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+
+    25% {
+      transform: translate3d(120px, -50px, 0);
+    }
+
+    50% {
+      transform: translate3d(220px, 0px, 0);
+      opacity: 0.9;
+    }
+
+    75% {
+      transform: translate3d(350px, 120px, 0);
+    }
+
+    90% {
+      transform: translate3d(450px, 150px, 0);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translate3d(450px, 150px, 0);
+      opacity: 0;
+    }
   }
 
   .insights-filter-search::placeholder {
@@ -209,10 +257,10 @@ body {
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
-  .insights-page
-    :where(h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label, li, div) {
+  .insights-page :where(h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label, li, div) {
     font-family: inherit !important;
   }
+
   .text-20px-heading {
     font-size: 20px;
     line-height: 1.25;
@@ -222,6 +270,7 @@ body {
   .border-moss {
     border-color: #143f17;
   }
+
   .text-40px {
     font-size: 40px;
     line-height: 1.1;

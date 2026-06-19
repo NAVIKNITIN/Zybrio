@@ -18,14 +18,16 @@ const AboutPage = () => {
   return (
     <MarketingLayout>
       <AboutHeroSection />
+
       <AboutInNumbers />
+
       <AboutOurStory />
 
       <main className="bg-forest text-white">
-        <section className="relative overflow-hidden bg-forest pt-14 md:pt-20">
-          <div className="container-app">
+        <section className="relative overflow-hidden bg-forest pt-12 md:pt-16 lg:pt-20">
+          <div className="m-auto max-w-7xl pt-10">
             <div className="max-w-[620px]">
-              <h1 className="text-[56px] font-semibold leading-[1.08] text-white">
+              <h1 className="text-[36px] font-semibold leading-[1.08] text-white sm:text-[44px] lg:text-[56px]">
                 {hero.titleLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -33,7 +35,7 @@ const AboutPage = () => {
                 ))}
               </h1>
 
-              <p className="mt-5 max-w-[620px] text-[20px] font-medium leading-[1.55] text-white/78">
+              <p className="mt-5 max-w-[620px] text-[16px] font-medium leading-[1.55] text-white/78 sm:text-[18px] lg:text-[20px]">
                 {hero.description}
               </p>
             </div>

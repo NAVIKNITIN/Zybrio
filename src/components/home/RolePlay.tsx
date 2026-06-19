@@ -10,16 +10,16 @@ const CX = 380; // center x in VW/VH space
 const CY = 310; // center y
 
 // 9-point polygon unit vectors from center
-const UNIT: [number, number][] = [
-  [380, 0],
-  [629, 74],
-  [760, 267],
-  [712, 484],
-  [516, 620],
-  [244, 620],
-  [46, 484],
-  [0, 267],
-  [131, 74],
+const UNIT = [
+  [380, 20],
+  [655, 55],
+  [760, 245],
+  [710, 510],
+  [530, 620],
+  [220, 610],
+  [35, 500],
+  [5, 280],
+  [160, 70],
 ].map(([x, y]) => [x - CX, y - CY] as [number, number]);
 
 // Ring scales (outer → inner dashed, then filled)
@@ -318,9 +318,9 @@ export default function RoleplaySection() {
       const fillPts = rotatePts(getPts(FILL_SCALE), s.angle);
 
       // Draw dashed rings
-      drawRing(ctx, rings[0], 7, 8, 0.5, W, H);
-      drawRing(ctx, rings[1], 6, 7, 0.44, W, H);
-      drawRing(ctx, rings[2], 6, 7, 0.36, W, H);
+      drawRing(ctx, rings[0], 7, 8, 0.35, W, H);
+      drawRing(ctx, rings[1], 6, 7, 0.28, W, H);
+      drawRing(ctx, rings[2], 6, 7, 0.22, W, H);
 
       // Draw filled shape
       drawFilled(ctx, fillPts, W, H);
@@ -484,10 +484,10 @@ export default function RoleplaySection() {
                 </span>
               </span>
 
-              <span className="text-[36px] font-semibold">and QA</span>
+              <span className="text-[34px] font-semibold">and QA</span>
             </div>
 
-            <div className="mt-0 text-[36px] font-semibold">that&apos;s real-world</div>
+            <div className="mt-0 text-[34px] font-semibold">that&apos;s real-world</div>
 
             <div className="text-[36px] font-semibold">ready</div>
           </div>

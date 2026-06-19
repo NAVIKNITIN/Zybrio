@@ -181,17 +181,6 @@ function polyPath(
   ctx.closePath();
 }
 
-type DotDrawArgs = {
-  ctx: CanvasRenderingContext2D;
-  x: number;
-  y: number;
-  size: number;
-  color: string;
-  alpha: number;
-  W: number;
-  H: number;
-};
-
 function drawRing(
   ctx: CanvasRenderingContext2D,
   pts: [number, number][],
@@ -227,7 +216,7 @@ function drawFilled(
   ctx.restore();
 }
 
-function drawSquareDot({ ctx, x, y, size, color, alpha, W, H }: DotDrawArgs) {
+function drawSquareDot({ ctx, x, y, size, color, alpha, W, H }:any) {
   const [px, py] = canvasPt(x, y, W, H);
   const s = size * (W / 760);
   const radius = s * 0.2;

@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import CommonButton from "../common/commonBtn";
 import { greenTheme, headerTitle } from "@/themes/themes";
+import { BgThemeContext } from "@/globalStore/BgColorChange";
 
-export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
+const HeroMotion = () => {
+  const context = useContext(BgThemeContext);
+
   return (
-    <div className={bgColor ? "bg-[#F8F8F5]" : "bg-white"}>
-<section className="mx-auto max-w-7xl px-2 pt-17 flex flex-col items-start justify-center">
+    <div className={context?.bgThemeColor ? "bg-[#F8F8F5]" : "bg-white"}>
+      <section className="mx-auto max-w-7xl px-2 pt-17 flex flex-col items-start justify-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,9 +29,9 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
   ${headerTitle}
 `}
         >
-          Simulation and QA for <br />
+          We Build Brands That <br />
           <span className="inline-flex flex-wrap items-center gap-2 md:gap-3">
-            critical
+            Demand
             <motion.div
               className="flex items-center gap-[5px] md:gap-[7px]"
               initial={{ opacity: 0 }}
@@ -56,7 +59,7 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
                 />
               ))}
             </motion.div>
-            conversations
+            Attention.
           </span>
         </motion.h1>
 
@@ -72,13 +75,12 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
             font-sans
             text-[18px]
             sm:text-[20px]
-            lg:text-[22px]
+            lg:text-[20px]
             leading-relaxed
             text-[#4A4A4A]
           "
         >
-          Reduce escalations, cut onboarding time, and monitor 100% of interactions — with
-          AI simulations and automated QA built for contact centres.
+          Zybrio is a full-service creative agency — design, technology, and marketing — engineered for brands that refuse to be ordinary.
         </motion.p>
 
         <motion.div
@@ -87,19 +89,20 @@ export default function HeroMotion({ bgColor = false }: { bgColor?: boolean }) {
           transition={{ delay: 1.3 }}
           className="mt-8 flex items-center gap-4"
         >
-          <CommonButton
-            title="Schedule a demo"
-            height="40px"
-            width="180px"
-            textColor={greenTheme}
-            bgColor="black"
-          />
+          <CommonButton title="See Our Work →" size="16" color="lime" bgColor="#072300" />
+          <button className="text-[#0B3D0B] text-sm font-bold leading-none tracking-[0.01em]">
+            <span className="block lg:hidden">
+              Start a
+              <br />
+              Project →
+            </span>
 
-          <button className="whitespace-nowrap font-medium text-[#0B3D0B]">
-            Take a tour →
+            <span className="hidden lg:block whitespace-nowrap">Start a Project →</span>
           </button>
         </motion.div>
       </section>
     </div>
   );
 }
+
+export default HeroMotion;

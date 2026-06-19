@@ -4,14 +4,26 @@ import { cn } from "@/lib/utils";
 
 type AppButtonProps = React.ComponentProps<typeof Button> & {
   isLoading?: boolean;
+  padding?: string;
 };
 
 export const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
-  ({ className, isLoading, disabled, children, ...props }, ref) => {
+  (
+    {
+      className,
+      isLoading,
+      disabled,
+      children,
+      padding,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Button
         ref={ref}
         className={cn(className)}
+        style={{ padding }}
         disabled={disabled || isLoading}
         {...props}
       >
